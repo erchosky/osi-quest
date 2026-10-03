@@ -1,0 +1,192 @@
+/* Reading overrides come last so small screens retain a comfortable type size. */
+.lesson-layout {
+  grid-template-columns: 220px minmax(0, 1fr);
+}
+.lesson {
+  max-width: 850px;
+}
+.lesson-section,
+.teach-back {
+  scroll-margin-top: 24px;
+}
+.lesson-section p,
+.lesson-section li,
+.lesson-intro,
+.takeaway p,
+.teach-back p {
+  font-size: 17px;
+  line-height: 1.8;
+  max-width: 65ch;
+  color: var(--ink);
+}
+.lesson-section h2 {
+  line-height: 1.35;
+}
+.lesson-toolbar .button,
+.lesson-nav a,
+.lesson-route summary,
+.lesson-mobile-toc summary {
+  min-height: 44px;
+  font-size: 13px;
+}
+.lesson-nav {
+  max-height: calc(100dvh - 48px);
+  overflow-y: auto;
+}
+.lesson-section-nav {
+  margin-bottom: 18px;
+}
+.lesson-route summary,
+.lesson-mobile-toc summary,
+.teach-back summary {
+  cursor: pointer;
+  padding: 12px 0;
+  font-weight: 600;
+}
+.lesson-route {
+  border-top: 1px solid var(--line);
+}
+.lesson-mobile-toc {
+  display: none;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  margin: 20px 0;
+}
+.lesson-mobile-toc a {
+  display: block;
+  padding: 12px 0;
+}
+.lesson-reading-meter {
+  margin-bottom: 24px;
+  padding: 16px;
+  background: var(--soft);
+  border-radius: 12px;
+}
+.lesson-reading-meter label {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.lesson-reading-meter progress {
+  display: block;
+  width: 100%;
+  height: 8px;
+  accent-color: var(--green);
+  margin: 12px 0;
+}
+.lesson-reading-meter small,
+.teach-back small {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+.teach-back {
+  margin-top: 30px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+.teach-back h2 {
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+.teach-back label {
+  display: block;
+  margin: 18px 0 8px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.teach-back textarea {
+  width: 100%;
+  resize: vertical;
+  min-height: 110px;
+  padding: 14px;
+  font: inherit;
+  font-size: 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface-ffffff, white);
+  color: var(--ink);
+}
+.teach-back details {
+  margin-top: 14px;
+}
+.lesson-resume {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+  margin: 24px 0;
+}
+.lesson-resume p:not(.eyebrow) {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 6px;
+}
+.lesson-check .answer span {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 700;
+}
+@media (max-width: 900px) {
+  .lesson-layout {
+    display: block;
+  }
+  .lesson-nav {
+    display: none;
+  }
+  .lesson-mobile-toc {
+    display: block;
+  }
+  .lesson {
+    margin: 0 auto;
+  }
+}
+@media (max-width: 560px) {
+  .lesson {
+    padding: 22px 18px;
+  }
+  .lesson h1 {
+    font-size: 28px;
+  }
+  .lesson-section h2 {
+    font-size: 22px;
+  }
+  .lesson-section p,
+  .lesson-section li,
+  .lesson-intro,
+  .takeaway p,
+  .teach-back p {
+    font-size: 17px;
+  }
+  .lesson-resume {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .lesson-check {
+    padding: 18px 14px;
+  }
+  .lesson-check .answer {
+    flex-wrap: wrap;
+  }
+  .lesson-end .button {
+    width: 100%;
+  }
+  .unit-row p {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+}
+@media (forced-colors: active) {
+  .lesson-reading-meter progress {
+    forced-color-adjust: auto;
+  }
+  .lesson-nav a[aria-current],
+  .lesson-mobile-toc a[aria-current] {
+    outline: 2px solid Highlight;
+  }
+}

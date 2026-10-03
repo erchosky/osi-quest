@@ -1,0 +1,155 @@
+.class-entry,
+.class-round {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 20px 24px;
+  border: 1px solid var(--edge-cddbbd, #cddbbd);
+  border-radius: 16px;
+  background: var(--surface-edf4e4, #edf4e4);
+  margin-bottom: 24px;
+}
+.class-entry h2 {
+  font-size: 18px;
+}
+.class-entry p,
+.class-round span {
+  font-size: 13px;
+  color: var(--muted);
+}
+.class-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+.class-form {
+  padding: 28px;
+  min-width: 0;
+}
+.class-form h2 {
+  margin: 16px 0 22px;
+  font-size: 23px;
+}
+.class-form label {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  margin: 20px 0 8px;
+}
+.class-form input,
+.class-form select {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface-ffffff, white);
+  color: var(--ink);
+  padding: 13px;
+  font: inherit;
+  font-size: 14px;
+}
+.class-form input:focus,
+.class-form select:focus {
+  outline: 3px solid var(--edge-c4de9c, #c4de9c);
+  outline-offset: 2px;
+}
+.class-form select:disabled {
+  background: var(--soft);
+  opacity: 1;
+}
+.class-form .small-note {
+  margin-top: 8px;
+}
+.class-error {
+  color: var(--text-913e21, #913e21);
+  font-size: 14px;
+  margin: 14px 0;
+}
+.class-error:empty {
+  display: none;
+}
+.class-form > .button {
+  margin-top: 24px;
+}
+.class-side {
+  display: grid;
+  gap: 20px;
+}
+.class-side .notice h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.class-side .notice p + p {
+  margin-top: 12px;
+}
+.class-invitation {
+  padding: 30px;
+}
+.class-invitation .class-form {
+  padding: 0;
+}
+.class-facts {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: 14px;
+}
+.class-copy-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.class-copy-row .button {
+  flex-shrink: 0;
+}
+.class-start {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+.class-start p {
+  flex: 1;
+  min-width: 220px;
+  color: var(--muted);
+  font-size: 14px;
+}
+.class-round {
+  padding: 14px 20px;
+}
+.class-round strong,
+.class-round span {
+  display: block;
+  overflow-wrap: anywhere;
+}
+.class-round strong {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+@media (max-width: 850px) {
+  .class-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 500px) {
+  .class-form,
+  .class-invitation {
+    padding: 22px;
+  }
+  .class-copy-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .class-entry .button,
+  .class-form > .button,
+  .class-start .button {
+    width: 100%;
+  }
+}

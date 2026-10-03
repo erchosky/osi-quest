@@ -1,0 +1,413 @@
+.packet-toolbar {
+  max-width: none;
+}
+.packet-scenario {
+  padding: 25px 28px;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 14px 30px;
+  align-items: center;
+}
+.packet-scenario h2 {
+  font-size: 22px;
+  margin: 10px 0;
+}
+.packet-scenario p {
+  font-size: 13px;
+  color: var(--muted);
+}
+.packet-scenario > .small-note {
+  grid-column: 1 / -1;
+}
+.packet-route {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 9px;
+  background: var(--soft);
+  border-radius: 13px;
+  padding: 17px;
+  font-size: 10px;
+}
+.packet-route strong {
+  display: block;
+  font-size: 11px;
+  margin-top: 5px;
+}
+.packet-route b {
+  font-size: 17px;
+  color: var(--text-83a065, #83a065);
+}
+.packet-steps {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  padding: 0;
+  margin: 22px 0;
+  list-style: none;
+  gap: 8px;
+}
+.packet-steps li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 10px;
+  background: var(--surface-edf0e8, #edf0e8);
+  padding: 11px 10px;
+  color: var(--text-75816c, #75816c);
+  font-size: 11px;
+}
+.packet-steps li > span {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--edge-d4ddcb, #d4ddcb);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 10px;
+}
+.packet-steps .is-current {
+  background: var(--green);
+  color: var(--text-ffffff, white);
+}
+.packet-steps .is-current > span {
+  border-color: #ffffff50;
+}
+.packet-steps .is-complete {
+  background: var(--surface-e4f0ce, #e4f0ce);
+  color: var(--green);
+}
+.packet-layout {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 22px;
+  align-items: start;
+}
+.packet-mission {
+  width: 100%;
+  max-width: none;
+}
+.packet-mission .question-title {
+  margin-bottom: 15px;
+}
+.packet-task {
+  font-size: 14px;
+  color: var(--muted);
+}
+.packet-support {
+  margin-top: 18px;
+  padding: 12px 15px;
+  border-radius: 10px;
+  background: var(--soft);
+  font-size: 12px;
+}
+.packet-instruction {
+  margin: 20px 0 13px;
+}
+.packet-token-bank {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.packet-token {
+  padding: 14px;
+  text-align: left;
+  border-radius: 11px;
+  border: 1px solid var(--line);
+  background: var(--surface-ffffff, white);
+  cursor: grab;
+  min-height: 77px;
+  transition:
+    border-color 0.15s,
+    transform 0.15s,
+    background 0.15s;
+}
+.packet-token:active {
+  cursor: grabbing;
+}
+.packet-token strong {
+  display: block;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.packet-token > span {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.5;
+  margin-top: 5px;
+}
+.packet-token:not(:disabled):hover {
+  transform: translateY(-2px);
+  border-color: var(--edge-8ca46e, #8ca46e);
+  background: var(--surface-f7f9f1, #f7f9f1);
+}
+.packet-token.is-selected {
+  background: var(--surface-eaf3dd, #eaf3dd);
+  border-color: var(--edge-7b9b54, #7b9b54);
+}
+.packet-token:disabled {
+  cursor: default;
+  opacity: 0.55;
+}
+.packet-token:disabled.is-selected {
+  opacity: 1;
+}
+.packet-tray {
+  display: flex;
+  gap: 13px;
+  align-items: center;
+  border: 2px dashed var(--edge-cbd7be, #cbd7be);
+  border-radius: 12px;
+  padding: 18px;
+  margin: 17px 0;
+  min-height: 84px;
+  background: var(--surface-fafcf6, #fafcf6);
+}
+.packet-tray > span {
+  font-size: 25px;
+  color: var(--text-86a264, #86a264);
+}
+.packet-tray strong {
+  font-size: 13px;
+  display: block;
+}
+.packet-tray small {
+  color: var(--muted);
+  font-size: 10px;
+  display: block;
+  margin-top: 4px;
+}
+.packet-tray.has-piece {
+  border-color: var(--edge-9cbf70, #9cbf70);
+}
+.packet-tray.is-over {
+  background: var(--surface-e6f3cc, #e6f3cc);
+  border-color: var(--edge-6f9451, #6f9451);
+}
+.packet-tray.is-complete {
+  border-style: solid;
+  background: var(--surface-edf5e2, #edf5e2);
+}
+.packet-board {
+  padding: 26px;
+  position: sticky;
+  top: 25px;
+}
+.packet-board h2 {
+  font-size: 20px;
+  margin: 12px 0 23px;
+}
+.packet-envelope {
+  border: 1px solid var(--edge-d0ddc1, #d0ddc1);
+  border-radius: 12px;
+  background: var(--surface-f2f6e9, #f2f6e9);
+  padding: 12px;
+  animation: packet-arrival 0.25s ease-out;
+}
+.packet-envelope > span {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+}
+.packet-envelope > strong {
+  display: block;
+  font-size: 11px;
+  line-height: 1.5;
+  margin: 5px 0 10px;
+}
+.packet-envelope > .packet-envelope {
+  margin-top: 11px;
+}
+.packet-payload {
+  min-height: 90px;
+  border-style: dashed;
+  color: var(--text-8b9880, #8b9880);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.packet-payload.is-built {
+  color: var(--green);
+  border-style: solid;
+  background: var(--surface-f6f9ef, #f6f9ef);
+}
+.packet-tcp {
+  background: var(--surface-edf4de, #edf4de);
+  border-color: var(--edge-b4ce8f, #b4ce8f);
+}
+.packet-ip {
+  background: var(--surface-e8f1eb, #e8f1eb);
+  border-color: var(--edge-a6c3b3, #a6c3b3);
+}
+.packet-ethernet {
+  background: var(--surface-f7ebde, #f7ebde);
+  border-color: var(--edge-d9be9e, #d9be9e);
+}
+.packet-delivery {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin: 18px 0;
+  font-size: 11px;
+  color: var(--text-8a9782, #8a9782);
+}
+.packet-delivery.is-built {
+  color: var(--text-4c713b, #4c713b);
+}
+.packet-wire {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 10px;
+  margin: 25px 0 15px;
+}
+.packet-wire > span {
+  flex-shrink: 0;
+}
+.packet-cable {
+  container-type: inline-size;
+  --cable-travel: 100cqw;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--surface-dbe4d0, #dbe4d0);
+  flex: 1;
+  min-width: 20px;
+  position: relative;
+  overflow: hidden;
+}
+.packet-cable > i {
+  display: none;
+}
+.is-transmitted .packet-cable > i {
+  display: block;
+  position: absolute;
+  width: 11px;
+  height: 6px;
+  background: var(--surface-799f47, #799f47);
+  border-radius: 3px;
+  animation: packet-transmit 1.8s linear infinite;
+}
+.is-transmitted .packet-cable > i:nth-child(2) {
+  animation-delay: 0.6s;
+}
+.is-transmitted .packet-cable > i:nth-child(3) {
+  animation-delay: 1.2s;
+}
+.packet-board > .text-link {
+  margin-top: 20px;
+  display: inline-block;
+  font-size: 12px;
+}
+.packet-simulation-note {
+  margin-top: 25px;
+  max-width: 820px;
+}
+@keyframes packet-arrival {
+  from {
+    opacity: 0.3;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes packet-transmit {
+  from {
+    transform: translateX(-11px);
+  }
+  to {
+    transform: translateX(var(--cable-travel));
+  }
+}
+@media (max-width: 1100px) {
+  .packet-scenario {
+    grid-template-columns: 1fr;
+  }
+  .packet-layout {
+    grid-template-columns: 1.2fr 1fr;
+  }
+  .packet-steps li {
+    flex-direction: column;
+    text-align: center;
+    font-size: 10px;
+  }
+  .packet-board {
+    padding: 20px;
+  }
+}
+@media (max-width: 850px) {
+  .packet-layout {
+    grid-template-columns: 1fr;
+  }
+  .packet-board {
+    position: static;
+  }
+  .packet-route {
+    max-width: 500px;
+  }
+  .packet-assembly {
+    max-width: 520px;
+    margin: auto;
+  }
+}
+@media (max-width: 520px) {
+  .packet-scenario {
+    padding: 20px;
+  }
+  .packet-route {
+    padding: 12px 10px;
+    font-size: 9px;
+    gap: 5px;
+  }
+  .packet-route strong {
+    font-size: 9px;
+  }
+  .packet-steps {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+  }
+  .packet-steps li {
+    flex-direction: row;
+    justify-content: flex-start;
+    text-align: left;
+    padding: 8px;
+  }
+  .packet-token-bank {
+    grid-template-columns: 1fr;
+  }
+  .packet-token {
+    min-height: 65px;
+  }
+  .packet-mission {
+    padding: 22px;
+  }
+  .packet-mission .question-eyebrow {
+    align-items: flex-start;
+  }
+  .packet-mission .game-actions {
+    align-items: stretch;
+  }
+  .packet-mission .game-actions .button {
+    flex: 1;
+  }
+  .packet-board {
+    padding: 22px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .packet-envelope {
+    animation: none;
+  }
+  .packet-token {
+    transition: none;
+  }
+  .is-transmitted .packet-cable > i {
+    animation: none;
+    transform: translateX(50cqw);
+  }
+}

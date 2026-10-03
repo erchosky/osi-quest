@@ -1,0 +1,5 @@
+# Template only: replace values and remove comments before publishing.
+Contact: https://github.com/YOUR-USER/YOUR-REPOSITORY/security/advisories/new
+Expires: REPLACE-WITH-REAL-UTC-DATE
+Preferred-Languages: es, en
+Canonical: https://YOUR-DOMAIN/.well-known/security.txt

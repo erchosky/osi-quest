@@ -1,0 +1,4 @@
+# Rename to CODEOWNERS and replace @YOUR-GITHUB-USER after creating the repository.
+/.github/ @YOUR-GITHUB-USER
+/SECURITY.md @YOUR-GITHUB-USER
+/src/components/dom-renderer.js @YOUR-GITHUB-USER

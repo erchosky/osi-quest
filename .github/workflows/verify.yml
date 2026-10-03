@@ -1,0 +1,67 @@
+name: Verificar
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '22'
+      - run: npm ci --ignore-scripts
+      - run: npm audit signatures
+      - run: npm run verify
+      - name: Instalar el navegador de las pruebas
+        run: |
+          npx playwright install --with-deps chromium
+      - name: Verificar las interacciones completas
+        env:
+          OSI_TEST_URL: http://127.0.0.1:5173/
+        run: |
+          mkdir -p work/browser-ci
+          node scripts/dev.mjs > work/browser-ci/server.log 2>&1 &
+          task_preview_pid=$!
+          trap 'kill "$task_preview_pid" 2>/dev/null || true' EXIT
+          node --input-type=module <<'NODE'
+          const url = process.env.OSI_TEST_URL;
+          let ready = false;
+          for (let attempt = 0; attempt < 30; attempt++) {
+            try { ready = (await fetch(url)).ok; } catch {}
+            if (ready) break;
+            await new Promise(resolve => setTimeout(resolve, 1000));
+          }
+          if (!ready) throw new Error('El servidor de pruebas no arrancó.');
+          NODE
+          npm run test:browser
+          npm run test:production
+          npm run test:stability
+      - name: Guardar las capturas y diagnósticos si algo falla
+        if: failure()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: comprobaciones-del-navegador
+          path: work/browser-*/
+          retention-days: 7
+          if-no-files-found: ignore
+
+      - name: Guardar cobertura CSS y estabilidad (solo datos de prueba)
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: rendimiento
+          path: |
+            work/build/report.json
+            work/browser-visual/report.json
+            work/browser-interface/report.json
+            work/browser-production/css-coverage.json
+            work/browser-stability/report.json
+          retention-days: 7
+          if-no-files-found: ignore

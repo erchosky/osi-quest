@@ -1,0 +1,114 @@
+.choice-recommendation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 24px 0;
+  border-color: var(--edge-b4c89d, #b4c89d);
+  background: var(--surface-f4f8ed, #f4f8ed);
+}
+.choice-recommendation h2 {
+  margin: 7px 0;
+  font-size: 22px;
+}
+.choice-recommendation > div > p:last-child {
+  max-width: 620px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.choice-recommendation .button {
+  flex-shrink: 0;
+}
+.activity-filters button {
+  min-height: 44px;
+}
+.activity-filters button > span {
+  margin-left: 7px;
+  opacity: 0.8;
+}
+.activity-card .activity-description {
+  flex: 1;
+  font-size: 13px;
+}
+.activity-history {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px 18px;
+  padding: 13px 0;
+  margin-top: 16px;
+  border-top: 1px solid var(--line);
+  font-size: 11px;
+  color: var(--muted);
+}
+.activity-history strong {
+  display: block;
+  color: var(--ink);
+  margin-bottom: 3px;
+  font-size: 11px;
+}
+.activity-configuration {
+  margin: 10px 0 14px;
+}
+.activity-configuration > span {
+  display: block;
+  font-size: 10px;
+  color: var(--muted);
+}
+.activity-configuration > strong {
+  display: block;
+  font-size: 12px;
+  margin-top: 4px;
+}
+.activity-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+}
+.activity-actions .button {
+  min-height: 46px;
+  font-size: 12px;
+  white-space: normal;
+  text-align: center;
+}
+.activity-actions .text-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  font-size: 12px;
+}
+.activity-length {
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+  font-size: 10px;
+  color: var(--muted);
+}
+.choice-empty {
+  max-width: 720px;
+  text-align: center;
+  margin: 20px auto;
+}
+.choice-empty h2 {
+  font-size: 22px;
+}
+.choice-empty p {
+  margin: 12px 0 20px;
+  color: var(--muted);
+  font-size: 14px;
+}
+@media (max-width: 800px) {
+  .choice-recommendation {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .choice-recommendation .button {
+    align-self: flex-start;
+  }
+}
+@media (max-width: 420px) {
+  .choice-recommendation .button {
+    align-self: stretch;
+  }
+}

@@ -1,0 +1,17 @@
+:root {
+  color-scheme: light;
+  --ink: #203d30;
+  --muted: #657168;
+  --green: #28523d;
+  --green-deep: #173d30;
+  --lime: #d6ee9e;
+  --paper: #f6f7f2;
+  --white: #fff;
+  --line: #e1e7dc;
+  --soft: #eef2e8;
+  --peach: #f7e5d5;
+  --danger: #994234;
+  --radius: 20px;
+  --shadow: 0 6px 25px #213d3005;
+  --font: 'Avenir Next', Avenir, 'Segoe UI', system-ui, sans-serif;
+}

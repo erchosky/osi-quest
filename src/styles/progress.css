@@ -1,0 +1,148 @@
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.stat-card {
+  padding: 22px;
+}
+.stat-card > span {
+  font-size: 11px;
+  color: var(--muted);
+}
+.stat-card strong {
+  display: block;
+  font-size: 35px;
+  letter-spacing: -0.04em;
+  margin: 7px 0;
+  line-height: 1.3;
+}
+.stat-card strong small {
+  font-size: 13px;
+  letter-spacing: 0;
+  font-weight: 500;
+}
+.stat-card > p {
+  font-size: 10px;
+  color: var(--text-8a947d, #8a947d);
+}
+.progress-layout {
+  display: grid;
+  grid-template-columns: 1.7fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+.layer-progress-list {
+  margin-top: 20px;
+}
+.layer-progress {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--edge-edf0e7, #edf0e7);
+}
+.layer-progress:last-child {
+  border: 0;
+}
+.layer-progress > div {
+  flex: 1;
+}
+.layer-progress strong {
+  font-size: 12px;
+}
+.layer-progress .progress-track {
+  margin: 7px 0 3px;
+}
+.layer-progress small {
+  font-size: 10px;
+  color: var(--text-8c9780, #8c9780);
+}
+.layer-progress > b {
+  font-size: 13px;
+  width: 35px;
+  text-align: right;
+}
+.progress-layout aside h2 {
+  margin: 10px 0 15px;
+}
+.progress-layout aside > .panel > p {
+  color: var(--muted);
+  font-size: 13px;
+}
+.progress-layout .button-stack {
+  margin: 22px 0;
+}
+.history-panel,
+.backup-panel {
+  margin-top: 24px;
+}
+.history-panel h2 {
+  margin-bottom: 18px;
+}
+.history-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 13px 0;
+  border-top: 1px solid var(--edge-edf0e7, #edf0e7);
+  font-size: 12px;
+}
+.history-row > div {
+  flex: 1;
+}
+.history-row strong {
+  display: block;
+  font-size: 12px;
+}
+.history-row small {
+  display: block;
+  color: var(--text-8a957d, #8a957d);
+  font-size: 10px;
+  margin-top: 3px;
+}
+.backup-panel h2 {
+  margin: 9px 0 13px;
+}
+.backup-panel p {
+  font-size: 12px;
+  color: var(--muted);
+  max-width: 650px;
+}
+.backup-panel .button-row {
+  margin-top: 20px;
+}
+.file-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  overflow: hidden;
+}
+.backup-panel:has(.file-input:focus-visible) label[for='import-progress'] {
+  outline: 3px solid var(--edge-6a9847, #6a9847);
+  outline-offset: 4px;
+}
+.export-history-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  font-size: 14px;
+}
+.export-history-option input {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--green);
+}
+.storage-notice {
+  margin-bottom: 24px;
+}
+.storage-notice p {
+  font-size: 14px;
+  line-height: 1.65;
+}
+.storage-notice .button-row {
+  margin-top: 14px;
+}

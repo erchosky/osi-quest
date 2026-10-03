@@ -1,0 +1,137 @@
+import { misconceptions, misconceptionQuestions } from './progress-catalog.js';
+
+export const activities = [
+  {
+    id: 'focus',
+    name: 'Entrena una capa',
+    icon: 'adaptive',
+    tag: 'A tu medida',
+    description: 'Elige una capa y conecta sus funciones, situaciones y protocolos.',
+    length: 'Hasta 10 preguntas',
+  },
+  {
+    id: 'speedrun',
+    name: 'Sprint de capas',
+    icon: 'exam',
+    tag: '60 segundos',
+    description:
+      'Identifica capas en cadena. Cada acierto añade tiempo; cada error rompe la racha.',
+    length: '60 s + bonificaciones',
+    interactive: true,
+  },
+  {
+    id: 'survival',
+    name: 'Supervivencia OSI',
+    icon: 'exam',
+    tag: '3 vidas',
+    description:
+      'Encadena aciertos con tres vidas. Activa el reloj de 30 segundos si te apetece otro ritmo.',
+    length: 'Hasta 20 preguntas',
+    interactive: true,
+  },
+  {
+    id: 'duel',
+    name: 'Duelo por turnos',
+    icon: 'scenario',
+    tag: 'Dos personas',
+    description:
+      'Pasa el móvil, responde por turnos y comparad las soluciones después de contestar ambos.',
+    length: '7 preguntas cada uno',
+    interactive: true,
+  },
+  {
+    id: 'confusions',
+    name: 'Supera las confusiones',
+    icon: 'function',
+    tag: 'Insignias',
+    description:
+      'Comprueba las ideas que suelen mezclarse y consigue insignias con dos aciertos distintos.',
+    length: `${misconceptions.length} confusiones · ${misconceptionQuestions.length} comprobaciones`,
+  },
+  {
+    id: 'order',
+    name: 'Construye las capas',
+    icon: 'order',
+    tag: 'Orden',
+    description: 'Coloca las siete capas en su sitio y aprende el recorrido del mensaje.',
+    length: '7 capas',
+    recommended: true,
+  },
+  {
+    id: 'matching',
+    name: 'Une las conexiones',
+    icon: 'function',
+    tag: 'Arrastra y conecta',
+    description:
+      'Une situaciones con sus capas. Selecciona o arrastra tarjetas y descubre por qué encajan.',
+    length: '7 conexiones',
+    interactive: true,
+  },
+  {
+    id: 'packet',
+    name: 'Construye el envío',
+    icon: 'lab',
+    tag: 'Monta y transmite',
+    description: 'Prepara una petición web: añade servicio, entrega, IP, MAC y señales al envío.',
+    length: '6 piezas',
+    interactive: true,
+  },
+  {
+    id: 'function',
+    name: 'Cada capa, su misión',
+    icon: 'function',
+    tag: 'Funciones',
+    description: 'Relaciona cada tarea con la capa que la realiza.',
+    length: '7 preguntas',
+  },
+  {
+    id: 'scenario',
+    name: 'Redes en la vida real',
+    icon: 'scenario',
+    tag: 'Situaciones',
+    description: 'Reconoce las capas en problemas y situaciones cotidianas.',
+    length: '7 preguntas',
+  },
+  {
+    id: 'protocol',
+    name: '¿Dónde vive este protocolo?',
+    icon: 'protocol',
+    tag: 'Protocolos',
+    description: 'Distingue IP, TCP, DNS y los conceptos que suelen confundirse.',
+    length: '8 preguntas',
+  },
+  {
+    id: 'cases',
+    name: 'Detective de conexiones',
+    icon: 'explore',
+    tag: 'Casos guiados',
+    description: 'Investiga una avería paso a paso, con pistas y pruebas.',
+    length: '3 casos',
+  },
+  {
+    id: 'adaptive',
+    name: 'Refuerza lo que cuesta',
+    icon: 'adaptive',
+    tag: 'Repaso personal',
+    description: 'Vuelve a tus errores y a las preguntas que toca recordar.',
+    length: '10 preguntas',
+  },
+  {
+    id: 'flashcards',
+    name: 'Tarjetas de memoria',
+    icon: 'flashcards',
+    tag: 'Recuerda',
+    description: 'Intenta explicarlo con tus palabras antes de girar la tarjeta.',
+    length: '21 tarjetas',
+  },
+  {
+    id: 'exam',
+    name: 'Ponte a prueba',
+    icon: 'exam',
+    tag: 'Examen',
+    description: 'Responde, marca dudas y revisa todo antes de ver el resultado.',
+    length: '15 preguntas',
+  },
+];
+
+export const activityById = new Map(activities.map((activity) => [activity.id, activity]));

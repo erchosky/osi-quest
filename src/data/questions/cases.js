@@ -1,0 +1,173 @@
+import { shared1 } from './shared.js';
+export const caseQuestions = [
+  {
+    id: 'cable-0',
+    type: 'case',
+    layer: 1,
+    prompt: 'La luz de enlace está apagada. ¿Qué comprobación haces primero?',
+    choices: [
+      'Revisar conexión y estado del cable',
+      'Borrar el historial del navegador',
+      'Cambiar todas las contraseñas',
+      'Reinstalar el servidor web',
+    ],
+    correctIndex: 0,
+    explanation:
+      'Empieza por la evidencia: no hay señal de enlace. Comprueba cable, conexión y adaptador antes de investigar servicios.',
+    hint: shared1,
+    difficulty: 'normal',
+    tricky: false,
+    layerQuestion: false,
+  },
+  {
+    id: 'cable-1',
+    type: 'case',
+    layer: 3,
+    prompt:
+      'Tras conectar el cable hay enlace y llega una respuesta del router local. ¿Qué has comprobado?',
+    choices: [
+      'Que hay conectividad IP hasta ese router',
+      'Que cualquier web funcionará',
+      'Que todos los nombres DNS se resuelven',
+      'Que no hay ningún problema en toda la red',
+    ],
+    correctIndex: 0,
+    explanation:
+      'Una respuesta del router demuestra conectividad con ese destino; no verifica todos los servicios.',
+    hint: shared1,
+    difficulty: 'normal',
+    tricky: false,
+    layerQuestion: false,
+  },
+  {
+    id: 'cable-2',
+    type: 'case',
+    layer: 7,
+    prompt:
+      'La conexión con una IP conocida funciona, pero una consulta DNS devuelve error. ¿Qué servicio investigas?',
+    choices: [
+      'La resolución de nombres DNS',
+      'La compresión de imágenes',
+      'La luminosidad de la fibra',
+      'Los puntos de diálogo OSI',
+    ],
+    correctIndex: 0,
+    explanation:
+      'La evidencia dirige la siguiente comprobación al servicio DNS. No demuestra que toda la red esté libre de fallos.',
+    hint: shared1,
+    difficulty: 'normal',
+    tricky: false,
+    layerQuestion: false,
+  },
+  {
+    id: 'route-0',
+    type: 'case',
+    layer: 3,
+    prompt:
+      'Dos equipos de la misma red se comunican, pero no hay acceso a otras redes. ¿Qué conviene revisar?',
+    choices: [
+      'La puerta de enlace y las rutas',
+      'El formato de las imágenes',
+      'La contraseña de una web',
+      'El color de los conectores',
+    ],
+    correctIndex: 0,
+    explanation: 'Para salir a otras redes hace falta una ruta y normalmente una puerta de enlace.',
+    hint: shared1,
+    difficulty: 'normal',
+    tricky: false,
+    layerQuestion: false,
+  },
+  {
+    id: 'route-1',
+    type: 'case',
+    layer: 3,
+    prompt:
+      'La puerta de enlace configurada pertenece a una red equivocada. ¿Qué configuración debes verificar?',
+    choices: [
+      'Dirección IP, máscara y puerta de enlace',
+      'Solo el tamaño de letra del navegador',
+      'Solo el puerto de una aplicación',
+      'Solo el formato del archivo',
+    ],
+    correctIndex: 0,
+    explanation:
+      'Una configuración de direccionamiento coherente permite llegar al siguiente salto.',
+    hint: shared1,
+    difficulty: 'normal',
+    tricky: false,
+    layerQuestion: false,
+  },
+  {
+    id: 'route-2',
+    type: 'case',
+    layer: 3,
+    prompt:
+      'Corriges la configuración y llegas a la IP de otro equipo remoto. ¿Qué conclusión es razonable?',
+    choices: [
+      'Hay conectividad IP con ese destino',
+      'Todo servicio remoto está garantizado',
+      'TCP y UDP garantizan lo mismo',
+      'El servidor debe aceptar tu contraseña',
+    ],
+    correctIndex: 0,
+    explanation:
+      'Llegar a una IP no garantiza que un puerto o un servicio de aplicación esté disponible.',
+    hint: shared1,
+    difficulty: 'normal',
+    tricky: false,
+    layerQuestion: false,
+  },
+  {
+    id: 'web-0',
+    type: 'case',
+    layer: 7,
+    prompt: 'El servidor devuelve HTTP 404. ¿Qué significa esa respuesta?',
+    choices: [
+      'El recurso solicitado no se encuentra',
+      'El cable está necesariamente cortado',
+      'No se transmite ninguna señal',
+      'UDP garantiza la entrega',
+    ],
+    correctIndex: 0,
+    explanation: 'Se ha recibido una respuesta HTTP: revisa la ruta del recurso y la aplicación.',
+    hint: shared1,
+    difficulty: 'normal',
+    tricky: false,
+    layerQuestion: false,
+  },
+  {
+    id: 'web-1',
+    type: 'case',
+    layer: 7,
+    prompt: 'La portada carga, pero /curso devuelve 404. ¿Qué investigas primero?',
+    choices: [
+      'La ruta /curso en el servicio web',
+      'La MAC de todos los equipos',
+      'La potencia de radio sin más evidencia',
+      'La codificación de los bits del cable',
+    ],
+    correctIndex: 0,
+    explanation:
+      'El resultado cambia según la ruta web; esa pista apunta al recurso o su configuración.',
+    hint: shared1,
+    difficulty: 'normal',
+    tricky: false,
+    layerQuestion: false,
+  },
+  {
+    id: 'web-2',
+    type: 'case',
+    layer: 7,
+    prompt:
+      'El servicio pide credenciales y rechaza una contraseña. ¿Qué capa describe esta validación?',
+    choices: ['Aplicación', 'Física', 'Enlace de datos', 'Red'],
+    correctIndex: 0,
+    explanation:
+      'El acceso a la aplicación no equivale a la capa de sesión OSI. La función de autenticación pertenece al servicio.',
+    hint: shared1,
+    difficulty: 'normal',
+    tricky: false,
+    layerQuestion: false,
+  },
+];
