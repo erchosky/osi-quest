@@ -24,7 +24,7 @@
     "test:v38": "node scripts/verify-v38-browser.mjs && node scripts/verify-pwa-update-browser.mjs"
   },
   "devDependencies": {
-    "acorn": "8.18.0",
+    "acorn": "8.19.0",
     "esbuild": "0.28.2",
     "playwright": "1.62.1"
   },
