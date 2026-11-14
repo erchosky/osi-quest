@@ -1,8 +1,14 @@
 # OSI Quest
 
-Mi forma de hacer que el modelo OSI tenga un poco más de sentido. **OSI Quest** es una app en español para aprender redes desde cero, practicar las siete capas y relacionar la teoría con situaciones cotidianas.
+Una aplicación en español para aprender redes desde cero y comprender las siete capas del modelo OSI con ejemplos, lecciones y actividades.
+
+Combina estudio guiado, juegos, repaso y seguimiento del progreso. La versión 3.9.5 mejora el rendimiento cuando se acumula historial; consulta [sus cambios](docs/RENDIMIENTO-3.9.5.md).
 
 ![Pantalla de inicio de OSI Quest](docs/inicio.png)
+
+[Qué puedes hacer](#qué-puedes-hacer) · [Experiencia y niveles](#experiencia-y-niveles) · [Tu red de casa, capítulo a capítulo](#tu-red-de-casa-capítulo-a-capítulo) · [Nuevas formas de practicar](#nuevas-formas-de-practicar) · [Retos de clase](#retos-de-clase) · [Arrancar en tu ordenador](#arrancar-en-tu-ordenador)
+
+---
 
 ## Qué puedes hacer
 
