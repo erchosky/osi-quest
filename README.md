@@ -1,6 +1,6 @@
 # OSI Quest
 
-Una app en español para aprender redes desde cero: entender el modelo OSI, practicar sus siete capas y conectar la teoría con situaciones reales.
+Mi forma de hacer que el modelo OSI tenga un poco más de sentido. **OSI Quest** es una app en español para aprender redes desde cero, practicar las siete capas y relacionar la teoría con situaciones cotidianas.
 
 ![Pantalla de inicio de OSI Quest](docs/inicio.png)
 
@@ -145,7 +145,7 @@ Las capturas y los informes se guardan en `work/browser-app/`, `work/browser-cla
 
 El proyecto usa rutas con `#` y recursos relativos: funciona también cuando Pages publica bajo `/nombre-del-repositorio/`. Las instrucciones de publicación siguen la [documentación de GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).
 
-La entrega es el proyecto preparado para GitHub. No se ha creado ni publicado un repositorio en una cuenta de GitHub.
+El proyecto está disponible en este repositorio de GitHub. Revisa la configuración indicada en la documentación antes de publicar tu propia copia.
 
 ## Organización
 
@@ -192,7 +192,7 @@ El build incluye un manifiesto de versión y ofrece actualizar al volver a una p
 
 `npm run test:production` prueba el build real sin hooks y una compilación instrumentada separada para verificar carreras de carga. `npm run test:stability` recorre 100 rondas y 600 navegaciones y comprueba listeners, DOM y heap tras calentamiento. La cobertura CSS se recoge como diagnóstico; no se eliminan reglas responsive solo porque un recorrido no las haya usado.
 
-Consulta [Rendimiento](docs/RENDIMIENTO.md), [Seguridad](SECURITY.md) y [Configuración del repositorio](docs/GITHUB-SETUP.md). Todavía no hay repositorio: CODEOWNERS, contacto de seguridad, reglas de ramas y protecciones del entorno requieren tus datos reales al crearlo.
+Consulta [Rendimiento](docs/RENDIMIENTO.md), [Seguridad](SECURITY.md) y [Configuración del repositorio](docs/GITHUB-SETUP.md). Revisa CODEOWNERS, el contacto de seguridad, las reglas de ramas y las protecciones del entorno si vas a mantener o publicar tu propia copia.
 
 ## Interfaz
 
