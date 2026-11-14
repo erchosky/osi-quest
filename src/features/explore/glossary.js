@@ -1,5 +1,5 @@
 import { setHTML } from '../../components/dom-renderer.js';
-import { safeLink } from '../../services/links.js';
+import { externalLink } from '../../components/external-link.js';
 import { glossary } from '../../data/glossary.js';
 import { sources } from '../../data/sources.js';
 import { html, pageHeading, escapeHtml, raw } from '../../components/html.js';
@@ -41,18 +41,11 @@ export function glossaryView() {
           Contenido explicado y adaptado para empezar desde cero. Las analogías simplifican; las
           notas aclaran dónde termina la comparación.
         </p>
-        <div class="source-links">
-          ${raw(
-            sources
-              .map(
-                (source) =>
-                  html`<a href="${safeLink(source.url)}" target="_blank" rel="noreferrer"
-                    >${source.title} ↗</a
-                  >`,
-              )
-              .join(''),
-          )}
-        </div>
+        <p class="small-note">
+          Hay introducciones en español y referencias técnicas en inglés. Cada enlace indica su
+          idioma y se abre en otra pestaña.
+        </p>
+        <div class="source-links">${raw(sources.map(externalLink).join(''))}</div>
       </section>`,
     bind() {
       let timer;

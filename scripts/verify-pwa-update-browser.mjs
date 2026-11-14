@@ -25,7 +25,7 @@ try {
   await p2.goto(base);
   await p2.waitForSelector('.hero');
   let source = await readFile(join(dir, 'app/sw.js'), 'utf8');
-  source = source.replace(/const BUILD="[^"]+"/, 'const BUILD="update-fixture"');
+  source = source.replace(/const BUILD\s*=\s*"[^"]+"/, 'const BUILD="update-fixture"');
   await writeFile(join(dir, 'app/sw.js'), source);
   await p.evaluate(async () => {
     const reg = await navigator.serviceWorker.getRegistration();
@@ -62,7 +62,7 @@ try {
     join(dir, 'app/sw.js'),
     source
       .replace('update-fixture', 'broken-fixture')
-      .replace('FILES=[', 'FILES=["./missing-required.css",'),
+      .replace(/FILES\s*=\s*\[/, 'FILES = ["./missing-required.css",'),
   );
   await p.evaluate(async () => {
     const reg = await navigator.serviceWorker.getRegistration();
@@ -70,7 +70,7 @@ try {
   });
   await p.waitForFunction(async () => {
     const reg = await navigator.serviceWorker.getRegistration();
-    return !reg.installing && !(await caches.keys()).some(n => n.endsWith('broken-fixture'));
+    return !reg.installing && !(await caches.keys()).some((n) => n.endsWith('broken-fixture'));
   });
   await c.setOffline(true);
   await p.reload();

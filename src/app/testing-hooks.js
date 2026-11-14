@@ -42,6 +42,8 @@ export function installTestingHooks(app) {
           remainingMs: Math.ceil(session.remainingMs),
           chain: session.chain,
           bestChain: session.bestChain,
+          attempts: session.attempts.length,
+          cycle: session.cycle,
         });
       if (session.focusLayer) state.activity.focusLayer = session.focusLayer;
       if (session.type === 'duel')

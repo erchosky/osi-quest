@@ -1,4 +1,11 @@
 import DOMPurify from '../vendor/dompurify.js';
+if (typeof window !== 'undefined')
+  DOMPurify.addHook('afterSanitizeAttributes', (node) => {
+    if (!node.hasAttribute?.('target')) return;
+    if (node.tagName === 'A' && node.getAttribute('target') === '_blank')
+      node.setAttribute('rel', 'noopener noreferrer');
+    else node.removeAttribute('target');
+  });
 // All parsing sinks enter here. Trusted Types adds browser enforcement; the
 // sanitizer is also used by browsers without that API.
 const clean = (markup) =>
@@ -7,6 +14,7 @@ const clean = (markup) =>
     FORBID_TAGS: ['script', 'iframe', 'object', 'embed', 'base', 'style'],
     FORBID_ATTR: ['srcdoc'],
     ALLOW_DATA_ATTR: true,
+    ADD_ATTR: ['target'],
   });
 const policy =
   typeof window !== 'undefined' && window.trustedTypes

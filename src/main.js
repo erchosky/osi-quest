@@ -1,10 +1,13 @@
+import { installErrorRecovery } from './app/error-recovery.js';
 import { installPWA } from './services/pwa.js';
 import { installVersionCheck } from './app/version-check.js';
 import { createApplication } from './app/application.js';
 import { installKeyboardControls } from './app/accessibility.js';
 import { installTestingHooks } from './app/testing-hooks.js';
 
-const app = createApplication();
+let app;
+installErrorRecovery(() => app);
+app = createApplication();
 installKeyboardControls();
 installVersionCheck(app);
 installPWA(app);

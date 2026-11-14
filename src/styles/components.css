@@ -1,5 +1,5 @@
 .panel {
-  background: var(--surface-ffffff, #fff);
+  background: var(--white);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 26px;
@@ -27,14 +27,14 @@
 }
 .button-primary {
   background: var(--green);
-  color: var(--text-ffffff, white);
+  color: var(--on-accent);
 }
 .button-primary:hover {
   background: var(--green-deep);
 }
 .button-secondary {
-  background: var(--surface-ffffff, white);
-  border-color: var(--edge-d9e1d2, #d9e1d2);
+  background: var(--white);
+  border-color: var(--line);
 }
 .button-secondary:hover {
   background: var(--soft);
@@ -44,7 +44,7 @@
   color: var(--muted);
 }
 .button-hero {
-  color: var(--text-f1f4e8, #f1f4e8);
+  color: var(--muted);
   border-color: #ffffff30;
   background: #ffffff06;
 }
@@ -60,10 +60,10 @@
   gap: 10px;
 }
 .badge {
-  background: var(--surface-f0f3eb, #f0f3eb);
-  color: var(--text-67765e, #67765e);
-  border: 1px solid var(--edge-e3e9db, #e3e9db);
-  font-size: 10px;
+  background: var(--soft);
+  color: var(--muted);
+  border: 1px solid var(--line);
+  font-size: 0.75rem;
   font-weight: 700;
   line-height: 1.5;
   display: inline-block;
@@ -73,17 +73,17 @@
 }
 .badge-lime {
   background: var(--lime);
-  color: var(--text-31442a, #31442a);
+  color: var(--ink);
   border-color: transparent;
 }
 .badge-peach {
   background: var(--peach);
-  color: var(--text-8f5c34, #8f5c34);
-  border-color: var(--edge-ecd6bf, #ecd6bf);
+  color: var(--ink);
+  border-color: var(--line);
 }
 .progress-track {
   height: 5px;
-  background: var(--surface-ebefe5, #ebefe5);
+  background: var(--soft);
   border-radius: 5px;
   overflow: hidden;
 }
@@ -91,7 +91,7 @@
   display: block;
   height: 100%;
   border-radius: inherit;
-  background: var(--surface-8bae5c, #8bae5c);
+  background: var(--soft);
   transition: width 0.2s;
 }
 .section-heading {
@@ -103,10 +103,10 @@
 }
 .section-heading .eyebrow {
   margin-bottom: 6px;
-  color: var(--text-7d8871, #7d8871);
+  color: var(--muted);
 }
 .section-heading .subtle {
-  font-size: 11px;
+  font-size: 0.75rem;
 }
 .panel > .section-heading:first-child {
   margin-top: 0;
@@ -120,24 +120,24 @@
   border-top: 1px solid var(--line);
   padding-top: 17px;
   margin-top: 26px;
-  font-size: 11px;
-  color: var(--text-7b8673, #7b8673);
+  font-size: 0.75rem;
+  color: var(--muted);
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 12px;
 }
 .tip-card {
-  background: var(--surface-edf2e2, #edf2e2);
+  background: var(--soft);
   padding: 23px;
-  border: 1px solid var(--edge-dfe7d0, #dfe7d0);
+  border: 1px solid var(--line);
   border-radius: 16px;
   margin-top: 20px;
 }
 .tip-card p {
   font-size: 13px;
   margin-top: 9px;
-  color: var(--text-637057, #637057);
+  color: var(--ink);
 }
 .tip-card.horizontal {
   display: flex;
@@ -150,8 +150,8 @@
 }
 .notice,
 .hint {
-  background: var(--surface-f2f5eb, #f2f5eb);
-  border: 1px solid var(--edge-e2e8d7, #e2e8d7);
+  background: var(--soft);
+  border: 1px solid var(--line);
   border-radius: 12px;
   padding: 18px;
   margin: 20px 0;
@@ -160,11 +160,11 @@
 .notice p,
 .hint p {
   margin-top: 6px;
-  color: var(--text-657158, #657158);
+  color: var(--ink);
 }
 .hint {
-  background: var(--surface-fff8e9, #fff8e9);
-  border-color: var(--edge-eeddac, #eeddac);
+  background: var(--soft);
+  border-color: var(--line);
 }
 .feedback {
   padding: 18px 20px;
@@ -181,12 +181,12 @@
   margin-top: 8px;
 }
 .feedback-correct {
-  background: var(--surface-eff6e9, #eff6e9);
-  border-color: var(--edge-d1e3c0, #d1e3c0);
+  background: var(--soft);
+  border-color: var(--line);
 }
 .feedback-wrong {
-  background: var(--surface-fff5ed, #fff5ed);
-  border-color: var(--edge-ead1bd, #ead1bd);
+  background: var(--soft);
+  border-color: var(--line);
 }
 .layer-map {
   display: grid;
@@ -219,9 +219,9 @@
   font-weight: 600;
 }
 .layer-row .layer-verb {
-  font-size: 10px;
+  font-size: 0.75rem;
   margin-left: auto;
-  color: var(--text-76806d, #76806d);
+  color: var(--muted);
 }
 .layer-number {
   width: 62px;
@@ -267,7 +267,7 @@ dialog .actions {
   gap: 10px;
 }
 .button-danger {
-  color: var(--text-ffffff, white);
+  color: var(--on-accent);
   background: var(--danger);
 }
 

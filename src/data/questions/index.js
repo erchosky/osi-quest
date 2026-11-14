@@ -1,3 +1,4 @@
+import { contentSources } from './hard-authoring.js';
 import { normalQuestions } from './normal.js';
 import { difficultQuestions } from './difficult.js';
 import { caseQuestions } from './cases.js';
@@ -18,4 +19,11 @@ export const questions = [
   ...normalFunctionQuestions,
 ];
 export const learningQuestions = [...questions, ...misconceptionQuestions, ...storyQuestions];
+for (const question of learningQuestions) {
+  question.review = {
+    date: '2026-10-05',
+    method: 'Revisión asistida de claridad, distractores y referencias',
+  };
+  if (!question.sources?.length) question.sources = [contentSources.osi];
+}
 export const questionById = new Map(learningQuestions.map((question) => [question.id, question]));

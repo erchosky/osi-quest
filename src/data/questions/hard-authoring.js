@@ -67,5 +67,8 @@ export function hardFunction(layer, number, prompt, distractors, explanation, hi
     names[candidate - 1],
     index === 0 ? explanation : roles[candidate - 1],
   ]);
-  return hardQuestion('function', layer, number, prompt, options, explanation, hint);
+  return {
+    ...hardQuestion('function', layer, number, prompt, options, explanation, hint),
+    layerQuestion: true,
+  };
 }

@@ -1,6 +1,6 @@
 {
   "name": "osi-quest",
-  "version": "3.8.0",
+  "version": "3.9.5",
   "private": true,
   "type": "module",
   "description": "Aprende redes desde cero: estudio, minijuegos y repaso del modelo OSI.",
@@ -21,14 +21,21 @@
     "test:stability": "node scripts/verify-stability-browser.mjs",
     "test:visual": "node scripts/verify-visual-browser.mjs",
     "test:interface": "node scripts/verify-interface-browser.mjs",
-    "test:v38": "node scripts/verify-v38-browser.mjs && node scripts/verify-pwa-update-browser.mjs"
+    "test:v38": "node scripts/verify-v38-browser.mjs && node scripts/verify-pwa-update-browser.mjs",
+    "test:audit": "npm run build && node scripts/verify-audit-browser.mjs",
+    "format:check": "prettier --check src scripts tests .github package.json index.html",
+    "release": "npm run verify && node scripts/package-release.mjs",
+    "test:coverage": "node --experimental-test-coverage --test --test-coverage-include=\"src/domain/*.js\" --test-coverage-lines=80 --test-coverage-branches=70 --test-coverage-functions=80 tests/*.test.js"
   },
   "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
     "acorn": "8.18.0",
     "esbuild": "0.28.2",
-    "playwright": "1.62.1"
+    "playwright": "1.62.1",
+    "prettier": "3.9.9"
   },
   "dependencies": {
     "dompurify": "3.4.16"
-  }
+  },
+  "license": "MIT"
 }

@@ -42,3 +42,12 @@ Revisión de contenido: 1 de octubre de 2026. Estas referencias son normas, espe
 | [Apple · Routers y puntos de acceso Wi-Fi](https://support.apple.com/102766)                                      | Bandas, canales e interferencias pueden afectar a capacidad y fiabilidad. Las comparaciones no prometen una velocidad fija por usar 2,4 o 5 GHz.                       |
 
 En móviles no se ofrecen pasos universales para dirección IP, router o DNS: su disponibilidad y ubicación cambian. Ante diferencias, se remite a la ayuda del fabricante. El contenido propone comparar observaciones y cambiar una variable cada vez; no sustituye una prueba por un diagnóstico automático.
+
+
+## Idiomas y prácticas cotidianas (3.9.3)
+
+Las RFC y los manuales técnicos citados están en inglés. La app muestra el idioma junto a cada referencia y anuncia que se abre otra pestaña. Incluye introducciones oficiales al OSI en español de [Cloudflare](https://www.cloudflare.com/es-es/learning/ddos/glossary/open-systems-interconnection-model-osi/) e [IBM](https://www.ibm.com/es-es/think/topics/osi-model). La ficha X.200 de la app está en español; la ITU ofrece documentos en varios idiomas.
+
+- [Google: conexión y datos de red del Chromebook (español)](https://support.google.com/chromebook/answer/1047420?hl=es). Ruta de ajustes y consulta de IP/MAC.
+- [NetworkManager: nmcli (inglés)](https://www.networkmanager.dev/docs/api/latest/nmcli.html). `device show` consulta la configuración activa; no requiere cambiarla.
+- [Intel: soporte de 6 GHz en Wi-Fi 6/6E/7 (inglés)](https://www.intel.com/content/www/us/en/support/articles/000099711/wireless.html) y [bandas y restricciones regionales (inglés)](https://www.intel.com/content/www/us/en/products/docs/wireless/2-4-vs-5ghz.html). Se distingue la generación Wi-Fi de la banda y se explican los requisitos de compatibilidad.

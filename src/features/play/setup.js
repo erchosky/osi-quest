@@ -36,11 +36,13 @@ export function setupView(app, kind) {
               <h2>Tu actividad</h2>
               <p>
                 ${activity.length} ·
-                ${kind === 'exam'
-                  ? 'Corrección al entregar'
-                  : kind === 'flashcards'
-                    ? 'Recuerdo activo y repaso espaciado'
-                    : 'Explicaciones para aprender de cada intento'}
+                ${
+                  kind === 'exam'
+                    ? 'Corrección al entregar'
+                    : kind === 'flashcards'
+                      ? 'Recuerdo activo y repaso espaciado'
+                      : 'Explicaciones para aprender de cada intento'
+                }
               </p>
             </div>
             ${raw(icon(activity.icon))}
@@ -70,11 +72,13 @@ export function setupView(app, kind) {
                         ><strong
                           >Difícil <span class="badge badge-peach">Ojo al detalle</span></strong
                         ><small
-                          >${kind === 'order'
-                            ? 'Sin mostrar el mapa de capas. Puedes elegir envío o recepción.'
-                            : ['matching', 'packet'].includes(kind)
-                              ? 'Funciones y piezas que se parecen. Distingue las trampas con atención.'
-                              : 'Preguntas trampa sobre confusiones habituales. Lee con atención.'}</small
+                          >${
+                            kind === 'order'
+                              ? 'Sin mostrar el mapa de capas. Puedes elegir envío o recepción.'
+                              : ['matching', 'packet'].includes(kind)
+                                ? 'Funciones y piezas que se parecen. Distingue las trampas con atención.'
+                                : 'Preguntas trampa sobre confusiones habituales. Lee con atención.'
+                          }</small
                         ></span
                       ></label
                     >
@@ -82,18 +86,22 @@ export function setupView(app, kind) {
                 </fieldset>`
               : html`<div class="notice">
                   <strong
-                    >${kind === 'flashcards'
-                      ? 'Practica a tu ritmo'
-                      : kind === 'confusions'
-                        ? 'Comprueba las ideas que se parecen'
-                        : 'Casos guiados para aprender'}</strong
+                    >${
+                      kind === 'flashcards'
+                        ? 'Practica a tu ritmo'
+                        : kind === 'confusions'
+                          ? 'Comprueba las ideas que se parecen'
+                          : 'Casos guiados para aprender'
+                    }</strong
                   >
                   <p>
-                    ${kind === 'flashcards'
-                      ? 'No hay niveles: intenta recordar, gira la tarjeta y decide cuándo volver a verla.'
-                      : kind === 'confusions'
-                        ? 'Cuatro preguntas por confusión. Dos aciertos distintos sin ayuda desbloquean su insignia; un error o una pista reinician la comprobación.'
-                        : 'Cada caso te guía con pruebas concretas. Las respuestas se explican paso a paso.'}
+                    ${
+                      kind === 'flashcards'
+                        ? 'No hay niveles: intenta recordar, gira la tarjeta y decide cuándo volver a verla.'
+                        : kind === 'confusions'
+                          ? 'Cuatro preguntas por confusión. Dos aciertos distintos sin ayuda desbloquean su insignia; un error o una pista reinician la comprobación. Espera 10 minutos antes de aportar nueva evidencia; puedes seguir practicando y sumando XP.'
+                          : 'Cada caso te guía con pruebas concretas. Las respuestas se explican paso a paso.'
+                    }
                   </p>
                 </div>`,
           )}${raw(
@@ -170,13 +178,15 @@ export function setupView(app, kind) {
           )}
           <div class="setup-start">
             <p>
-              ${kind === 'exam'
-                ? 'Puedes cambiar respuestas y marcar dudas. Las preguntas en blanco cuentan como errores.'
-                : kind === 'survival'
-                  ? 'Empiezas con tres vidas. Activa el reloj solo si quieres jugar a contrarreloj.'
-                  : kind === 'speedrun'
-                    ? 'El reloj es global: responde y continúa para acumular aciertos.'
-                    : 'Sin límite de tiempo. Si necesitas salir, lo que ya hayas practicado se queda guardado.'}
+              ${
+                kind === 'exam'
+                  ? 'Puedes cambiar respuestas y marcar dudas. Las preguntas en blanco cuentan como errores.'
+                  : kind === 'survival'
+                    ? 'Empiezas con tres vidas. Activa el reloj solo si quieres jugar a contrarreloj.'
+                    : kind === 'speedrun'
+                      ? 'El reloj es global. Responde y continúa; al agotar el banco, las preguntas se vuelven a barajar hasta que se acabe el tiempo.'
+                      : 'Sin límite de tiempo. Si necesitas salir, lo que ya hayas practicado se queda guardado.'
+              }
             </p>
             <button type="submit" class="button button-primary">
               ${kind === 'flashcards' ? 'Abrir tarjetas' : 'Empezar el reto'} →

@@ -65,7 +65,7 @@ export function masteryView(app) {
             .map((layer, index) => {
               const [x, y] = point(index, 125);
               const [lx, ly] = point(index, 167);
-              return `<line x1="220" y1="200" x2="${x}" y2="${y}" class="radar-axis"/><text x="${lx}" y="${ly}" text-anchor="middle" class="radar-label radar-label-name">${layer.number} · ${escapeHtml(layer.name)}</text><text x="${lx}" y="${ly}" text-anchor="middle" class="radar-label radar-label-mobile">${layer.number}</text>`;
+              return `<line x1="220" y1="200" x2="${x}" y2="${y}" class="radar-axis"/><text x="${lx}" y="${ly}" text-anchor="middle" class="radar-label radar-label-name">${layer.number} · ${escapeHtml(layer.name)}</text><text x="${lx}" y="${ly}" text-anchor="middle" class="radar-label radar-label-mobile">${layer.number}</text><text x="${lx}" y="${ly + 18}" text-anchor="middle" class="radar-label-score">${metrics[index].attempts ? metrics[index].score + '%' : '—'}</text>`;
             })
             .join(''),
         )}

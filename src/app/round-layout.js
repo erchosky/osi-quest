@@ -26,7 +26,7 @@ export function stabilizeRound(app, previous) {
   const title = main.querySelector('.question-title'),
     answers = main.querySelector('.answer-list');
   if (title && answers && session.questions) {
-    const width = Math.round(answers.getBoundingClientRect().width);
+    const width = Math.round(answers.firstElementChild.getBoundingClientRect().width);
     let layout = layouts.get(session);
     if (!layout || layout.width !== width) {
       // Stack all texts in two invisible grids: one layout read per grid,
@@ -87,6 +87,16 @@ export function stabilizeRound(app, previous) {
         .querySelector('.game-panel,.flashcard-panel,.duel-handoff')
         ?.animate([{ opacity: 0.35 }, { opacity: 1 }], { duration: 150, easing: 'ease-out' });
   } else main.style.minHeight = '';
+  if (
+    title &&
+    matchMedia('(orientation: landscape) and (max-height: 500px)').matches &&
+    (!previous || previous.key !== key)
+  ) {
+    window.scrollTo({
+      top: Math.max(0, title.getBoundingClientRect().top + window.scrollY - 60),
+      behavior: 'instant',
+    });
+  }
   app.renderedRoundKey = key;
   app.renderedRoundSession = session;
 }

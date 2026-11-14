@@ -4,7 +4,20 @@ export function recordQuestion(previous, correct, assisted, now = Date.now()) {
   const stat = previous ?? { seen: 0, correct: 0, streak: 0 };
   const independent = correct && !assisted;
   const streak = independent ? stat.streak + 1 : 0;
-  const interval = streak === 0 ? 0 : streak === 1 ? 1 : streak === 2 ? 3 : 7;
+  const interval =
+    streak === 0
+      ? 0
+      : streak === 1
+        ? 1
+        : streak === 2
+          ? 3
+          : streak === 3
+            ? 7
+            : streak === 4
+              ? 14
+              : streak === 5
+                ? 30
+                : 60;
   return {
     seen: stat.seen + 1,
     correct: stat.correct + Number(independent),
@@ -15,8 +28,8 @@ export function recordQuestion(previous, correct, assisted, now = Date.now()) {
 }
 
 export function scheduleCard(previous, known, now = Date.now()) {
-  const level = known ? Math.min(4, (previous?.level ?? 0) + 1) : 0;
-  return { level, due: now + [0, 1, 3, 7, 14][level] * DAY };
+  const level = known ? Math.min(6, (previous?.level ?? 0) + 1) : 0;
+  return { level, due: now + [0, 1, 3, 7, 14, 30, 60][level] * DAY };
 }
 
 export function localDay(date = new Date()) {

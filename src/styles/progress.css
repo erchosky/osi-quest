@@ -8,7 +8,7 @@
   padding: 22px;
 }
 .stat-card > span {
-  font-size: 11px;
+  font-size: 0.75rem;
   color: var(--muted);
 }
 .stat-card strong {
@@ -24,8 +24,8 @@
   font-weight: 500;
 }
 .stat-card > p {
-  font-size: 10px;
-  color: var(--text-8a947d, #8a947d);
+  font-size: 0.75rem;
+  color: var(--muted);
 }
 .progress-layout {
   display: grid;
@@ -41,7 +41,7 @@
   gap: 15px;
   align-items: center;
   padding: 15px 0;
-  border-bottom: 1px solid var(--edge-edf0e7, #edf0e7);
+  border-bottom: 1px solid var(--line);
 }
 .layer-progress:last-child {
   border: 0;
@@ -56,8 +56,8 @@
   margin: 7px 0 3px;
 }
 .layer-progress small {
-  font-size: 10px;
-  color: var(--text-8c9780, #8c9780);
+  font-size: 0.75rem;
+  color: var(--muted);
 }
 .layer-progress > b {
   font-size: 13px;
@@ -86,7 +86,7 @@
   align-items: center;
   gap: 20px;
   padding: 13px 0;
-  border-top: 1px solid var(--edge-edf0e7, #edf0e7);
+  border-top: 1px solid var(--line);
   font-size: 12px;
 }
 .history-row > div {
@@ -98,8 +98,8 @@
 }
 .history-row small {
   display: block;
-  color: var(--text-8a957d, #8a957d);
-  font-size: 10px;
+  color: var(--muted);
+  font-size: 0.75rem;
   margin-top: 3px;
 }
 .backup-panel h2 {
@@ -121,7 +121,7 @@
   overflow: hidden;
 }
 .backup-panel:has(.file-input:focus-visible) label[for='import-progress'] {
-  outline: 3px solid var(--edge-6a9847, #6a9847);
+  outline: 3px solid var(--line);
   outline-offset: 4px;
 }
 .export-history-option {

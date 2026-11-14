@@ -1,3 +1,4 @@
+import { lessonChecks } from './lesson-checks.js';
 // Structured prose keeps educational content separate from its HTML renderer.
 export const lessons = {
   basics: {
@@ -36,17 +37,7 @@ export const lessons = {
       },
     ],
     takeaway: 'No memorices solo los nombres: pregunta qué problema resuelve cada capa.',
-    check: {
-      prompt: '¿Para qué sirve el modelo OSI?',
-      choices: [
-        'Para organizar y entender las funciones de una comunicación.',
-        'Para garantizar que Internet nunca falle.',
-        'Para sustituir todos los protocolos.',
-      ],
-      correctIndex: 0,
-      explanation:
-        'OSI es un modelo de referencia: ayuda a comprender responsabilidades y a investigar problemas.',
-    },
+    check: lessonChecks['basics'],
   },
   addresses: {
     introduction:
@@ -70,7 +61,7 @@ export const lessons = {
         title: 'Puerto · ¿Qué proceso recibe los datos?',
         paragraphs: [
           'TCP y UDP usan números de puerto para distinguir comunicaciones entre procesos. Un mismo equipo puede navegar y hacer una videollamada a la vez.',
-          'Piensa en una ventanilla dentro del edificio: la IP te lleva al destino y el puerto ayuda a identificar el servicio o proceso. Un puerto de transporte no es el conector físico del router.',
+          'Piensa en el departamento destinatario: la IP indica el destino y el puerto distingue el servicio o proceso dentro del equipo. La MAC, en cambio, identifica una interfaz para la entrega del tramo local. Un puerto de transporte no es un conector físico.',
         ],
       },
       {
@@ -84,14 +75,7 @@ export const lessons = {
     ],
     takeaway:
       'MAC: entrega local. IP: direccionamiento entre redes. Puerto: comunicación con un proceso.',
-    check: {
-      prompt:
-        'Para elegir una aplicación receptora en una comunicación TCP, ¿qué dato es relevante?',
-      choices: ['El color del cable.', 'El puerto de transporte.', 'Solo la MAC.'],
-      correctIndex: 1,
-      explanation:
-        'Los puertos permiten diferenciar comunicaciones entre procesos. La MAC y la IP cumplen otras funciones.',
-    },
+    check: lessonChecks['addresses'],
   },
   tcpip: {
     introduction:
@@ -122,14 +106,7 @@ export const lessons = {
       },
     ],
     takeaway: 'Usa OSI para comprender funciones y TCP/IP para conectar esas ideas con Internet.',
-    check: {
-      prompt:
-        '¿Dónde se agrupan normalmente las funciones de OSI 5, 6 y 7 en el modelo TCP/IP de cuatro capas?',
-      choices: ['En Internet.', 'En Acceso a la red.', 'En Aplicación.'],
-      correctIndex: 2,
-      explanation:
-        'La capa de Aplicación TCP/IP agrupa esas funciones. La correspondencia es una simplificación útil.',
-    },
+    check: lessonChecks['tcpip'],
   },
   encapsulation: {
     introduction:
@@ -161,17 +138,7 @@ export const lessons = {
     ],
     takeaway:
       'Datos → segmento TCP → paquete IP → trama → bits. La recepción recorre el camino inverso.',
-    check: {
-      prompt: 'En este ejemplo TCP/IP/Ethernet, ¿qué contiene una trama?',
-      choices: [
-        'Un paquete IP, que contiene un segmento TCP con datos.',
-        'Solo una dirección MAC, sin datos.',
-        'Siete tramas idénticas.',
-      ],
-      correctIndex: 0,
-      explanation:
-        'Las unidades se anidan. Cada envoltura tiene una responsabilidad y transporta lo que viene de arriba.',
-    },
+    check: lessonChecks['encapsulation'],
   },
   troubleshoot: {
     introduction:
@@ -204,16 +171,6 @@ export const lessons = {
     ],
     takeaway:
       'Síntoma → hipótesis → prueba → conclusión. Evita diagnosticar a partir de una sola señal.',
-    check: {
-      prompt: 'Un ping no responde. ¿Qué puedes concluir con ese único dato?',
-      choices: [
-        'El cable está roto.',
-        'No has recibido respuesta; hace falta investigar.',
-        'DNS está siempre mal.',
-      ],
-      correctIndex: 1,
-      explanation:
-        'Puede haber varias causas. No atribuyas el fallo a una capa sin pruebas adicionales.',
-    },
+    check: lessonChecks['troubleshoot'],
   },
 };

@@ -24,7 +24,7 @@ export function showSaved() {
 export function mountShell() {
   setHTML(
     document.querySelector('#app'),
-    html` <aside class="app-sidebar">
+    html` <aside class="app-sidebar" aria-label="Menú de OSI Quest">
         <a class="brand" href="#/home" aria-label="OSI Quest, inicio"
           ><span class="brand-logo">${raw(icon('layers'))}</span>osi<span>quest.</span></a
         >
@@ -48,14 +48,20 @@ export function mountShell() {
       </aside>
       <div class="app-workspace">
         <header class="topbar">
-          <a class="topbar-search" href="#/explore/glossary"
+          <a class="topbar-search" href="#/explore/glossary" aria-label="Buscar un concepto"
             >${raw(icon('explore'))}<span>Buscar un concepto</span></a
           >
           <div class="breadcrumb" id="breadcrumb" hidden></div>
           ${raw(profileMenu())}
           <span id="save-status" class="save-status" role="status"></span>
         </header>
-        <aside id="screen-loading" class="screen-loading" role="status" hidden>
+        <aside
+          aria-label="Estado de carga"
+          id="screen-loading"
+          class="screen-loading"
+          role="status"
+          hidden
+        >
           Preparando pantalla…<span class="skeleton-lines" aria-hidden="true"
             ><i></i><i></i><i></i
           ></span>

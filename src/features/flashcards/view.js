@@ -63,7 +63,8 @@ export function flashcardsView(app) {
             : '<button class="button button-primary" id="reveal-card">Ver explicación ↻</button>',
         )}
         <p class="small-note">
-          El repaso se programa a 1, 3, 7 y 14 días según tus respuestas. Las tarjetas no suman XP.
+          El repaso se programa a 1, 3, 7, 14, 30 y 60 días según tus respuestas. Las tarjetas no
+          suman XP.
         </p>
       </section>`,
     bind() {

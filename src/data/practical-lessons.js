@@ -1,10 +1,5 @@
+import { lessonChecks } from './lesson-checks.js';
 // Daily examples extend the conceptual route; examples describe evidence, not automatic diagnoses.
-const check = (prompt, choices, correctIndex, explanation) => ({
-  prompt,
-  choices,
-  correctIndex,
-  explanation,
-});
 export const practicalLessons = {
   url: {
     introduction:
@@ -42,16 +37,7 @@ export const practicalLessons = {
     ],
     takeaway:
       'DNS encuentra información de destino; TCP entrega; TLS protege; HTTP expresa el servicio. Son trabajos diferentes.',
-    check: check(
-      'DNS responde y el servidor devuelve HTTP 404. ¿Qué puedes concluir?',
-      [
-        'La señal física necesariamente está rota.',
-        'Recibiste una respuesta HTTP que no ofrece el recurso solicitado.',
-        'TCP cifró automáticamente la página.',
-      ],
-      1,
-      'La respuesta aporta evidencia de un participante HTTP accesible para esa petición. 404 puede indicar que no encuentra el recurso o que no quiere revelar su existencia; no demuestra una avería física.',
-    ),
+    check: lessonChecks['url'],
   },
   wifi: {
     introduction:
@@ -68,6 +54,7 @@ export const practicalLessons = {
         title: 'Cobertura no es velocidad',
         paragraphs: [
           'En general, 2,4 GHz alcanza mejor a través de obstáculos pero tiene menos canales no solapados y puede sufrir más interferencias. 5 GHz suele ofrecer más capacidad disponible a corta distancia. El resultado depende de entorno, estándar, canal y equipos; no es una promesa de velocidad.',
+          'La banda de 6 GHz ofrece más espectro disponible para canales amplios donde está autorizada. La usan equipos compatibles con Wi-Fi 6E y algunos Wi-Fi 7; Wi-Fi 6 por sí solo no implica soporte de 6 GHz. Necesitas compatibilidad en el dispositivo, el punto de acceso y el sistema operativo. Su disponibilidad depende del país. No garantiza mejor cobertura: los obstáculos y la distancia siguen importando.',
           'Las barras indican una estimación de señal, no la latencia ni la congestión. Puedes tener buena señal y compartir un canal saturado. Muros, distancia, interferencia y tráfico compiten con tu comunicación.',
         ],
       },
@@ -82,16 +69,7 @@ export const practicalLessons = {
     ],
     takeaway:
       'Wi-Fi cubre radio y entrega local. Señal, capacidad y acceso a Internet son cosas distintas.',
-    check: check(
-      'Hay cuatro barras de Wi-Fi y una descarga lenta. ¿Qué afirmación encaja?',
-      [
-        'La señal buena garantiza máxima velocidad.',
-        'Puede haber congestión o un límite en otro tramo; las barras no miden toda la conexión.',
-        'Más barras sustituyen DNS.',
-      ],
-      1,
-      'La señal es solo una parte. Capacidad, tráfico, servidor y otros tramos también afectan al resultado.',
-    ),
+    check: lessonChecks['wifi'],
   },
   'home-network': {
     introduction:
@@ -116,6 +94,8 @@ export const practicalLessons = {
         title: 'Mira tu configuración sin cambiarla',
         items: [
           'Windows: en una terminal, ipconfig muestra direcciones, máscara y puerta de enlace. macOS: consulta los detalles de la conexión en los ajustes de Red, como TCP/IP y DNS; los nombres pueden variar por versión.',
+          'ChromeOS (Chromebook): abre Configuración → Red → Wi-Fi y selecciona la red conectada. En sus detalles, despliega Red para ver dirección IP, prefijo o máscara, puerta de enlace y servidores de nombres (DNS). Para consultar IP y MAC rápidamente, pulsa la hora → Wi-Fi → Información; la MAC se identifica como «Wi-Fi». En un equipo del centro algunos campos pueden estar gestionados por el administrador; no necesitas cambiarlos para observarlos.',
+          'Linux: abre los detalles de tu conexión en Ajustes → Red o Wi-Fi (el nombre depende del escritorio). Si usa NetworkManager, ejecuta nmcli device show en una terminal: IP4.ADDRESS muestra la IP y el prefijo, IP4.GATEWAY la puerta de enlace e IP4.DNS los DNS. GENERAL.HWADDR muestra la MAC. Es una consulta, no modifica la red. Si nmcli no está instalado, usa los ajustes del escritorio; ip address e ip route muestran direcciones y rutas, pero no los DNS.',
           'En Android e iOS, busca la información de la conexión Wi-Fi en Ajustes. Los campos disponibles y su ubicación dependen de la versión y del fabricante; consulta la ayuda del dispositivo si no aparecen. Observar la configuración no requiere modificarla.',
           'Identifica tres trabajos: IP (destino entre redes), MAC (interfaz del enlace) y puerto de transporte (proceso). Una MAC privada de Wi-Fi puede cambiar; no es una identidad permanente.',
         ],
@@ -123,16 +103,7 @@ export const practicalLessons = {
     ],
     takeaway:
       'Una caja, muchas funciones. Dirección propia, salida y nombres responden preguntas distintas.',
-    check: check(
-      'DHCP te entrega una dirección IP. ¿Cómo clasificas el protocolo DHCP?',
-      [
-        'Como una señal de capa 1.',
-        'Como un servicio de aplicación que proporciona configuración.',
-        'Como el cable que une dos puertos.',
-      ],
-      1,
-      'Clasificas el servicio por lo que hace. Configurar parámetros IP no convierte DHCP en el protocolo IP.',
-    ),
+    check: lessonChecks['home-network'],
   },
   speed: {
     introduction:
@@ -165,12 +136,7 @@ export const practicalLessons = {
     ],
     takeaway:
       'MB/s describe transferencia; milisegundos describen retardo. Lee las unidades y la tarea que importa.',
-    check: check(
-      '¿Cuál es la conversión decimal teórica de 100 Mb/s antes de sobrecargas?',
-      ['100 MB/s.', '12,5 MB/s.', '800 MB/s.'],
-      1,
-      'Divide entre ocho porque un byte son ocho bits. La tasa efectiva puede ser menor.',
-    ),
+    check: lessonChecks['speed'],
   },
   security: {
     introduction:
@@ -201,16 +167,7 @@ export const practicalLessons = {
     ],
     takeaway:
       'TCP entrega; TLS protege una comunicación; ninguna etiqueta de capa garantiza seguridad de toda la experiencia.',
-    check: check(
-      'Una aplicación envía datos usando TCP sin TLS. ¿Qué puedes afirmar?',
-      [
-        'La fiabilidad de TCP implica cifrado.',
-        'Puede tener entrega fiable sin confidencialidad del contenido.',
-        'No necesita dirección IP.',
-      ],
-      1,
-      'Fiabilidad y confidencialidad son propiedades diferentes. TCP no aporta cifrado de contenido por sí mismo.',
-    ),
+    check: lessonChecks['security'],
   },
   'browser-errors': {
     introduction:
@@ -243,15 +200,6 @@ export const practicalLessons = {
     ],
     takeaway:
       'Una prueba solo demuestra lo que comprueba. Usa OSI para ordenar hipótesis, no para adivinar la causa.',
-    check: check(
-      'Solo una web responde HTTP 503 y otras funcionan. ¿Qué harías primero?',
-      [
-        'Dar por roto el cable de todas las redes.',
-        'Investigar la disponibilidad de ese servicio y comparar, sin cambiar toda la configuración.',
-        'Concluir que TCP tiene una MAC incorrecta.',
-      ],
-      1,
-      'Una respuesta 503 es evidencia del servicio HTTP. Conviene investigar su disponibilidad y conservar lo que ya funciona.',
-    ),
+    check: lessonChecks['browser-errors'],
   },
 };

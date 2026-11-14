@@ -109,7 +109,7 @@
   font-size: 16px;
   border: 1px solid var(--line);
   border-radius: 12px;
-  background: var(--surface-ffffff, white);
+  background: var(--white);
   color: var(--ink);
 }
 .teach-back details {

@@ -34,7 +34,11 @@ export const storyChapters = [
         1,
         'El cable está suelto. ¿Qué haces primero?',
         'Conectarlo y comprobar que hay señal',
-        ['Cambiar el servidor DNS', 'Crear una cuenta en una web', 'Comprimir todos los archivos'],
+        [
+          'Cambiar el servidor DNS',
+          'Crear una cuenta en una web',
+          'Comprimir los archivos que transmite el equipo',
+        ],
         'Sin medio o señal no puede empezar el intercambio por ese enlace. La conexión física viene antes de resolver nombres o usar una web.',
         'Piensa en el camino que deben recorrer los bits.',
       ),
@@ -57,7 +61,7 @@ export const storyChapters = [
         'Se enciende el indicador de enlace. ¿Qué has comprobado?',
         'Que existe un enlace físico; falta comprobar los servicios',
         [
-          'Que todas las webs funcionan',
+          'Que funcionan los servicios web que quieres visitar',
           'Que DNS ya respondió correctamente',
           'Que la comunicación web está cifrada',
         ],
@@ -77,7 +81,7 @@ export const storyChapters = [
     lesson:
       'Wi-Fi incluye señal de radio (capa 1) y reglas de acceso y entrega local mediante tramas (capa 2). Las direcciones MAC ayudan a identificar interfaces en ese enlace. Un punto de acceso conecta el tramo inalámbrico con la red local.',
     analogy:
-      'Dentro de un edificio necesitas saber a qué puerta llevar un paquete. Esa entrega cercana se distingue del viaje entre ciudades.',
+      'Un reparto avanza hasta el siguiente centro del recorrido. Ese tramo local recuerda a Enlace; el departamento que recibirá el envío al final recuerda a los puertos de Transporte.',
     build: 'Tu casa ya tiene dispositivos conectados en una red local.',
     unlocks: ['matching'],
     relatedLayers: [1, 2],
@@ -146,7 +150,7 @@ export const storyChapters = [
         'A la puerta de enlace apropiada',
         [
           'Al nombre de usuario del servidor',
-          'Siempre a la MAC remota del servidor',
+          'A la MAC del servidor remoto que figura en la dirección IP',
           'A cualquier puerto del móvil',
         ],
         'La puerta de enlace recibe el primer salto local y el router decide cómo continuar hacia otra red.',
@@ -158,9 +162,9 @@ export const storyChapters = [
         '¿Qué función de tu router corresponde a la capa de red?',
         'Encaminar paquetes IP entre redes',
         [
-          'Cifrar por sí solo todas las webs',
+          'Añadir cifrado al contenido de las peticiones web',
           'Convertir todo nombre en una MAC',
-          'Comprimir todas las imágenes',
+          'Comprimir las imágenes que envía el navegador',
         ],
         'Encaminar paquetes entre redes es una función de capa 3. La caja doméstica puede además ofrecer Wi-Fi, conmutación y servicios.',
         'Clasifica el trabajo de encaminamiento.',
@@ -200,7 +204,7 @@ export const storyChapters = [
         [
           'HTTP para el formato de imágenes',
           'Ethernet para abrir una cuenta',
-          'TCP para traducir todos los nombres',
+          'TCP para traducir el nombre del servidor a una dirección',
         ],
         'DNS permite consultar información asociada a nombres. Después el cliente podrá intentar usar el servicio de destino.',
         'Piensa en la agenda de nombres.',
@@ -225,7 +229,7 @@ export const storyChapters = [
         'La consulta de nombres funcionó; falta comprobar la web',
         [
           'Todo el intercambio web está bien',
-          'El contenido necesariamente está cifrado',
+          'La existencia de esa respuesta demuestra que el contenido está cifrado',
           'El servidor no puede tener ningún fallo',
         ],
         'Resolver un nombre y prestar una web son servicios distintos. Una prueba válida no comprueba toda la comunicación.',
@@ -269,7 +273,7 @@ export const storyChapters = [
         'Un flujo de bytes fiable y ordenado',
         [
           'Cifrado automático del contenido',
-          'Traducción de todos los nombres',
+          'Traducción del nombre del servicio a su dirección IP',
           'La señal de radio del móvil',
         ],
         'TCP se encarga de funciones de transporte. Su fiabilidad no significa confidencialidad.',
@@ -369,9 +373,9 @@ export const storyChapters = [
         'Al preparar un envío según OSI, ¿qué recorrido sigues?',
         'De Aplicación (7) a Física (1)',
         [
-          'Siempre de Física (1) a Aplicación (7)',
-          'Saltas siempre Transporte y Red',
-          'Todas las funciones se vuelven DNS',
+          'De Física (1) a Aplicación (7)',
+          'Omites Transporte y Red al iniciar el envío',
+          'DNS agrupa las funciones de las demás capas',
         ],
         'Al enviar, los datos se preparan desde servicios de aplicación hacia la transmisión física. La recepción se describe en el sentido contrario.',
         'Empieza en lo que solicita el usuario y termina en la señal.',
@@ -382,8 +386,8 @@ export const storyChapters = [
         'La web devuelve un error HTTP. ¿Qué prueba esa respuesta?',
         'Que recibiste una respuesta del servicio HTTP; hay que interpretar el error',
         [
-          'Que el cable está necesariamente roto',
-          'Que DNS nunca pudo funcionar',
+          'Que esa respuesta demuestra una rotura del cable',
+          'Que esa respuesta demuestra un fallo previo de DNS',
           'Que TCP cifra el contenido',
         ],
         'La respuesta HTTP aporta evidencia de aplicación. No concluyas que todo está correcto ni que se ha roto la señal física.',
@@ -396,8 +400,8 @@ export const storyChapters = [
         'Para distinguir funciones y acotar qué conviene comprobar',
         [
           'Para afirmar que cada caja realiza una sola capa',
-          'Para sustituir todas las pruebas con una etiqueta',
-          'Para garantizar que Wi-Fi siempre da Internet',
+          'Para sustituir las pruebas de diagnóstico por una clasificación',
+          'Para garantizar acceso a Internet cuando existe una señal Wi-Fi',
         ],
         'OSI ayuda a razonar. Equipos y protocolos reales pueden abarcar varias funciones; necesitas observar y comprobar.',
         'Busca una herramienta para pensar, no una garantía automática.',

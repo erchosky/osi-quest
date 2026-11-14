@@ -36,10 +36,13 @@ async function newParticipant(xp) {
   await page.goto(base);
   await page.evaluate(
     (value) =>
-      localStorage.setItem(
-        'osi-quest-v1',
-        JSON.stringify({ version: 3, xp: value, stats: {}, cards: {}, read: [] }),
-      ),
+      ((key, value) => {
+        // Fixture replacement is explicit; journal operations otherwise outrank stale snapshots.
+        if (key === 'osi-quest-v1')
+          for (const id of Object.keys(localStorage))
+            if (id.startsWith('osi-quest-v1:')) localStorage.removeItem(id);
+        localStorage.setItem(key, value);
+      })('osi-quest-v1', JSON.stringify({ version: 3, xp: value, stats: {}, cards: {}, read: [] })),
     xp,
   );
   await page.reload();

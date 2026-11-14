@@ -71,6 +71,50 @@ try {
     'All assets work under repository prefix',
     home.every((r) => r.url.startsWith(base + 'assets/')),
   );
+  const heroDecoration = () =>
+    page.locator('.hero').evaluate((element) => {
+      const style = getComputedStyle(element, '::after');
+      return { content: style.content, width: style.width, borderColor: style.borderColor };
+    });
+  const normalDecoration = await heroDecoration();
+  check('Home keeps its decorative circle in regular colors', normalDecoration.content === '\"\"');
+  await page.emulateMedia({ forcedColors: 'active', reducedMotion: 'reduce' });
+  await mkdir(join(root, 'work/browser-production'), { recursive: true });
+  for (const [width, height] of [
+    [390, 844],
+    [740, 360],
+    [1280, 900],
+  ]) {
+    await page.setViewportSize({ width, height });
+    check(
+      `Forced colors remove the Home decoration at ${width}px`,
+      (await heroDecoration()).content === 'none',
+    );
+    const primary = page.locator('.hero .button-primary');
+    await primary.focus();
+    check(
+      `Home primary action stays visible with keyboard focus at ${width}px`,
+      (await primary.isVisible()) &&
+        (await primary.evaluate(
+          (element) =>
+            document.activeElement === element &&
+            parseInt(getComputedStyle(element).outlineWidth) >= 3,
+        )),
+    );
+    check(
+      `Forced-colors Home stays within the viewport at ${width}px`,
+      await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1),
+    );
+    await page
+      .locator('.hero')
+      .screenshot({ path: join(root, `work/browser-production/home-forced-${width}.png`) });
+  }
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.emulateMedia({ forcedColors: 'none', reducedMotion: 'no-preference' });
+  check(
+    'Turning forced colors off restores the original decoration',
+    JSON.stringify(await heroDecoration()) === JSON.stringify(normalDecoration),
+  );
   async function route(path, selector) {
     await page.evaluate((path) => {
       location.hash = '/' + path;
@@ -204,7 +248,7 @@ try {
     const element = document.createElement('div');
     setHTML(
       element,
-      '<strong>Texto legítimo</strong><svg><script>window.injected=1</script></svg><a href="javascript:alert(1)" onclick="window.injected=1">Enlace</a>',
+      '<strong>Texto legítimo</strong><svg><script>window.injected=1</script></svg><a href="javascript:alert(1)" onclick="window.injected=1">Enlace</a><a href="https://example.org" target="_blank" rel="opener">Referencia</a><a href="https://example.org" target="named">Ventana</a><form target="_blank"></form>',
     );
     let workerRejected = false;
     try {
@@ -216,6 +260,9 @@ try {
       clean:
         !element.querySelector('script,[onclick],[href^="javascript:"]') &&
         element.querySelector('strong').textContent === 'Texto legítimo',
+      protectedTab:
+        element.querySelector('a[target="_blank"]')?.getAttribute('rel') === 'noopener noreferrer',
+      restrictedTarget: !element.querySelector('[target="named"],form[target]'),
       workerRejected,
     };
   }, rendererURL);
@@ -223,9 +270,22 @@ try {
     'Renderer strips executable markup while preserving legitimate content',
     rendererProof.clean,
   );
+  check(
+    'Sanitized new-tab links always receive noopener and noreferrer',
+    rendererProof.protectedTab,
+  );
+  check('Sanitizer removes named-window and non-anchor targets', rendererProof.restrictedTarget);
   check('Trusted Types worker policy rejects arbitrary script URLs', rendererProof.workerRejected);
   const corrupt = await browser.newPage();
-  await corrupt.addInitScript(() => localStorage.setItem('osi-quest-v1', ''));
+  await corrupt.addInitScript(() =>
+    ((key, value) => {
+      // Fixture replacement is explicit; journal operations otherwise outrank stale snapshots.
+      if (key === 'osi-quest-v1')
+        for (const id of Object.keys(localStorage))
+          if (id.startsWith('osi-quest-v1:')) localStorage.removeItem(id);
+      localStorage.setItem(key, value);
+    })('osi-quest-v1', ''),
+  );
   await corrupt.goto(base);
   await corrupt.waitForSelector('#save-original-progress');
   await corrupt.evaluate(() => {

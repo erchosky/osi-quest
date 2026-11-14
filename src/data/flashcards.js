@@ -9,7 +9,7 @@ export const flashcards = [
     id: 'p-1',
     layer: 1,
     front: '¿Qué unidad de datos asocias a Física?',
-    back: 'Bits. Llevar los 0 y 1 mediante electricidad, luz u ondas de radio.',
+    back: 'Bits: valores 0 y 1. Son la unidad que representa la información transmitida como señales.',
   },
   {
     id: 'e-1',
@@ -27,7 +27,7 @@ export const flashcards = [
     id: 'p-2',
     layer: 2,
     front: '¿Qué unidad de datos asocias a Enlace de datos?',
-    back: 'Tramas. Formar tramas, usar direcciones MAC y detectar errores del enlace.',
+    back: 'Tramas: unidades que contienen una cabecera de enlace y su carga útil; pueden incluir un campo de comprobación. Una trama Ethernet puede transportar un paquete IP.',
   },
   {
     id: 'e-2',
@@ -45,7 +45,7 @@ export const flashcards = [
     id: 'p-3',
     layer: 3,
     front: '¿Qué unidad de datos asocias a Red?',
-    back: 'Paquetes. Direccionar y encaminar paquetes usando direcciones lógicas.',
+    back: 'Paquetes: unidades con una cabecera de red y una carga útil. Un paquete IP puede contener un segmento TCP o un datagrama UDP.',
   },
   {
     id: 'e-3',
@@ -63,7 +63,7 @@ export const flashcards = [
     id: 'p-4',
     layer: 4,
     front: '¿Qué unidad de datos asocias a Transporte?',
-    back: 'Segmentos TCP / datagramas UDP. Usar puertos y gestionar la entrega según el protocolo empleado.',
+    back: 'Segmentos TCP o datagramas UDP, según el protocolo. Cada unidad contiene una cabecera de transporte y una carga útil. No confundas un datagrama UDP con un paquete IP.',
   },
   {
     id: 'e-4',
@@ -81,7 +81,7 @@ export const flashcards = [
     id: 'p-5',
     layer: 5,
     front: '¿Qué unidad de datos asocias a Sesión?',
-    back: 'Datos. Establecer, mantener y cerrar el diálogo; gestionar puntos de sincronización.',
+    back: 'Datos: nombre habitual en el esquema didáctico para las capas 5, 6 y 7. Una unidad de servicio de sesión puede contener datos de presentación.',
   },
   {
     id: 'e-5',
@@ -99,7 +99,7 @@ export const flashcards = [
     id: 'p-6',
     layer: 6,
     front: '¿Qué unidad de datos asocias a Presentación?',
-    back: 'Datos. Traducir formatos y representar funciones de compresión y cifrado.',
+    back: 'Datos: nombre habitual en el esquema didáctico para las capas 5, 6 y 7. En presentación pueden ser datos codificados, comprimidos o cifrados.',
   },
   {
     id: 'e-6',
@@ -117,7 +117,7 @@ export const flashcards = [
     id: 'p-7',
     layer: 7,
     front: '¿Qué unidad de datos asocias a Aplicación?',
-    back: 'Datos. Permitir operaciones como solicitar páginas, resolver nombres o enviar correo.',
+    back: 'Datos: nombre habitual en el esquema didáctico para las capas 5, 6 y 7. Por ejemplo, los bytes de una petición HTTP; al encapsularse serán carga útil de transporte.',
   },
   {
     id: 'e-7',

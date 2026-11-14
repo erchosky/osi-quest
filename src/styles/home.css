@@ -4,7 +4,7 @@
   grid-template-columns: 1.2fr 1fr;
   align-items: center;
   background: var(--green-deep);
-  color: var(--text-f8f9ed, #f8f9ed);
+  color: var(--muted);
   border-radius: 24px;
   overflow: hidden;
   min-height: 345px;
@@ -21,12 +21,17 @@
   border-radius: 50%;
   pointer-events: none;
 }
+@media (forced-colors: active) {
+  .hero::after {
+    content: none;
+  }
+}
 .hero-copy {
   position: relative;
   z-index: 1;
 }
 .hero .badge {
-  font-size: 8px;
+  font-size: 0.75rem;
   letter-spacing: 0.11em;
   padding: 5px 10px;
   border-radius: 5px;
@@ -42,7 +47,7 @@
   font-style: normal;
 }
 .hero-copy > p {
-  color: var(--text-c2d0be, #c2d0be);
+  color: var(--muted);
   font-size: 13px;
   line-height: 1.7;
 }
@@ -51,14 +56,14 @@
 }
 .hero .button-primary {
   background: var(--lime);
-  color: var(--text-274228, #274228);
+  color: var(--ink);
 }
 .hero .button-primary:hover {
-  background: var(--surface-e3f5bc, #e3f5bc);
+  background: var(--soft);
 }
 .hero-caption {
-  font-size: 10px;
-  color: var(--text-a9bd9e, #a9bd9e);
+  font-size: 0.75rem;
+  color: var(--muted);
   margin-top: 20px;
 }
 .hero-art {
@@ -75,9 +80,9 @@
   margin: 0 auto;
 }
 .art-label {
-  font-size: 8px;
+  font-size: 0.75rem;
   letter-spacing: 0.2em;
-  color: var(--text-a3bc93, #a3bc93);
+  color: var(--muted);
 }
 .mode-grid {
   display: grid;
@@ -86,7 +91,7 @@
 }
 .mode-card {
   display: block;
-  background: var(--surface-ffffff, white);
+  background: var(--white);
   border: 1px solid var(--line);
   border-radius: 18px;
   padding: 23px;
@@ -96,34 +101,34 @@
 }
 .mode-card:hover {
   transform: translateY(-4px);
-  border-color: var(--edge-9fb67d, #9fb67d);
+  border-color: var(--line);
 }
 .mode-icon,
 .activity-icon {
   width: 43px;
   height: 43px;
-  background: var(--surface-edf2e5, #edf2e5);
+  background: var(--soft);
   border-radius: 12px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-5d7c43, #5d7c43);
+  color: var(--muted);
 }
 .mode-play .mode-icon {
-  background: var(--surface-faf0e6, #faf0e6);
-  color: var(--text-a27b4e, #a27b4e);
+  background: var(--soft);
+  color: var(--muted);
 }
 .mode-explore .mode-icon {
-  background: var(--surface-edf1f5, #edf1f5);
-  color: var(--text-6b83a1, #6b83a1);
+  background: var(--soft);
+  color: var(--muted);
 }
 .mode-number {
-  font-size: 11px;
-  color: var(--text-a1ab97, #a1ab97);
+  font-size: 0.75rem;
+  color: var(--muted);
 }
 .mode-card .eyebrow {
-  font-size: 8px;
-  color: var(--text-89947e, #89947e);
+  font-size: 0.75rem;
+  color: var(--muted);
   margin-top: 22px;
 }
 .mode-card h3 {
@@ -143,7 +148,7 @@
   margin-top: 13px;
 }
 .mode-card .card-footer {
-  font-size: 10px;
+  font-size: 0.75rem;
   margin-top: 20px;
 }
 .home-bottom {
@@ -167,8 +172,8 @@
   flex-direction: column;
 }
 .mini-progress .eyebrow {
-  color: var(--text-89937e, #89937e);
-  font-size: 9px;
+  color: var(--muted);
+  font-size: 0.75rem;
 }
 .mini-progress > strong {
   font-size: 40px;
@@ -177,12 +182,12 @@
   letter-spacing: -0.06em;
 }
 .mini-progress > span {
-  font-size: 11px;
+  font-size: 0.75rem;
   color: var(--muted);
 }
 .mini-progress > p {
-  font-size: 11px;
-  color: var(--text-7e8974, #7e8974);
+  font-size: 0.75rem;
+  color: var(--muted);
   margin-top: auto;
   padding-top: 16px;
 }

@@ -51,6 +51,14 @@ async function capture(name) {
 try {
   await page.goto(process.env.OSI_TEST_URL || 'http://127.0.0.1:5173/osi-quest/');
   await page.waitForFunction(() => typeof window.render_game_to_text === 'function');
+  await page.emulateMedia({ forcedColors: 'active' });
+  check(
+    'Forced-colors Home hides its decorative circle in development',
+    await page
+      .locator('.hero')
+      .evaluate((element) => getComputedStyle(element, '::after').content === 'none'),
+  );
+  await page.emulateMedia({ forcedColors: 'none' });
   for (const width of [390, 320, 740]) {
     await page.setViewportSize({ width, height: 844 });
     await start('function');

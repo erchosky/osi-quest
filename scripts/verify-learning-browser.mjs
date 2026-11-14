@@ -111,7 +111,13 @@ try {
   await page.goto(base);
   await page.waitForFunction(() => typeof window.render_game_to_text === 'function');
   await page.evaluate(() =>
-    localStorage.setItem(
+    ((key, value) => {
+      // Fixture replacement is explicit; journal operations otherwise outrank stale snapshots.
+      if (key === 'osi-quest-v1')
+        for (const id of Object.keys(localStorage))
+          if (id.startsWith('osi-quest-v1:')) localStorage.removeItem(id);
+      localStorage.setItem(key, value);
+    })(
       'osi-quest-v1',
       JSON.stringify({
         version: 3,

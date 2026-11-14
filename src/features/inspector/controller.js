@@ -51,8 +51,9 @@ export function bindInspector() {
         (n, i) =>
           html`<span
             data-byte="${i}"
-            class="hex-byte layer-byte-${decoded.segments.find((s) => i >= s.start && i < s.end)
-              ?.layer ?? 0}"
+            class="hex-byte layer-byte-${
+              decoded.segments.find((s) => i >= s.start && i < s.end)?.layer ?? 0
+            }"
             title="Byte ${i}"
             >${n.toString(16).padStart(2, '0')}</span
           >`,

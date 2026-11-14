@@ -9,7 +9,7 @@ export function lessonView(app, unit, content, section) {
     index = units.indexOf(unit),
     layer = layers.find((item) => item.number === unit.layer);
   app.lessonChecks ??= {};
-  app.lessonNotes ??= {};
+  app.lessonNotes = { ...app.repository.data.lessonNotes, ...app.lessonDrafts };
   const checkState = (app.lessonChecks[id] ??= {
     order: shuffle(content.check.choices.map((_, i) => i)),
     selected: null,
@@ -75,8 +75,7 @@ export function lessonView(app, unit, content, section) {
         <section class="teach-back">
           <h2>Explícalo con tus palabras.</h2>
           <p>
-            Sin mirar, ¿qué función acabas de aprender? Cuenta un ejemplo y una cosa que no
-            demuestra.
+            ${content.teachBack ?? 'Sin mirar, ¿qué función acabas de aprender? Cuenta un ejemplo y una cosa que no demuestra.'}
           </p>
           <label for="lesson-notes">Tu explicación personal</label
           ><textarea
@@ -85,7 +84,10 @@ export function lessonView(app, unit, content, section) {
             placeholder="Por ejemplo: la señal permite transmitir, pero no demuestra que DNS funcione…"
           >
 ${raw(escapeHtml(app.lessonNotes[id] ?? ''))}</textarea
-          ><small>Notas temporales en esta pestaña. No se califican ni suman XP.</small>
+          ><small
+            >Se guardan en este navegador y en tus copias de progreso. No se califican ni suman
+            XP.</small
+          >
           <details>
             <summary>Una respuesta orientativa</summary>
             <p>${raw(escapeHtml(content.takeaway))}</p>
@@ -122,5 +124,7 @@ ${raw(escapeHtml(app.lessonNotes[id] ?? ''))}</textarea
   };
 }
 export function checkFeedback(check, selected) {
-  return `<div class="feedback ${selected === check.correctIndex ? 'feedback-correct' : 'feedback-wrong'}"><strong>${selected === check.correctIndex ? '✓ Has conectado la idea.' : '✗ Vamos a aclararlo.'}</strong><p>${escapeHtml(check.explanation)}</p><small>Comprobación de estudio · sin XP ni evidencia de dominio.</small></div>`;
+  const correct = selected === check.correctIndex;
+  const reason = !correct ? check.reasons?.[selected] : null;
+  return `<div class="feedback ${correct ? 'feedback-correct' : 'feedback-wrong'}"><strong>${correct ? '✓ Has conectado la idea.' : '✗ Vamos a aclararlo.'}</strong>${reason ? `<p><strong>Por qué tu elección no encaja:</strong> ${escapeHtml(reason)}</p>` : ''}<p>${escapeHtml(check.explanation)}</p><small>Comprobación de estudio · sin XP ni evidencia de dominio.</small></div>`;
 }

@@ -1,10 +1,15 @@
 import { QuizSession } from './quiz-session.js';
+import { shuffle } from './random.js';
 import { ActivityClock } from './activity-clock.js';
 export class SpeedrunSession extends QuizSession {
   constructor(questions, { difficulty = 'normal', random = Math.random, now = Date.now } = {}) {
     if (!questions.length) throw new Error('No hay preguntas de capas disponibles.');
     super(questions, { kind: 'speedrun', difficulty, random });
     this.type = 'speedrun';
+    this.bank = [...questions];
+    this.random = random;
+    this.attempts = [];
+    this.cycle = 1;
     this.timed = true;
     this.clock = new ActivityClock(now);
     this.limitMs = 60000;
@@ -12,6 +17,12 @@ export class SpeedrunSession extends QuizSession {
     this.bestChain = 0;
     this.bonusMs = 0;
     this.finishReason = null;
+  }
+  get outcomes() {
+    return this.attempts;
+  }
+  get attemptNumber() {
+    return this.attempts.length + (this.currentAnswer ? 0 : 1);
   }
   setActive(active) {
     this.clock.setActive(Boolean(active && !this.done));
@@ -35,22 +46,41 @@ export class SpeedrunSession extends QuizSession {
     outcome.timeBonusMs = this.chain ? (this.chain >= 5 ? 4000 : this.chain >= 3 ? 3000 : 2000) : 0;
     this.bonusMs = outcome.timeBonusMs;
     this.limitMs += this.bonusMs;
+    this.attempts.push(outcome);
     return outcome;
   }
   next() {
     if (this.tick()) return true;
-    const moved = super.next();
-    if (this.done) {
-      this.finishReason = 'complete';
-      this.clock.stop();
+    if (this.done || !this.currentAnswer) return false;
+    if (this.index < this.questions.length - 1) return super.next();
+    // A cycle is a shuffled traversal of the bank, not the end of the timed round.
+    const previousId = this.current.id;
+    const nextBank = shuffle(this.bank, this.random);
+    if (nextBank.length > 1 && nextBank[0].id === previousId) {
+      [nextBank[0], nextBank[1]] = [nextBank[1], nextBank[0]];
     }
-    return moved;
+    const cycle = new QuizSession(nextBank, { random: this.random });
+    this.questions = cycle.questions;
+    this.options = cycle.options;
+    this.answers = {};
+    this.index = 0;
+    this.assisted = false;
+    this.bonusMs = 0;
+    this.cycle += 1;
+    return true;
   }
+
   get result() {
     const r = super.result;
     return {
       ...r,
-      total: r.outcomes.length,
+      total: this.attempts.length,
+      correct: this.attempts.filter((o) => o.correct && !o.assisted).length,
+      xp: this.attempts.reduce((sum, o) => sum + (this.practiceOnly ? 0 : o.xp), 0),
+      missedIds: [
+        ...new Set(this.attempts.filter((o) => !o.correct || o.assisted).map((o) => o.question.id)),
+      ],
+      outcomes: [...this.attempts],
       planned: this.questions.length,
       bestChain: this.bestChain,
       finishReason: this.finishReason,

@@ -30,6 +30,7 @@ await digest(resolve(root, 'public'));
 for (const file of [
   'index.html',
   'package.json',
+  'package-lock.json',
   'scripts/build.mjs',
   'scripts/build-assets.mjs',
   'scripts/build-report.mjs',
@@ -53,6 +54,7 @@ const html = (await readFile(resolve(root, 'index.html'), 'utf8'))
 await writeFile(resolve(destination, 'index.html'), html);
 await cp(resolve(root, 'public'), resolve(destination, 'public'), { recursive: true });
 await cp(resolve(root, 'public/_headers'), resolve(destination, '_headers'));
+await rm(resolve(destination, 'public/_headers'));
 const pkg = JSON.parse(await readFile(resolve(root, 'package.json'), 'utf8'));
 await writeFile(
   resolve(destination, 'version.json'),

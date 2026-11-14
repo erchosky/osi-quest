@@ -21,7 +21,7 @@
   margin: 10px 0 16px;
 }
 .explore-card:hover {
-  border-color: var(--edge-a6ba8b, #a6ba8b);
+  border-color: var(--line);
 }
 .lab-layout {
   display: grid;
@@ -36,8 +36,8 @@
 }
 .lab-step-tabs button {
   border: 1px solid var(--line);
-  background: var(--surface-f8faf4, #f8faf4);
-  font-size: 11px;
+  background: var(--soft);
+  font-size: 0.75rem;
   padding: 8px 12px;
   border-radius: 7px;
 }
@@ -56,9 +56,9 @@
 .envelope {
   padding: 17px;
   width: 100%;
-  border: 1px solid var(--edge-cbdcc3, #cbdcc3);
+  border: 1px solid var(--line);
   border-radius: 14px;
-  background: var(--surface-e7f1df, #e7f1df);
+  background: var(--soft);
   text-align: center;
 }
 .envelope header {
@@ -74,12 +74,12 @@
 }
 .envelope span,
 .envelope footer {
-  font-size: 10px;
-  color: var(--text-71836a, #71836a);
+  font-size: 0.75rem;
+  color: var(--muted);
 }
 .envelope-data {
-  background: var(--surface-fff9ee, #fff9ee);
-  border-color: var(--edge-ecdcbc, #ecdcbc);
+  background: var(--soft);
+  border-color: var(--line);
   max-width: 400px;
   margin: 0 auto;
 }
@@ -88,23 +88,23 @@
   font-size: 18px;
 }
 .envelope-1 {
-  background: var(--surface-e9eef7, #e9eef7);
-  border-color: var(--edge-d6deed, #d6deed);
+  background: var(--soft);
+  border-color: var(--line);
 }
 .envelope-2 {
-  background: var(--surface-e6f2f1, #e6f2f1);
-  border-color: var(--edge-c5ddda, #c5ddda);
+  background: var(--soft);
+  border-color: var(--line);
 }
 .envelope-3 {
-  background: var(--surface-edf3e4, #edf3e4);
-  border-color: var(--edge-d2dfbd, #d2dfbd);
+  background: var(--soft);
+  border-color: var(--line);
 }
 .envelope footer {
   margin-top: 12px;
 }
 .signal-display {
   padding: 20px;
-  background: var(--surface-173d30, #173d30);
+  background: var(--hero-bg);
   color: var(--lime);
   border-radius: 14px;
   width: 100%;
@@ -112,7 +112,7 @@
   overflow: hidden;
 }
 .signal-display span {
-  font-size: 11px;
+  font-size: 0.75rem;
   font-family: monospace;
   overflow-wrap: anywhere;
 }
@@ -128,8 +128,8 @@
   stroke-width: 3;
 }
 .signal-display p {
-  font-size: 10px;
-  color: var(--text-b2c7a3, #b2c7a3);
+  font-size: 0.75rem;
+  color: var(--muted);
 }
 .lab-explanation h2 {
   margin: 15px 0;
@@ -139,7 +139,7 @@
   color: var(--muted);
 }
 .lab-explanation .small-note {
-  font-size: 11px;
+  font-size: 0.75rem;
 }
 .lab-explanation .text-link {
   display: inline-block;
@@ -161,24 +161,24 @@
 .journey-track > span {
   padding: 12px 18px;
   border-radius: 12px;
-  background: var(--surface-f0f3eb, #f0f3eb);
+  background: var(--soft);
   border: 1px solid var(--line);
 }
 .journey-track .active {
-  border-color: var(--edge-abc37f, #abc37f);
-  background: var(--surface-edf5df, #edf5df);
+  border-color: var(--line);
+  background: var(--soft);
 }
 .journey-line {
   flex: 1;
   max-width: 200px;
-  color: var(--text-8da769, #8da769);
+  color: var(--muted);
   font-size: 23px;
 }
 .journey-line span {
   display: block;
-  font-size: 10px;
+  font-size: 0.75rem;
   color: var(--muted);
-  border-bottom: 1px dashed var(--edge-bacaa3, #bacaa3);
+  border-bottom: 1px dashed var(--line);
 }
 .journey-focus {
   text-align: center;
@@ -188,7 +188,7 @@
   border-radius: 15px;
 }
 .journey-focus .layer-number {
-  background: var(--surface-ffffff, white);
+  background: var(--white);
   width: 45px;
   height: 45px;
   font-size: 23px;
@@ -204,7 +204,7 @@
 .journey-focus > p:not(.eyebrow) {
   max-width: 620px;
   margin: 0 auto 20px;
-  color: var(--text-5b7160, #5b7160);
+  color: var(--ink);
 }
 .journey-dots {
   display: flex;
@@ -216,10 +216,10 @@
 .journey-dots button {
   width: 33px;
   height: 33px;
-  background: var(--surface-ffffff, white);
+  background: var(--white);
   border: 1px solid var(--line);
   border-radius: 50%;
-  font-size: 11px;
+  font-size: 0.75rem;
 }
 .journey-dots button:nth-child(8) {
   margin-left: 10px;
@@ -242,9 +242,9 @@
 .search-field input {
   width: 100%;
   padding: 13px 17px;
-  border: 1px solid var(--edge-d5decb, #d5decb);
+  border: 1px solid var(--line);
   border-radius: 10px;
-  background: var(--surface-ffffff, white);
+  background: var(--white);
   color: var(--ink);
   font-size: 14px;
 }

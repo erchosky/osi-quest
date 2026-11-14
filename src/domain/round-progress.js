@@ -4,6 +4,19 @@ export function outcomeStatus(outcome) {
   return outcome.assisted || outcome.recovery ? 'assisted' : 'correct';
 }
 export function roundItems(session, playerIndex) {
+  if (session.type === 'speedrun') {
+    const recent = session.attempts.slice(-8).map((outcome, index) => ({
+      id: session.attempts.length - Math.min(8, session.attempts.length) + index,
+      status: outcomeStatus(outcome),
+      current:
+        !session.done &&
+        Boolean(session.currentAnswer) &&
+        index === Math.min(8, session.attempts.length) - 1,
+    }));
+    if (!session.done && !session.currentAnswer)
+      recent.push({ id: session.attempts.length, status: 'pending', current: true });
+    return recent.slice(-8);
+  }
   if (session.type === 'duel')
     return session.questions.map((question, index) => ({
       id: question.id,

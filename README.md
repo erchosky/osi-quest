@@ -6,7 +6,7 @@ Mi forma de hacer que el modelo OSI tenga un poco más de sentido. **OSI Quest**
 
 ## Qué puedes hacer
 
-La versión 3.8 añade instalación/offline, temas, inspector hexadecimal, sprint de 60 segundos y práctica por capa. [Guía y cierre de revisión](docs/VERSION-3.8.md).
+La versión 3.9.5 mejora la respuesta de la app cuando tienes mucho historial de progreso. La versión 3.8 añadió instalación/offline, temas, inspector hexadecimal, sprint de 60 segundos y práctica por capa. [Cambios de la versión 3.9.5](docs/RENDIMIENTO-3.9.5.md) · [Guía de la versión 3.8](docs/VERSION-3.8.md).
 
 - **Construir tu red de casa:** una historia de siete capítulos, con explicaciones, ejemplos cotidianos y 21 decisiones. Cada pieza construida desbloquea actividades.
 - **Estudiar:** 18 lecciones con ejemplos cotidianos, índice por secciones, marcador de lectura, notas para explicarlo con tus palabras y comprobaciones sin XP. Puedes marcar una lección para releerla y retomar donde lo dejaste.

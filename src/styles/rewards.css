@@ -1,7 +1,7 @@
 .level-pill {
-  font-size: 11px;
+  font-size: 0.75rem;
   font-weight: 700;
-  color: var(--text-6d8556, #6d8556);
+  color: var(--muted);
   white-space: nowrap;
 }
 .reward-hud {
@@ -12,21 +12,21 @@
   gap: 8px;
   margin: 18px 0 24px;
   padding: 11px 14px;
-  background: var(--surface-f2f6e9, #f2f6e9);
-  border: 1px solid var(--edge-e1e8d5, #e1e8d5);
+  background: var(--soft);
+  border: 1px solid var(--line);
   border-radius: 10px;
-  color: var(--text-6a7c57, #6a7c57);
-  font-size: 11px;
+  color: var(--muted);
+  font-size: 0.75rem;
 }
 .reward-hud strong {
-  color: var(--text-496336, #496336);
+  color: var(--ink);
 }
 .streak-badge {
-  color: var(--text-967137, #967137);
-  background: var(--surface-fff5dc, #fff5dc);
+  color: var(--muted);
+  background: var(--soft);
   padding: 3px 8px;
   border-radius: 6px;
-  font-size: 10px;
+  font-size: 0.75rem;
 }
 .reward-toast {
   position: fixed;
@@ -37,10 +37,10 @@
   display: flex;
   align-items: center;
   gap: 13px;
-  background: var(--surface-244d38, #244d38);
-  color: var(--text-f1f7df, #f1f7df);
+  background: var(--soft);
+  color: var(--muted);
   padding: 14px 22px;
-  border: 1px solid var(--edge-8ea963, #8ea963);
+  border: 1px solid var(--line);
   border-radius: 14px;
   box-shadow: 0 8px 30px #173d3025;
   pointer-events: none;
@@ -62,20 +62,20 @@
   font-size: 18px;
 }
 .reward-toast small {
-  font-size: 11px;
-  color: var(--text-c0d3aa, #c0d3aa);
+  font-size: 0.75rem;
+  color: var(--muted);
 }
 .reward-toast.level-up {
-  background: var(--surface-e2edbb, #e2edbb);
-  color: var(--text-304826, #304826);
+  background: var(--soft);
+  color: var(--ink);
 }
 .reward-toast.level-up small,
 .reward-toast.level-up .reward-toast-symbol {
-  color: var(--text-557440, #557440);
+  color: var(--ink);
 }
 .xp-pill.is-gaining {
   animation: xp-bump 0.4s ease-out;
-  border-color: var(--edge-90ae5e, #90ae5e);
+  border-color: var(--line);
 }
 .level-panel {
   margin-bottom: 24px;
@@ -87,15 +87,15 @@
 .level-emblem {
   width: 60px;
   height: 60px;
-  background: var(--surface-e7f0d5, #e7f0d5);
-  border: 1px solid var(--edge-d5e2bc, #d5e2bc);
+  background: var(--soft);
+  border: 1px solid var(--line);
   border-radius: 17px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 22px;
   font-weight: 750;
-  color: var(--text-607c43, #607c43);
+  color: var(--muted);
 }
 .level-panel h2 {
   font-size: 20px;
@@ -113,15 +113,15 @@
   margin-top: 14px;
 }
 .reward-rates span {
-  background: var(--surface-edf3e4, #edf3e4);
-  border: 1px solid var(--edge-dee8ce, #dee8ce);
+  background: var(--soft);
+  border: 1px solid var(--line);
   border-radius: 8px;
   padding: 7px 11px;
-  font-size: 11px;
+  font-size: 0.75rem;
 }
 .reward-rates span:last-child {
-  background: var(--surface-fff4e4, #fff4e4);
-  border-color: var(--edge-ead6b7, #ead6b7);
+  background: var(--soft);
+  border-color: var(--line);
 }
 .reward-rates strong {
   display: block;
@@ -160,7 +160,7 @@
     gap: 10px;
   }
   .level-pill {
-    font-size: 9px;
+    font-size: 0.75rem;
   }
   .reward-toast {
     top: 0;
@@ -175,7 +175,7 @@
     font-size: 15px;
   }
   .reward-hud {
-    font-size: 10px;
+    font-size: 0.75rem;
     padding: 10px;
   }
   .level-panel {

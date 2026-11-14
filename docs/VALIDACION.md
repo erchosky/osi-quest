@@ -1,4 +1,5 @@
-> Resultados históricos de 3.7. Las pruebas y límites de 3.8 se documentan en VERSION-3.8.md.
+> ARCHIVO HISTÓRICO (versiones 3.1–3.8). Ninguna afirmación de esta página describe por sí sola la entrega actual. La revisión vigente está en [AUDITORIA-3.9.md](AUDITORIA-3.9.md).
+
 
 # Validación de OSI Quest 3.7
 

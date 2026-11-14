@@ -6,9 +6,9 @@
   flex-wrap: wrap;
   gap: 16px;
   padding: 20px 24px;
-  border: 1px solid var(--edge-cddbbd, #cddbbd);
+  border: 1px solid var(--line);
   border-radius: 16px;
-  background: var(--surface-edf4e4, #edf4e4);
+  background: var(--soft);
   margin-bottom: 24px;
 }
 .class-entry h2 {
@@ -45,7 +45,7 @@
   min-width: 0;
   border: 1px solid var(--line);
   border-radius: 10px;
-  background: var(--surface-ffffff, white);
+  background: var(--white);
   color: var(--ink);
   padding: 13px;
   font: inherit;
@@ -53,7 +53,7 @@
 }
 .class-form input:focus,
 .class-form select:focus {
-  outline: 3px solid var(--edge-c4de9c, #c4de9c);
+  outline: 3px solid var(--line);
   outline-offset: 2px;
 }
 .class-form select:disabled {
@@ -64,7 +64,7 @@
   margin-top: 8px;
 }
 .class-error {
-  color: var(--text-913e21, #913e21);
+  color: var(--ink);
   font-size: 14px;
   margin: 14px 0;
 }

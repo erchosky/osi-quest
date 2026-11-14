@@ -100,7 +100,7 @@
   }
   .hero .button {
     padding: 10px 12px;
-    font-size: 11px;
+    font-size: 0.75rem;
   }
   .mode-grid {
     gap: 12px;
@@ -206,9 +206,9 @@
     width: 100%;
     height: calc(65px + env(safe-area-inset-bottom));
     padding: 7px 9px calc(7px + env(safe-area-inset-bottom));
-    background: var(--surface-fffef9, #fffef9);
+    background: var(--white);
     border: 0;
-    border-top: 1px solid var(--edge-dbe3d0, #dbe3d0);
+    border-top: 1px solid var(--line);
   }
   .brand {
     display: none;
@@ -227,7 +227,7 @@
     min-width: 54px;
     flex: 1;
     border-radius: 10px;
-    font-size: 10px;
+    font-size: 0.75rem;
     min-height: 48px;
     line-height: 1.3;
   }
@@ -248,21 +248,21 @@
     padding: 0 18px;
   }
   .breadcrumb {
-    font-size: 10px;
+    font-size: 0.75rem;
     max-width: 70%;
   }
   .beginner-label {
     display: none;
   }
   .xp-pill {
-    font-size: 10px;
+    font-size: 0.75rem;
     padding: 4px 9px;
   }
   .topbar .level-pill {
     display: inline-flex;
     align-items: center;
     min-height: 44px;
-    font-size: 10px;
+    font-size: 0.75rem;
   }
   #main {
     padding: 22px 18px 30px;
@@ -278,7 +278,7 @@
     align-items: stretch;
   }
   .hero .button {
-    font-size: 11px;
+    font-size: 0.75rem;
     padding: 11px 13px;
   }
   .page-description {
@@ -337,7 +337,7 @@
     width: 100%;
   }
   .game-actions .button {
-    font-size: 11px;
+    font-size: 0.75rem;
     padding: 11px 13px;
   }
   .difficulty-options strong .badge {
@@ -379,14 +379,14 @@
     padding: 12px;
   }
   .envelope strong {
-    font-size: 11px;
+    font-size: 0.75rem;
   }
   .envelope header {
     margin-bottom: 12px;
   }
   .journey-track {
     gap: 10px;
-    font-size: 10px;
+    font-size: 0.75rem;
   }
   .journey-track > span {
     padding: 10px;
@@ -418,7 +418,7 @@
   }
   .app-footer {
     padding: 15px 18px;
-    font-size: 9px;
+    font-size: 0.75rem;
   }
 }
 @media (prefers-reduced-motion: reduce) {

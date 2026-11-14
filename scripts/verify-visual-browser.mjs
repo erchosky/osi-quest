@@ -11,6 +11,7 @@ const directory = await mkdtemp(join(tmpdir(), 'osi-visual-'));
 const output = join(root, 'work/browser-visual');
 const screens = [
   ['study', '.unit-row'],
+  ['study/addresses', '.lesson-check .answer'],
   ['play', '.activity-card'],
   ['explore', '.explore-card'],
   ['progress', '.stat-card strong'],
@@ -60,10 +61,13 @@ try {
       reducedMotion: 'reduce',
     });
     await context.addInitScript(() => {
-      localStorage.setItem(
-        'osi-quest-v1',
-        JSON.stringify({ version: 3, xp: 0, read: [], stats: {}, cards: {} }),
-      );
+      ((key, value) => {
+        // Fixture replacement is explicit; journal operations otherwise outrank stale snapshots.
+        if (key === 'osi-quest-v1')
+          for (const id of Object.keys(localStorage))
+            if (id.startsWith('osi-quest-v1:')) localStorage.removeItem(id);
+        localStorage.setItem(key, value);
+      })('osi-quest-v1', JSON.stringify({ version: 3, xp: 0, read: [], stats: {}, cards: {} }));
     });
     const pages = await Promise.all([context.newPage(), context.newPage()]);
     for (const page of pages) {

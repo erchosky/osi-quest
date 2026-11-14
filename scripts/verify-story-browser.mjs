@@ -223,6 +223,8 @@ try {
   await page.evaluate(() => scrollTo(0, 300));
   const first = await positions();
   await answer(false);
+  await page.locator('#next-question').scrollIntoViewIfNeeded();
+  const beforeNext = await positions();
   await page.locator('#next-question').click();
   const second = await positions();
   check(
@@ -231,7 +233,10 @@ try {
       Math.abs(first.height - second.height) < 1 &&
       Math.abs(first.title - second.title) < 1,
   );
-  check('Changing question preserves viewport scroll', Math.abs(first.scroll - second.scroll) < 1);
+  check(
+    'Changing question preserves viewport scroll after reaching Next',
+    Math.abs(beforeNext.scroll - second.scroll) < 1,
+  );
   check('Wrong answer remains as coral X', (await page.locator('.dot-wrong').count()) === 1);
   await page.locator('#hint-button').click();
   await answer();

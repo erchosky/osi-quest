@@ -1,4 +1,5 @@
-> Registro histórico: los apartados antiguos describen su versión, no el estado actual. Consulta VERSION-3.8.md para el cierre de la última revisión.
+> ARCHIVO HISTÓRICO (versiones 3.1–3.8). Ninguna afirmación de esta página describe por sí sola la entrega actual. La revisión vigente está en [AUDITORIA-3.9.md](AUDITORIA-3.9.md).
+
 
 # Revisión de las auditorías aportadas
 

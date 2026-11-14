@@ -25,7 +25,7 @@ export const layers = [
     purpose: 'Formar tramas, usar direcciones MAC y detectar errores del enlace.',
     examples: 'Tramas Ethernet, MAC y conmutación de un switch de capa 2.',
     unit: 'Tramas',
-    analogy: 'La entrega del mensaje en el siguiente tramo de la carretera.',
+    analogy: 'El reparto hasta el siguiente punto del recorrido, tramo a tramo.',
     caution:
       'Una MAC identifica una interfaz en el enlace; una IP permite el direccionamiento entre redes.',
     scenario:
@@ -60,7 +60,7 @@ export const layers = [
     purpose: 'Usar puertos y gestionar la entrega según el protocolo empleado.',
     examples: 'TCP: entrega fiable y ordenada. UDP: sin esas garantías.',
     unit: 'Segmentos TCP / datagramas UDP',
-    analogy: 'La entrega a la persona correcta dentro de un edificio.',
+    analogy: 'El número de departamento que distingue al destinatario final.',
     caution: 'TCP ofrece entrega fiable; UDP por sí mismo no garantiza llegada ni orden.',
     scenario:
       'TCP retransmite datos perdidos y los entrega en orden. ¿Qué capa realiza esta función?',

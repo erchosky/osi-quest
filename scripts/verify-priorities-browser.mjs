@@ -126,7 +126,13 @@ async function chooserChecks() {
       );
       delete value.integrity;
       value.playFilter = 'due';
-      localStorage.setItem('osi-quest-v1', JSON.stringify(value));
+      ((key, value) => {
+        // Fixture replacement is explicit; journal operations otherwise outrank stale snapshots.
+        if (key === 'osi-quest-v1')
+          for (const id of Object.keys(localStorage))
+            if (id.startsWith('osi-quest-v1:')) localStorage.removeItem(id);
+        localStorage.setItem(key, value);
+      })('osi-quest-v1', JSON.stringify(value));
     });
     await reload(page);
     check(
@@ -476,8 +482,9 @@ async function lessonChecks() {
         .evaluate((element) => element === document.activeElement),
     );
     check(
-      'Personal explanation remains explicitly temporary after reload',
-      (await page.locator('#lesson-notes').inputValue()) === '',
+      'Personal explanation is saved and survives reload',
+      (await page.locator('#lesson-notes').inputValue()) ===
+        'DNS busca información del destino. Una respuesta no demuestra que HTTP funcione.',
     );
     await shot(page, 'leccion-con-indice');
     await page.locator('#complete-lesson').click();

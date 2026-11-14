@@ -55,7 +55,7 @@ export function bindQuiz(app) {
     app.refresh();
     if (!session.done && !session.reviewing)
       app.announce(
-        `Pregunta ${session.index + 1} de ${session.questions.length}. ${session.current.prompt}`,
+        `${session.kind === 'speedrun' ? `Reto ${session.attemptNumber}` : `Pregunta ${session.index + 1} de ${session.questions.length}`}. ${session.current.prompt}`,
       );
     focusElement(
       session.done ? '.result-hero h1' : session.reviewing ? '.exam-review h1' : '.question-title',

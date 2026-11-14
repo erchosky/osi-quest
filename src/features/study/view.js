@@ -1,12 +1,26 @@
+import { notFoundView } from '../../app/routes.js';
 import { units } from '../../data/units.js';
 import { html, pageHeading, progressBar, escapeHtml, raw } from '../../components/html.js';
 import { layerMap } from '../../components/layer-map.js';
-import { lessonContent } from './content.js';
+import { cachedLesson, loadLessonContent } from './lesson-loader.js';
 import { lessonView } from './lesson-view.js';
 
 export function studyView(app, id, section) {
   const unit = units.find((item) => item.id === id);
-  return unit ? lessonView(app, unit, lessonContent(unit), section) : studyIndex(app);
+  if (!unit) return studyIndex(app);
+  const content = cachedLesson(unit);
+  return content
+    ? renderLesson(app, unit, content, section)
+    : loadLessonContent(unit).then((loaded) => renderLesson(app, unit, loaded, section));
+}
+
+function renderLesson(app, unit, content, section) {
+  if (
+    section !== undefined &&
+    (!/^\d+$/.test(section) || Number(section) >= content.sections.length)
+  )
+    return notFoundView();
+  return lessonView(app, unit, content, section);
 }
 
 function studyIndex(app) {

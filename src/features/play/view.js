@@ -69,14 +69,16 @@ function activityCard(activity, summary) {
       </ol>
       <div class="activity-history" aria-label="Resultados de esta configuración">
         <span
-          ><strong>Mejor reciente</strong> ${summary.best
-            ? `${summary.best.correct}/${summary.best.total}`
-            : 'Por estrenar'}</span
+          ><strong>Mejor reciente</strong> ${
+            summary.best ? `${summary.best.correct}/${summary.best.total}` : 'Por estrenar'
+          }</span
         >
         <span
-          ><strong>Última</strong> ${summary.latest
-            ? `${summary.latest.correct}/${summary.latest.total}`
-            : 'Sin ronda completada'}</span
+          ><strong>Última</strong> ${
+            summary.latest
+              ? `${summary.latest.correct}/${summary.latest.total}`
+              : 'Sin ronda completada'
+          }</span
         >
       </div>
       ${raw(

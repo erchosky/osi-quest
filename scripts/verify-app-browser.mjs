@@ -23,7 +23,13 @@ page.on('response', (response) => {
 });
 await page.goto(base);
 await page.evaluate(() =>
-  localStorage.setItem(
+  ((key, value) => {
+    // Fixture replacement is explicit; journal operations otherwise outrank stale snapshots.
+    if (key === 'osi-quest-v1')
+      for (const id of Object.keys(localStorage))
+        if (id.startsWith('osi-quest-v1:')) localStorage.removeItem(id);
+    localStorage.setItem(key, value);
+  })(
     'osi-quest-v1',
     JSON.stringify({ version: 2, xp: 20, read: ['basics'], stats: {}, cards: {} }),
   ),
@@ -306,7 +312,7 @@ try {
   const download = await downloadPromise;
   check(
     'Backup download has expected name',
-    download.suggestedFilename() === 'osi-quest-progreso.json',
+    /^osi-quest-progreso-\d{4}-\d{2}-\d{2}\.json$/.test(download.suggestedFilename()),
   );
   await download.saveAs(new URL('progreso-exportado.json', directory).pathname);
   const { integrity, ...originalBackup } = await stored();

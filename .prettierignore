@@ -1,3 +1,6 @@
 dist
 node_modules
 package-lock.json
+src/vendor/
+src/data/progress-catalog.js
+src/data/class-revision.js

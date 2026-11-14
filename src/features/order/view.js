@@ -28,19 +28,23 @@ export function orderView(app) {
         <section class="panel game-panel">
           ${raw(roundProgress(session))} ${raw(rewardHud(session))}
           <p class="eyebrow">
-            ${sending
-              ? 'ENVÍO · DE LA APLICACIÓN AL MEDIO'
-              : 'RECEPCIÓN · DEL MEDIO A LA APLICACIÓN'}
+            ${
+              sending
+                ? 'ENVÍO · DE LA APLICACIÓN AL MEDIO'
+                : 'RECEPCIÓN · DEL MEDIO A LA APLICACIÓN'
+            }
           </p>
           <h1 class="question-title">
             ${sending ? 'Prepara el mensaje para salir.' : 'Reconstruye el camino de llegada.'}
           </h1>
           <p class="subtle">
-            ${session.difficulty === 'normal'
-              ? `Selecciona la capa ${session.expected}.`
-              : session.retry
-                ? 'Entre las capas pendientes, ¿cuál viene ahora en el recorrido?'
-                : `Paso ${session.built.length + 1}: ¿qué capa sigue en este recorrido?`}
+            ${
+              session.difficulty === 'normal'
+                ? `Selecciona la capa ${session.expected}.`
+                : session.retry
+                  ? 'Entre las capas pendientes, ¿cuál viene ahora en el recorrido?'
+                  : `Paso ${session.built.length + 1}: ¿qué capa sigue en este recorrido?`
+            }
           </p>
           <div class="order-slots">
             ${raw(
@@ -48,22 +52,25 @@ export function orderView(app) {
                 .map(
                   (number, i) =>
                     html`<div
-                      class="order-slot ${session.built.includes(number) ||
-                      session.contextLayers.includes(number)
-                        ? 'filled'
-                        : number === session.expected
-                          ? 'next'
-                          : ''}"
+                      class="order-slot ${
+                        session.built.includes(number) || session.contextLayers.includes(number)
+                          ? 'filled'
+                          : number === session.expected
+                            ? 'next'
+                            : ''
+                      }"
                     >
-                      <span>${i + 1}</span>${session.built.includes(number) ||
-                      session.contextLayers.includes(number)
-                        ? layers[number - 1].name
-                        : number === session.expected
-                          ? '¿Qué capa sigue?'
-                          : 'Pendiente'}${session.built.includes(number) ||
-                      session.contextLayers.includes(number)
-                        ? ' ✓'
-                        : ''}
+                      <span>${i + 1}</span>${
+                        session.built.includes(number) || session.contextLayers.includes(number)
+                          ? layers[number - 1].name
+                          : number === session.expected
+                            ? '¿Qué capa sigue?'
+                            : 'Pendiente'
+                      }${
+                        session.built.includes(number) || session.contextLayers.includes(number)
+                          ? ' ✓'
+                          : ''
+                      }
                     </div>`,
                 )
                 .join(''),
@@ -77,10 +84,12 @@ export function orderView(app) {
                     html`<button
                       class="layer-choice"
                       data-layer="${number}"
-                      ${!session.recovery &&
-                      (session.built.includes(number) || session.contextLayers.includes(number))
-                        ? 'disabled'
-                        : ''}
+                      ${
+                        !session.recovery &&
+                        (session.built.includes(number) || session.contextLayers.includes(number))
+                          ? 'disabled'
+                          : ''
+                      }
                     >
                       ${layers[number - 1].name}
                     </button>`,
@@ -91,9 +100,9 @@ export function orderView(app) {
           ${raw(
             session.feedback
               ? html`<div
-                  class="feedback ${session.feedback.correct
-                    ? 'feedback-correct'
-                    : 'feedback-wrong'}"
+                  class="feedback ${
+                    session.feedback.correct ? 'feedback-correct' : 'feedback-wrong'
+                  }"
                   role="status"
                 >
                   <strong
@@ -101,9 +110,11 @@ export function orderView(app) {
                   >
                   ${raw(answerLayer(session.feedback.target))}
                   <p>
-                    ${session.feedback.correct
-                      ? layers[session.feedback.target - 1].description
-                      : `Piensa en el recorrido de ${sending ? 'envío' : 'recepción'}. Puedes volver a intentarlo.`}
+                    ${
+                      session.feedback.correct
+                        ? layers[session.feedback.target - 1].description
+                        : `Piensa en el recorrido de ${sending ? 'envío' : 'recepción'}. Puedes volver a intentarlo.`
+                    }
                   </p>
                 </div>`
               : '',

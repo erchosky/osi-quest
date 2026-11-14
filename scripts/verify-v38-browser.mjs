@@ -58,7 +58,10 @@ try {
   ).json();
   check(
     'Manifest provides standalone launch and proper relative scope',
-    manifest.display === 'standalone' && manifest.scope === '../' && manifest.icons.length === 2,
+    manifest.display === 'standalone' &&
+      manifest.scope === '../' &&
+      manifest.icons.some((i) => i.purpose === 'maskable') &&
+      manifest.icons.some((i) => i.purpose === 'any'),
   );
   check(
     'All published modules are cached before claiming offline readiness',

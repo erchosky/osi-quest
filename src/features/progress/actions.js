@@ -6,7 +6,7 @@ import { confirmAction } from '../../components/dialog.js';
 export function bindProgressActions(app) {
   document.querySelector('#export-progress').addEventListener('click', () => {
     downloadText(
-      'osi-quest-progreso.json',
+      `osi-quest-progreso-${new Date().toISOString().slice(0, 10)}.json`,
       app.repository.export({ includeHistory: document.querySelector('#export-history').checked }),
     );
     app.announce('Copia de progreso exportada.');
@@ -23,12 +23,14 @@ export function bindProgressActions(app) {
       if (
         !(await confirmAction({
           title: '¿Usar esta copia?',
-          description: `Contiene ${candidate.xp} XP y ${candidate.read.length} lecciones leídas. Reemplazará el progreso actual de este navegador.`,
+          description: `Contiene ${candidate.xp} XP y ${candidate.read.length} lecciones leídas. Reemplazará el progreso actual (${app.repository.data.xp} XP, ${app.repository.data.read.length} lecciones).${app.hasOpenRound() ? ' También se perderá la ronda pausada o en curso.' : ''}`,
           confirmLabel: 'Importar progreso',
         }))
       )
         return;
       app.repository.restore(candidate);
+      app.lessonNotes = { ...app.repository.data.lessonNotes };
+      app.lessonDrafts = {};
       app.abandonRound();
       app.refresh();
       app.announce('Progreso importado.');
@@ -60,13 +62,19 @@ export function bindProgressActions(app) {
       !(await confirmAction({
         title: '¿Borrar tu progreso?',
         description:
-          'Se borrarán los XP, las lecciones y los repasos de este navegador. Puedes exportar una copia antes.',
+          'Se borrarán los XP, las lecciones y los repasos en todas las pestañas de este navegador. Puedes exportar una copia antes.' +
+          (app.repository.originalProgress !== null
+            ? ' También se eliminará el original dañado que conservamos: descárgalo antes desde el aviso de guardado.'
+            : '') +
+          (app.hasOpenRound() ? ' La ronda actual también se perderá.' : ''),
         confirmLabel: 'Borrar progreso',
         danger: true,
       }))
     )
       return;
     app.repository.reset();
+    app.lessonNotes = {};
+    app.lessonDrafts = {};
     app.abandonRound();
     app.refresh();
     app.announce('Progreso borrado.');

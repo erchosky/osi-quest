@@ -21,7 +21,7 @@
   padding: 14px 20px;
   z-index: 100;
   background: var(--green);
-  color: var(--text-ffffff, white);
+  color: var(--on-accent);
   border-radius: var(--radius-control);
 }
 .skip-link:focus {
@@ -96,7 +96,7 @@
   border-radius: 8px;
   width: 100%;
   min-height: 44px;
-  background: var(--surface-ffffff, #fff);
+  background: var(--white);
   color: var(--ink);
   font: inherit;
 }
@@ -117,7 +117,7 @@
   position: absolute;
   right: 44px;
   bottom: 0;
-  font-size: 10px;
+  font-size: 0.75rem;
   color: var(--muted);
   pointer-events: none;
 }
@@ -167,7 +167,7 @@
 .chapter-picker nav small {
   width: 100%;
   color: var(--muted);
-  font-size: 11px;
+  font-size: 0.75rem;
 }
 .locked-chapter {
   color: var(--muted);
@@ -192,7 +192,7 @@
   font-size: 19px;
 }
 .activity-card .card-top .badge {
-  font-size: 10px;
+  font-size: 0.75rem;
 }
 .activity-card .activity-description {
   margin-bottom: 14px;
@@ -233,7 +233,7 @@
   height: 24px;
   flex-shrink: 0;
   background: var(--soft);
-  font-size: 11px;
+  font-size: 0.75rem;
 }
 .activity-history {
   margin-top: 12px;
@@ -308,7 +308,7 @@
   right: -29px;
   top: 48px;
   width: 28px;
-  border-top: 2px dashed var(--edge-9aaf86, #9aaf86);
+  border-top: 2px dashed var(--line);
 }
 .story-map .story-chapter:nth-child(3n)::after {
   display: none;
@@ -322,7 +322,7 @@
   border: 1px solid var(--line);
   border-radius: 14px;
   box-shadow: 0 10px 30px #203d3020;
-  background: var(--surface-ffffff, #fff);
+  background: var(--white);
 }
 .lesson-next-dock[hidden] {
   display: none;
@@ -335,7 +335,7 @@
   padding: 12px 16px;
   border: 1px solid var(--line);
   border-radius: 12px;
-  background: var(--surface-ffffff, #fff);
+  background: var(--white);
   font-size: 12px;
   box-shadow: var(--shadow);
   pointer-events: none;
@@ -397,7 +397,7 @@
   }
   .story-map {
     gap: 18px;
-    border-left: 2px dashed var(--edge-b7c39e, #b7c39e);
+    border-left: 2px dashed var(--line);
     padding-left: 18px;
   }
   .breadcrumb {
@@ -421,7 +421,7 @@
   }
   .save-status {
     right: 18px;
-    font-size: 9px;
+    font-size: 0.75rem;
   }
   .sidebar-story {
     display: none;
@@ -444,7 +444,7 @@
     gap: 6px;
   }
   .activity-filters button {
-    font-size: 10px;
+    font-size: 0.75rem;
     padding: 8px 10px;
   }
   .lesson-next-dock {

@@ -84,15 +84,15 @@ test('Blocked or corrupt local storage falls back to usable in-memory progress',
   assert.equal(createProgressRepository(null).persistent, false);
 });
 
-test('Spaced review follows 1/3/7 days and 1/3/7/14 for cards; mistakes reset intervals', () => {
+test('Spaced review grows through 14/30/60 days; mistakes reset intervals', () => {
   let card;
-  for (const interval of [1, 3, 7, 14, 14]) {
+  for (const interval of [1, 3, 7, 14, 30, 60, 60]) {
     card = scheduleCard(card, true, 1000);
     assert.equal(card.due, 1000 + interval * DAY);
   }
   assert.equal(scheduleCard(card, false, 1000).due, 1000);
   let question;
-  for (const interval of [1, 3, 7, 7]) {
+  for (const interval of [1, 3, 7, 14, 30, 60, 60]) {
     question = recordQuestion(question, true, false, 1000);
     assert.equal(question.due, 1000 + interval * DAY);
   }

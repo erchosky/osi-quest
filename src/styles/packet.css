@@ -27,16 +27,16 @@
   background: var(--soft);
   border-radius: 13px;
   padding: 17px;
-  font-size: 10px;
+  font-size: 0.75rem;
 }
 .packet-route strong {
   display: block;
-  font-size: 11px;
+  font-size: 0.75rem;
   margin-top: 5px;
 }
 .packet-route b {
   font-size: 17px;
-  color: var(--text-83a065, #83a065);
+  color: var(--muted);
 }
 .packet-steps {
   display: grid;
@@ -51,31 +51,31 @@
   align-items: center;
   gap: 8px;
   border-radius: 10px;
-  background: var(--surface-edf0e8, #edf0e8);
+  background: var(--soft);
   padding: 11px 10px;
-  color: var(--text-75816c, #75816c);
-  font-size: 11px;
+  color: var(--muted);
+  font-size: 0.75rem;
 }
 .packet-steps li > span {
   width: 20px;
   height: 20px;
-  border: 1px solid var(--edge-d4ddcb, #d4ddcb);
+  border: 1px solid var(--line);
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  font-size: 10px;
+  font-size: 0.75rem;
 }
 .packet-steps .is-current {
   background: var(--green);
-  color: var(--text-ffffff, white);
+  color: var(--on-accent);
 }
 .packet-steps .is-current > span {
   border-color: #ffffff50;
 }
 .packet-steps .is-complete {
-  background: var(--surface-e4f0ce, #e4f0ce);
+  background: var(--soft);
   color: var(--green);
 }
 .packet-layout {
@@ -115,7 +115,7 @@
   text-align: left;
   border-radius: 11px;
   border: 1px solid var(--line);
-  background: var(--surface-ffffff, white);
+  background: var(--white);
   cursor: grab;
   min-height: 77px;
   transition:
@@ -134,18 +134,18 @@
 .packet-token > span {
   display: block;
   color: var(--muted);
-  font-size: 10px;
+  font-size: 0.75rem;
   line-height: 1.5;
   margin-top: 5px;
 }
 .packet-token:not(:disabled):hover {
   transform: translateY(-2px);
-  border-color: var(--edge-8ca46e, #8ca46e);
-  background: var(--surface-f7f9f1, #f7f9f1);
+  border-color: var(--line);
+  background: var(--soft);
 }
 .packet-token.is-selected {
-  background: var(--surface-eaf3dd, #eaf3dd);
-  border-color: var(--edge-7b9b54, #7b9b54);
+  background: var(--soft);
+  border-color: var(--line);
 }
 .packet-token:disabled {
   cursor: default;
@@ -158,16 +158,16 @@
   display: flex;
   gap: 13px;
   align-items: center;
-  border: 2px dashed var(--edge-cbd7be, #cbd7be);
+  border: 2px dashed var(--line);
   border-radius: 12px;
   padding: 18px;
   margin: 17px 0;
   min-height: 84px;
-  background: var(--surface-fafcf6, #fafcf6);
+  background: var(--soft);
 }
 .packet-tray > span {
   font-size: 25px;
-  color: var(--text-86a264, #86a264);
+  color: var(--muted);
 }
 .packet-tray strong {
   font-size: 13px;
@@ -175,20 +175,20 @@
 }
 .packet-tray small {
   color: var(--muted);
-  font-size: 10px;
+  font-size: 0.75rem;
   display: block;
   margin-top: 4px;
 }
 .packet-tray.has-piece {
-  border-color: var(--edge-9cbf70, #9cbf70);
+  border-color: var(--line);
 }
 .packet-tray.is-over {
-  background: var(--surface-e6f3cc, #e6f3cc);
-  border-color: var(--edge-6f9451, #6f9451);
+  background: var(--soft);
+  border-color: var(--line);
 }
 .packet-tray.is-complete {
   border-style: solid;
-  background: var(--surface-edf5e2, #edf5e2);
+  background: var(--soft);
 }
 .packet-board {
   padding: 26px;
@@ -200,21 +200,21 @@
   margin: 12px 0 23px;
 }
 .packet-envelope {
-  border: 1px solid var(--edge-d0ddc1, #d0ddc1);
+  border: 1px solid var(--line);
   border-radius: 12px;
-  background: var(--surface-f2f6e9, #f2f6e9);
+  background: var(--soft);
   padding: 12px;
   animation: packet-arrival 0.25s ease-out;
 }
 .packet-envelope > span {
-  font-size: 9px;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   font-weight: 700;
 }
 .packet-envelope > strong {
   display: block;
-  font-size: 11px;
+  font-size: 0.75rem;
   line-height: 1.5;
   margin: 5px 0 10px;
 }
@@ -224,7 +224,7 @@
 .packet-payload {
   min-height: 90px;
   border-style: dashed;
-  color: var(--text-8b9880, #8b9880);
+  color: var(--muted);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -232,37 +232,37 @@
 .packet-payload.is-built {
   color: var(--green);
   border-style: solid;
-  background: var(--surface-f6f9ef, #f6f9ef);
+  background: var(--soft);
 }
 .packet-tcp {
-  background: var(--surface-edf4de, #edf4de);
-  border-color: var(--edge-b4ce8f, #b4ce8f);
+  background: var(--soft);
+  border-color: var(--line);
 }
 .packet-ip {
-  background: var(--surface-e8f1eb, #e8f1eb);
-  border-color: var(--edge-a6c3b3, #a6c3b3);
+  background: var(--soft);
+  border-color: var(--line);
 }
 .packet-ethernet {
-  background: var(--surface-f7ebde, #f7ebde);
-  border-color: var(--edge-d9be9e, #d9be9e);
+  background: var(--soft);
+  border-color: var(--line);
 }
 .packet-delivery {
   display: flex;
   gap: 8px;
   align-items: center;
   margin: 18px 0;
-  font-size: 11px;
-  color: var(--text-8a9782, #8a9782);
+  font-size: 0.75rem;
+  color: var(--muted);
 }
 .packet-delivery.is-built {
-  color: var(--text-4c713b, #4c713b);
+  color: var(--ink);
 }
 .packet-wire {
   display: flex;
   align-items: center;
   gap: 10px;
   color: var(--muted);
-  font-size: 10px;
+  font-size: 0.75rem;
   margin: 25px 0 15px;
 }
 .packet-wire > span {
@@ -273,7 +273,7 @@
   --cable-travel: 100cqw;
   height: 6px;
   border-radius: 3px;
-  background: var(--surface-dbe4d0, #dbe4d0);
+  background: var(--soft);
   flex: 1;
   min-width: 20px;
   position: relative;
@@ -287,7 +287,7 @@
   position: absolute;
   width: 11px;
   height: 6px;
-  background: var(--surface-799f47, #799f47);
+  background: var(--soft);
   border-radius: 3px;
   animation: packet-transmit 1.8s linear infinite;
 }
@@ -334,7 +334,7 @@
   .packet-steps li {
     flex-direction: column;
     text-align: center;
-    font-size: 10px;
+    font-size: 0.75rem;
   }
   .packet-board {
     padding: 20px;
@@ -361,11 +361,11 @@
   }
   .packet-route {
     padding: 12px 10px;
-    font-size: 9px;
+    font-size: 0.75rem;
     gap: 5px;
   }
   .packet-route strong {
-    font-size: 9px;
+    font-size: 0.75rem;
   }
   .packet-steps {
     grid-template-columns: repeat(3, 1fr);

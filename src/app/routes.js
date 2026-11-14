@@ -1,3 +1,5 @@
+import { units } from '../data/units.js';
+import { activityById } from '../data/activities.js';
 import { homeView } from '../features/home/view.js';
 import { loadStyles } from './route-styles.js';
 // Cached screens render synchronously to preserve feedback and focus order.
@@ -47,6 +49,15 @@ function screen(key, app, ...args) {
   return loadScreen(key).then((view) => view(app, ...args));
 }
 export function resolveView(app, [section, detail, anchor]) {
+  if (
+    (section === 'setup' && detail && !activityById.has(detail)) ||
+    (section === 'study' && detail && !units.some((unit) => unit.id === detail)) ||
+    (section === 'explore' &&
+      detail &&
+      !['lab', 'journey', 'glossary', 'inspector'].includes(detail)) ||
+    (anchor !== undefined && section !== 'study')
+  )
+    return notFoundView();
   if (['story', 'class', 'setup'].includes(section)) return screen(section, app, detail);
   if (section === 'study') return screen('study', app, detail, anchor);
   if (section === 'play')
@@ -57,6 +68,9 @@ export function resolveView(app, [section, detail, anchor]) {
       app,
     );
   if (section === 'progress' || section === 'home') return screen(section, app);
+  return notFoundView();
+}
+export function notFoundView() {
   return {
     section: 'home',
     title: 'Página no encontrada',

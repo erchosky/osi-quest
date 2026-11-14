@@ -13,11 +13,13 @@ export function speedrunView(app) {
           >${Math.ceil(session.remainingMs / 1000)} s</output
         ><span>Cadena ${session.chain} · Récord ${session.bestChain}</span
         ><span
-          >${session.currentAnswer
-            ? session.bonusMs
-              ? `+${session.bonusMs / 1000} segundos`
-              : 'Sin tiempo extra'
-            : 'Identifica la capa'}</span
+          >${
+            session.currentAnswer
+              ? session.bonusMs
+                ? `+${session.bonusMs / 1000} segundos`
+                : 'Sin tiempo extra'
+              : 'Identifica la capa'
+          }</span
         >
       </div>` + view.html,
   };

@@ -10,15 +10,21 @@ permissions:
 
 jobs:
   verify:
+    strategy:
+      matrix:
+        node: [22, 24]
+    timeout-minutes: 30
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
-          node-version: '22'
+          node-version: ${{ matrix.node }}
       - run: npm ci --ignore-scripts
       - run: npm audit signatures
       - run: npm run verify
+      - run: npm run format:check
+      - run: npm run test:coverage
       - name: Instalar el navegador de las pruebas
         run: |
           npx playwright install --with-deps chromium
@@ -42,12 +48,17 @@ jobs:
           NODE
           npm run test:browser
           npm run test:production
+          node scripts/verify-study-checks-browser.mjs
+          node scripts/verify-release-393-browser.mjs
+          node scripts/verify-performance-browser.mjs
           npm run test:stability
+          node scripts/verify-audit-browser.mjs
+          node scripts/package-release.mjs
       - name: Guardar las capturas y diagnósticos si algo falla
         if: failure()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
-          name: comprobaciones-del-navegador
+          name: comprobaciones-del-navegador-node-${{ matrix.node }}
           path: work/browser-*/
           retention-days: 7
           if-no-files-found: ignore
@@ -56,12 +67,23 @@ jobs:
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
-          name: rendimiento
+          name: rendimiento-node-${{ matrix.node }}
           path: |
             work/build/report.json
             work/browser-visual/report.json
             work/browser-interface/report.json
             work/browser-production/css-coverage.json
             work/browser-stability/report.json
+            work/browser-performance/report.json
           retention-days: 7
           if-no-files-found: ignore
+
+      - name: Guardar ZIP y SHA-256 verificados
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: osi-quest-github-node-${{ matrix.node }}
+          path: |
+            ../osi-quest-github-v*.zip
+            ../osi-quest-github-v*.zip.sha256
+          retention-days: 14
+          if-no-files-found: error

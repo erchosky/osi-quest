@@ -20,7 +20,7 @@ export const hardProtocolQuestions = [
         'La señalización del medio no es el mecanismo de secuencias y retransmisiones TCP.',
       ],
       [
-        'Toda la tecnología Ethernet exclusivamente como capa 1',
+        'Ethernet como una tecnología que se limita a señales físicas',
         'Ethernet incluye también funciones MAC de enlace; identificar un PHY no reduce toda la tecnología a física.',
       ],
     ],
@@ -93,7 +93,7 @@ export const hardProtocolQuestions = [
         'Las direcciones MAC se aplican a la entrega de la trama por el enlace pertinente.',
       ],
       [
-        'Para conservar la misma dirección local en todos los enlaces de Internet',
+        'Para mantener la dirección del enlace de origen a lo largo de la ruta',
         'Al cambiar de enlace, la trama y sus direcciones pertinentes pueden cambiar.',
       ],
       [
@@ -120,7 +120,7 @@ export const hardProtocolQuestions = [
         'El control de acceso al medio es una responsabilidad MAC de enlace.',
       ],
       [
-        'Física exclusivamente: toda coordinación es una onda',
+        'Física: la coordinación del acceso se interpreta como una señal de radio',
         'Emitir la señal es físico; las reglas MAC para usar el medio son otra función.',
       ],
       [
@@ -174,11 +174,11 @@ export const hardProtocolQuestions = [
         'Son responsabilidades de red.',
       ],
       [
-        'Entrega fiable y ordenada de todos los bytes de una aplicación',
+        'Entrega fiable y ordenada del flujo de bytes de la aplicación',
         'IP no aporta por sí solo las garantías del flujo TCP.',
       ],
       [
-        'Identificar solo el puerto del proceso que recibe datos',
+        'Identificar el puerto del proceso que recibe los datos',
         'Los puertos pertenecen a protocolos de transporte; IPv6 direcciona destinos de red.',
       ],
       [
@@ -205,11 +205,11 @@ export const hardProtocolQuestions = [
         'Tener mensajes no significa ofrecer el servicio de procesos propio de un transporte.',
       ],
       [
-        'Aplicación exclusivamente, porque ping lo puede utilizar',
+        'Aplicación, porque la utilidad ping envía esos mensajes',
         'Una herramienta utiliza protocolos; su uso no cambia la responsabilidad del protocolo.',
       ],
       [
-        'Física, porque un error siempre significa cable roto',
+        'Física, porque sus errores diagnostican una rotura del cable',
         'Un error de IP no prueba un fallo físico y el protocolo no representa señales.',
       ],
     ],
@@ -236,7 +236,7 @@ export const hardProtocolQuestions = [
         'El segmento TCP y una dirección de enlace son conceptos distintos.',
       ],
       [
-        'Todo paquete IPv6 debe llevar necesariamente TCP',
+        'El contenido de un paquete IPv6 debe utilizar TCP como transporte',
         'Next Header puede identificar distintas cabeceras, no solo TCP.',
       ],
     ],
@@ -309,11 +309,11 @@ export const hardProtocolQuestions = [
         'QUIC aporta su propio servicio de transporte sobre datagramas UDP.',
       ],
       [
-        'UDP adquiere automáticamente todas las funciones de QUIC para cualquier aplicación',
+        'Las funciones de QUIC pasan a ser garantías propias del protocolo UDP',
         'Las funciones añadidas por QUIC no pasan a ser garantías universales de UDP.',
       ],
       [
-        'Todo lo que viaja sobre UDP solo puede ser DNS',
+        'UDP reserva sus datagramas para las consultas del servicio DNS',
         'Muchas aplicaciones y protocolos distintos pueden utilizar UDP.',
       ],
       [
@@ -340,7 +340,7 @@ export const hardProtocolQuestions = [
         'Las aplicaciones web no usan X.225 por el mero hecho de autenticar a una persona.',
       ],
       [
-        'Solo transmite señales sobre un cable',
+        'Transmitir señales sobre el medio físico del enlace',
         'Señalizar bits corresponde a física, no a la coordinación de sesión.',
       ],
       [
@@ -390,7 +390,7 @@ export const hardProtocolQuestions = [
         'Ambos pueden gestionar estado, pero ofrecen responsabilidades distintas.',
       ],
       [
-        'TCP pertenece a capa 5 siempre que alguien diga «sesión TCP»',
+        'La expresión «sesión TCP» permite clasificar TCP en capa 5',
         'La expresión informal no cambia la clasificación de TCP como transporte.',
       ],
       [
@@ -441,7 +441,7 @@ export const hardProtocolQuestions = [
         'El contexto vincula la sintaxis con la representación utilizada para intercambiarlos.',
       ],
       [
-        'Que siempre exista una ruta IP hacia el servidor',
+        'La existencia de una ruta IP utilizable hasta el servidor',
         'Acordar una representación no crea conectividad de red.',
       ],
       [

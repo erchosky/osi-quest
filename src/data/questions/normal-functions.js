@@ -27,7 +27,7 @@ const variants = [
     'En una IP hay varios servicios. ¿Qué capa utiliza puertos lógicos para distinguirlos?',
     [2, 3, 5],
     'Transporte distingue procesos y servicios con información como los puertos TCP o UDP.',
-    'Una dirección lleva al edificio; el puerto permite distinguir a quién entregar dentro.',
+    'La IP indica el destino; el puerto distingue al proceso destinatario, como un número de departamento. La MAC corresponde a la entrega local del tramo.',
   ],
   [
     5,

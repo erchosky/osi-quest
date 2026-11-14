@@ -22,19 +22,27 @@ export function resultView(app) {
   const result = session.finalReport ?? session.result;
   const percent = result.total ? Math.round((result.correct / result.total) * 100) : 0;
   const mistakes = result.outcomes?.filter((outcome) => !outcome.correct || outcome.assisted) ?? [];
+  const lostLives = session.kind === 'survival' && result.finishReason === 'lives';
+  const timedFinish = session.kind === 'speedrun' && result.finishReason === 'time';
   return {
     section: 'play',
     title: 'Resultado',
     html: html`${raw(storyResult(session))}
       <section class="result-hero panel">
-        <span class="badge badge-lime">RETO COMPLETADO</span>
-        <div class="result-medal">✧</div>
+        <span class="badge ${lostLives ? 'badge-peach' : 'badge-lime'}"
+          >${lostLives ? 'SIN VIDAS' : timedFinish ? 'TIEMPO AGOTADO' : 'RETO COMPLETADO'}</span
+        >
+        <div class="result-medal" aria-hidden="true">${lostLives ? '♡' : '✧'}</div>
         <h1>
-          ${percent === 100
-            ? '¡Todas las piezas conectan!'
-            : percent >= 60
-              ? 'Vas haciendo conexiones.'
-              : 'Cada intento te enseña algo.'}
+          ${
+            lostLives
+              ? 'Te has quedado sin vidas.'
+              : percent === 100
+                ? '¡Todas las piezas conectan!'
+                : percent >= 60
+                  ? 'Vas haciendo conexiones.'
+                  : 'Cada intento te enseña algo.'
+          }
         </h1>
         <p>
           ${raw(escapeHtml(session.label ?? activityById.get(session.kind)?.name ?? 'Reto'))} ·
@@ -45,16 +53,16 @@ export function resultView(app) {
           <div>
             <strong>${result.correct}/${result.total}</strong
             ><span
-              >${session.recovery
-                ? 'recuperaciones sin pista adicional'
-                : 'aciertos sin ayuda'}</span
+              >${
+                session.recovery ? 'recuperaciones sin pista adicional' : 'aciertos sin ayuda'
+              }</span
             >
           </div>
           <div><strong>+${result.xp}</strong><span>XP conseguidos</span></div>
         </div>
         ${raw(
           session.kind === 'speedrun'
-            ? `<p>Cadena máxima: ${result.bestChain} aciertos. ${result.finishReason === 'time' ? 'Se acabó el tiempo.' : 'Completaste el banco de esta ronda.'}</p>`
+            ? `<p>Cadena máxima: ${result.bestChain} aciertos. Se acabó el tiempo. Las preguntas se vuelven a barajar mientras quede tiempo.</p>`
             : '',
         )}
         ${raw(
@@ -63,14 +71,16 @@ export function resultView(app) {
             : '',
         )}
         <p class="small-note">
-          ${session.practiceOnly
-            ? 'Repaso guiado: sin XP ni estadísticas para el perfil.'
-            : session.recovery
-              ? `Recuperación inmediata: hasta ${REWARDS[session.difficulty] / 2} XP por objetivo, una vez cada 10 minutos. No modifica tu dominio ni tu calendario.`
-              : `${session.difficulty === 'hard' ? 'Difícil' : 'Normal'}: ${REWARDS[session.difficulty]} XP por acierto · ${REWARDS[session.difficulty] / 2} con ayuda.`}
+          ${
+            session.practiceOnly
+              ? 'Repaso guiado: sin XP ni estadísticas para el perfil.'
+              : session.recovery
+                ? `Recuperación inmediata: hasta ${REWARDS[session.difficulty] / 2} XP por objetivo, una vez cada 10 minutos. No modifica tu dominio ni tu calendario.`
+                : `${session.difficulty === 'hard' ? 'Difícil' : 'Normal'}: ${REWARDS[session.difficulty]} XP por acierto · ${REWARDS[session.difficulty] / 2} con ayuda.`
+          }
         </p>
         <div class="button-row">
-          ${raw(resultActions(session, percent, mistakes.length))}
+          ${raw(resultActions(session, percent, session.kind === 'speedrun' ? result.missedIds.length : mistakes.length))}
           ${raw(routeLink('play', 'Elegir otro reto'))}
         </div>
       </section>
@@ -89,14 +99,16 @@ export function resultView(app) {
                       html`<details class="review-card panel">
                         <summary>
                           <span
-                            class="badge ${outcome.correct && !outcome.assisted
-                              ? 'badge-lime'
-                              : 'badge-peach'}"
-                            >${outcome.correct
-                              ? outcome.assisted
-                                ? 'Con ayuda'
-                                : 'Correcta'
-                              : 'Para repasar'}</span
+                            class="badge ${
+                              outcome.correct && !outcome.assisted ? 'badge-lime' : 'badge-peach'
+                            }"
+                            >${
+                              outcome.correct
+                                ? outcome.assisted
+                                  ? 'Con ayuda'
+                                  : 'Correcta'
+                                : 'Para repasar'
+                            }</span
                           ><strong>${raw(escapeHtml(outcome.question.prompt))}</strong>
                         </summary>
                         <div class="review-body">
@@ -129,8 +141,10 @@ export function resultView(app) {
               )}
             </section>`
           : html`<div class="notice">
-                ${takeaways[session.kind] ??
-                'Sigue practicando con actividades diferentes para conectar las ideas.'}
+                ${
+                  takeaways[session.kind] ??
+                  'Sigue practicando con actividades diferentes para conectar las ideas.'
+                }
               </div>
               ${raw(
                 mistakes.length

@@ -1,3 +1,4 @@
+import { RECOVERY_WAIT } from '../domain/recovery.js';
 import { assertSafeStructure } from './safe-data.js';
 import { verifyIntegrity } from './progress-integrity.js';
 import { storyById } from '../data/progress-catalog.js';
@@ -27,6 +28,7 @@ export function emptyProgress() {
     concepts: {},
     story: { completed: [] },
     recoveryRewards: {},
+    lessonNotes: {},
   };
 }
 
@@ -41,6 +43,11 @@ export function sanitizeProgress(input) {
     throw new Error('Formato de progreso no válido.');
   assertSafeStructure(input);
   const data = emptyProgress();
+  const now = Date.now();
+  const past = (value) => Math.min(now, positiveInteger(value));
+  // Imported clocks cannot postpone learning indefinitely. Valid review dates remain intact.
+  const due = (value) => Math.min(now + 60 * 86400000, positiveInteger(value));
+  const cooldown = (value) => Math.min(now + RECOVERY_WAIT, positiveInteger(value));
   data.xp = positiveInteger(input.xp);
   data.difficulty = input.difficulty === 'hard' ? 'hard' : 'normal';
   data.radarLevel = ['all', 'normal', 'hard'].includes(input.radarLevel) ? input.radarLevel : 'all';
@@ -53,6 +60,10 @@ export function sanitizeProgress(input) {
         ? Math.min(100, Math.max(0, input.lessonBookmark.sectionIndex))
         : 0,
     };
+  }
+  for (const unit of units) {
+    const note = input.lessonNotes?.[unit.id];
+    if (typeof note === 'string') data.lessonNotes[unit.id] = note.slice(0, 5000);
   }
   data.mastered = uniqueValid(
     input.mastered,
@@ -74,8 +85,8 @@ export function sanitizeProgress(input) {
       seen,
       correct: Math.min(seen, positiveInteger(value.correct)),
       streak: Math.min(10, positiveInteger(value.streak)),
-      due: positiveInteger(value.due),
-      last: positiveInteger(value.last),
+      due: due(value.due),
+      last: past(value.last),
     };
     const levels = {};
     for (const difficulty of ['normal', 'hard']) {
@@ -86,8 +97,8 @@ export function sanitizeProgress(input) {
         seen: count,
         correct: Math.min(count, positiveInteger(item.correct)),
         streak: Math.min(10, positiveInteger(item.streak)),
-        due: Math.min(8.64e15, positiveInteger(item.due)),
-        last: Math.min(8.64e15, positiveInteger(item.last)),
+        due: due(item.due),
+        last: past(item.last),
       };
     }
     if (Object.values(levels).reduce((sum, item) => sum + item.seen, 0) <= seen)
@@ -97,8 +108,8 @@ export function sanitizeProgress(input) {
     if (!flashcards.some((card) => card.id === id) || !value || !Number.isFinite(value.due))
       continue;
     data.cards[id] = {
-      level: Math.min(4, positiveInteger(value.level)),
-      due: positiveInteger(value.due),
+      level: Math.min(6, positiveInteger(value.level)),
+      due: due(value.due),
     };
   }
   data.history = (Array.isArray(input.history) ? input.history : [])
@@ -111,7 +122,7 @@ export function sanitizeProgress(input) {
     )
     .map((item) => ({
       mode: String(item.mode ?? 'practice').slice(0, 40),
-      when: Math.min(8.64e15, positiveInteger(item.when)),
+      when: past(item.when),
       total: positiveInteger(item.total),
       correct: Math.min(positiveInteger(item.total), positiveInteger(item.correct)),
       xp: positiveInteger(item.xp),
@@ -157,7 +168,7 @@ export function sanitizeProgress(input) {
   data.story = sanitizeStory(input.story);
   for (const [key, value] of Object.entries(input.recoveryRewards ?? {}).slice(0, 1000)) {
     if (typeof key === 'string' && /^[a-z0-9-]{1,100}$/i.test(key) && Number.isFinite(value))
-      data.recoveryRewards[key] = Math.min(8.64e15, positiveInteger(value));
+      data.recoveryRewards[key] = cooldown(value);
   }
   data.days = uniqueValid(
     input.days,
@@ -171,14 +182,14 @@ export function sanitizeProgress(input) {
     const earnedProofIds = uniqueValid(candidate.earnedProofIds, valid).slice(0, 2);
     const earnedAt =
       earnedProofIds.length === 2 && Number.isFinite(candidate.earnedAt) && candidate.earnedAt > 0
-        ? Math.min(8.64e15, positiveInteger(candidate.earnedAt))
+        ? past(candidate.earnedAt)
         : null;
     data.concepts[concept.id] = {
       proofIds,
       earnedProofIds,
       earnedAt,
       needsReview: Boolean(earnedAt && candidate.needsReview),
-      retryAfter: Math.min(8.64e15, positiveInteger(candidate.retryAfter)),
+      retryAfter: cooldown(candidate.retryAfter),
     };
   }
   return data;

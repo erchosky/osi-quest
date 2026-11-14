@@ -28,7 +28,7 @@ export const matchingTasks = [
     prompt: 'Usar direcciones MAC para entregar una trama al siguiente equipo de la misma red.',
     hint: 'Trama y MAC son dos pistas de la entrega local.',
     explanation:
-      'Enlace organiza la entrega en el enlace local. Es como localizar el buzón concreto dentro del edificio.',
+      'Enlace entrega la trama a la interfaz del siguiente salto. En un reparto, sería llevar el envío al siguiente centro del recorrido; no elegir el departamento destinatario. Ese último trabajo recuerda a los puertos de Transporte.',
   },
   {
     id: 'normal-link-switch',
@@ -78,7 +78,7 @@ export const matchingTasks = [
     prompt: 'Usar un puerto TCP o UDP para distinguir el servicio que recibirá los datos.',
     hint: 'La IP localiza el equipo; el puerto ayuda a localizar el servicio.',
     explanation:
-      'Transporte utiliza puertos para distinguir comunicaciones. Es como indicar la extensión después de llamar a la centralita de un edificio.',
+      'Transporte utiliza puertos para distinguir comunicaciones entre procesos de los extremos. En un reparto, el número de departamento distingue al destinatario final. Enlace, en cambio, realiza la entrega local de cada tramo.',
   },
   {
     id: 'normal-session-dialog',

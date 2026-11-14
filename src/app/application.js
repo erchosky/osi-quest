@@ -222,9 +222,11 @@ export function createApplication() {
           route[0] === 'study' && Boolean(route[1]) && app.exploration.readingFocus,
         );
         document.title = `${view.title || { home: 'Inicio', study: 'Estudiar', play: 'Jugar', explore: 'Explorar', progress: 'Mi progreso' }[view.section]} · OSI Quest`;
+        app.viewSection = view.section;
         updateShell(view.section, app.repository.data, view.title);
         const main = document.querySelector('#main');
         main.removeAttribute('aria-busy');
+        main.dataset.route = routeName;
         setHTML(
           main,
           `<div id="storage-status">${primaryNotice(app)}</div><div id="context-notice">${contextNotice(app, inRound)}</div>` +
@@ -240,16 +242,34 @@ export function createApplication() {
         drawLayerIllustration();
         app.updateActivityClocks();
         document.body.classList.toggle('round-active', inRound && app.hasOpenRound());
-        stabilizeRound(app, previous);
         if (navigated) {
           window.scrollTo({ top: 0, behavior: 'instant' });
           main.focus({ preventScroll: true });
         }
+        stabilizeRound(app, previous);
       };
       await renderTransition(commit, navigated && !inRound && !app.hasOpenRound());
     },
     { beforeNavigate: (route) => app.beforeNavigate(route) },
   );
+  let storageUpdate;
+  const refreshStoredProgress = () => {
+    storageUpdate = null;
+    app.repository.synchronize(true);
+    updateShell(app.viewSection ?? 'home', app.repository.data);
+    // Do not replace an in-progress answer, import form or dialog on another tab's save.
+    if (
+      !app.hasOpenRound() &&
+      ['home', 'progress', 'study', 'play', 'story'].includes(app.currentRoute)
+    )
+      app.refresh();
+    app.announce('Progreso actualizado desde otra pestaña.');
+  };
+  window.addEventListener('storage', (event) => {
+    if (!event.key?.startsWith('osi-quest-v1') || storageUpdate) return;
+    // A save/compaction emits many storage events. Refresh once per burst, including hidden tabs.
+    storageUpdate = setTimeout(refreshStoredProgress, 40);
+  });
   app.router.start();
   return app;
 }

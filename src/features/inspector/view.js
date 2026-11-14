@@ -1,4 +1,5 @@
 import { html, raw, pageHeading } from '../../components/html.js';
+import { externalLink } from '../../components/external-link.js';
 import { bindInspector } from './controller.js';
 export function inspectorView() {
   return {
@@ -18,7 +19,12 @@ export function inspectorView() {
       </div>
       <section class="panel inspector-panel">
         <div id="packet-segments" class="button-row" role="group" aria-label="Cabeceras"></div>
-        <div class="hex-scroll">
+        <div
+          class="hex-scroll"
+          tabindex="0"
+          role="region"
+          aria-label="Bytes de la trama, desplazamiento horizontal con las flechas"
+        >
           <div id="hex-bytes" class="hex-bytes" aria-label="Bytes de la trama"></div>
         </div>
         <div class="inspector-layout">
@@ -63,13 +69,10 @@ export function inspectorView() {
       </details>
       <p class="small-note">
         Referencias:
-        <a href="https://www.rfc-editor.org/rfc/rfc791" target="_blank" rel="noopener noreferrer"
-          >IPv4 · RFC 791</a
-        >
+        ${raw(externalLink({ url: 'https://www.rfc-editor.org/rfc/rfc791', title: 'IPv4 · RFC 791', language: 'en' }))}
         y
-        <a href="https://www.rfc-editor.org/rfc/rfc9293" target="_blank" rel="noopener noreferrer"
-          >TCP · RFC 9293</a
-        >. Un paquete aislado puede contener solo parte de un mensaje; Wireshark también reensambla
+        ${raw(externalLink({ url: 'https://www.rfc-editor.org/rfc/rfc9293', title: 'TCP · RFC 9293', language: 'en' }))}.
+        Un paquete aislado puede contener solo parte de un mensaje; Wireshark también reensambla
         flujos.
       </p>`,
     bind: bindInspector,

@@ -13,6 +13,7 @@ concurrency:
 jobs:
   build:
     if: github.ref == 'refs/heads/main'
+    timeout-minutes: 30
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
@@ -22,12 +23,22 @@ jobs:
       - run: npm ci --ignore-scripts
       - run: npm audit signatures
       - run: npm run verify
+      - run: npx playwright install --with-deps chromium
+      - name: Verificar antes de publicar
+        run: |
+          node scripts/dev.mjs > /tmp/osi-pages-server.log 2>&1 &
+          task_preview_pid=$!
+          trap 'kill "$task_preview_pid" 2>/dev/null || true' EXIT
+          npm run test:browser
+          npm run test:production
+          node scripts/verify-audit-browser.mjs
       - uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5
       - uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4
         with:
           path: dist
 
   deploy:
+    timeout-minutes: 30
     runs-on: ubuntu-latest
     needs: build
     permissions:

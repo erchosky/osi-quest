@@ -86,7 +86,10 @@ export function installPWA(app) {
     return true;
   };
   const update = () => {
-    if (!document.hidden) registration?.update().catch(() => {});
+    if (!document.hidden) {
+      registration?.update().catch(() => {});
+      navigator.serviceWorker.controller?.postMessage({ type: 'CLEANUP' });
+    }
   };
   document.addEventListener('visibilitychange', update);
   window.setInterval(update, 15 * 60 * 1000);

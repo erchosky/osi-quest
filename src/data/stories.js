@@ -31,9 +31,9 @@ export const stories = [
   },
   {
     layer: 4,
-    title: 'La ventanilla correcta del edificio',
+    title: 'El departamento destinatario y el seguimiento',
     paragraphs: [
-      'La misma máquina puede atender una web y otros servicios. Los puertos de transporte ayudan a distinguir qué proceso debe recibir los datos. Son números lógicos; no son los conectores que ves en el equipo.',
+      'La misma máquina puede atender una web y otros servicios. Como el número de departamento de un envío, los puertos de transporte distinguen al proceso destinatario final. Enlace lleva cada trama a la interfaz del tramo local; Transporte comunica procesos entre los extremos. Los puertos son números lógicos, no conectores físicos.',
       'En una conexión TCP se usan números de secuencia, confirmaciones y retransmisiones para entregar un flujo fiable y ordenado. UDP envía datagramas sin esas garantías propias. Una aplicación puede elegir un transporte según sus necesidades y añadir sus mecanismos.',
     ],
     takeaway:

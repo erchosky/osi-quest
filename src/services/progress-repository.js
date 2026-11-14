@@ -1,3 +1,4 @@
+import { createProgressJournal, clearProgressJournal, MUTATIONS } from './progress-journal.js';
 import { serializeProgress, verifyIntegrity } from './progress-integrity.js';
 import { assertSafeStructure } from './safe-data.js';
 import { storyById } from '../data/progress-catalog.js';
@@ -13,8 +14,16 @@ import { units } from '../data/units.js';
 
 export function createProgressRepository(
   storage,
-  { onReward = () => {}, onStatusChange = () => {}, onSave = () => {} } = {},
+  {
+    onReward = () => {},
+    onStatusChange = () => {},
+    onSave = () => {},
+    journalEnabled = true,
+    now = () => Date.now(),
+  } = {},
 ) {
+  const pending = [];
+  let repositoryReady = false;
   let data = emptyProgress();
   let persistent = Boolean(storage);
   let writeBlocked = false;
@@ -22,6 +31,7 @@ export function createProgressRepository(
   let issue = storage ? null : 'unavailable';
   let batching = false;
   let batchReward = null;
+  let deferSnapshot = false;
   try {
     const stored = storage?.getItem(STORAGE_KEY);
     if (stored != null) {
@@ -49,7 +59,7 @@ export function createProgressRepository(
   }
 
   function persist() {
-    if (batching || writeBlocked) return;
+    if (batching || deferSnapshot || writeBlocked || (journalEnabled && pending.length)) return;
     const priorIssue = issue;
     try {
       storage?.setItem(STORAGE_KEY, serializeProgress(data));
@@ -63,7 +73,7 @@ export function createProgressRepository(
     if (issue !== priorIssue) onStatusChange(issue);
   }
   function activity() {
-    const day = localDay();
+    const day = localDay(new Date(now()));
     if (!data.days.includes(day)) data.days.push(day);
   }
   function reward(layer, kind, outcome) {
@@ -81,7 +91,7 @@ export function createProgressRepository(
       if (!data.mastered.includes(achievement)) data.mastered.push(achievement);
     }
     if (outcome.recovery && outcome.recoveryKey)
-      data.recoveryRewards[outcome.recoveryKey] = Date.now() + RECOVERY_WAIT;
+      data.recoveryRewards[outcome.recoveryKey] = now() + RECOVERY_WAIT;
     const notice = {
       amount,
       previousXP,
@@ -146,7 +156,13 @@ export function createProgressRepository(
       activity();
       persist();
     },
+    saveLessonNote(id, text) {
+      if (!units.some((unit) => unit.id === id) || typeof text !== 'string') return;
+      data.lessonNotes[id] = text.slice(0, 5000);
+      persist();
+    },
     markRead(id) {
+      if (!units.some((unit) => unit.id === id)) return;
       if (!data.read.includes(id)) data.read.push(id);
       activity();
       persist();
@@ -185,17 +201,17 @@ export function createProgressRepository(
       const prior = data.stats[question.id];
       const difficulty = outcome.difficulty === 'hard' ? 'hard' : 'normal';
       data.stats[question.id] = {
-        ...recordQuestion(prior, correct, assisted),
+        ...recordQuestion(prior, correct, assisted, now()),
         levels: {
           ...prior?.levels,
-          [difficulty]: recordQuestion(prior?.levels?.[difficulty], correct, assisted),
+          [difficulty]: recordQuestion(prior?.levels?.[difficulty], correct, assisted, now()),
         },
       };
       const concept = misconceptionByQuestion.get(question.id);
       let earned = null;
       if (concept) {
         const before = data.concepts[concept.id];
-        const updated = recordConcept(before, outcome);
+        const updated = recordConcept(before, outcome, now());
         data.concepts[concept.id] = updated;
         if (!before?.earnedAt && updated.earnedAt) earned = concept;
       }
@@ -215,14 +231,14 @@ export function createProgressRepository(
       persist();
     },
     rateCard(id, known) {
-      data.cards[id] = scheduleCard(data.cards[id], known);
+      data.cards[id] = scheduleCard(data.cards[id], known, now());
       activity();
       persist();
     },
     recordRound(result) {
       data.history.push({
         mode: result.kind,
-        when: Date.now(),
+        when: now(),
         total: result.total,
         correct: result.correct,
         xp: result.xp,
@@ -269,5 +285,123 @@ export function createProgressRepository(
       persist();
     },
   };
+  let journal = null;
+  let depth = 0;
+  function synchronize(external = false) {
+    if (depth || pending.length) return;
+    if (writeBlocked) {
+      if (!external || !storage) return;
+      try {
+        const candidate = JSON.parse(storage.getItem(STORAGE_KEY));
+        if (![1, 2, 3].includes(candidate?.version) || !Array.isArray(candidate.read)) return;
+        verifyIntegrity(candidate);
+        data = sanitizeProgress(candidate);
+        initializeJournal();
+        if (journal) data = journal.read().data;
+        writeBlocked = false;
+        original = null;
+        persistent = true;
+        issue = null;
+        if (repositoryReady) onStatusChange(issue);
+      } catch {
+        return;
+      }
+    }
+    try {
+      if (journal) data = journal.read().data;
+      else if (storage) {
+        const stored = storage.getItem(STORAGE_KEY);
+        if (stored) {
+          const candidate = JSON.parse(stored);
+          verifyIntegrity(candidate);
+          data = sanitizeProgress(candidate);
+        }
+      }
+    } catch {
+      writeBlocked = true;
+      persistent = false;
+      issue = 'corrupt';
+      try {
+        original ??= storage?.getItem('osi-quest-v1:base') ?? storage?.getItem(STORAGE_KEY) ?? null;
+      } catch {}
+      if (repositoryReady) onStatusChange(issue);
+    }
+  }
+  function initializeJournal(freshEpoch = false) {
+    journal = createProgressJournal(
+      storage,
+      data,
+      (base, events) => {
+        let replayTime = now();
+        const replay = createProgressRepository(null, {
+          journalEnabled: false,
+          now: () => replayTime,
+        });
+        replay.restore(base);
+        for (const event of events) {
+          replayTime = event.time;
+          replay[event.method](...event.args);
+        }
+        return replay.data;
+      },
+      freshEpoch,
+    );
+  }
+  if (journalEnabled && !writeBlocked) {
+    try {
+      initializeJournal();
+      synchronize();
+      journal?.compact().catch(() => {});
+    } catch {
+      writeBlocked = true;
+      persistent = false;
+      issue = 'corrupt';
+    }
+  }
+  if (journalEnabled)
+    for (const method of MUTATIONS) {
+      const mutate = repository[method];
+      repository[method] = (...args) => {
+        if (depth) return mutate(...args);
+        synchronize();
+        const time = now();
+        depth++;
+        try {
+          const repairing = writeBlocked && ['reset', 'restore'].includes(method);
+          if (journal && !writeBlocked) {
+            pending.push(journal.prepare(method, args, time));
+            try {
+              while (pending.length) {
+                journal.append(pending[0]);
+                pending.shift();
+              }
+            } catch (error) {
+              persistent = false;
+              issue = error.name === 'QuotaExceededError' ? 'quota' : 'unavailable';
+              onStatusChange(issue);
+            }
+          }
+          deferSnapshot = Boolean(journal && !writeBlocked && !repairing);
+          const result = mutate(...args);
+          deferSnapshot = false;
+          if (repairing) {
+            clearProgressJournal(storage);
+            pending.length = 0;
+            initializeJournal(true);
+          }
+          if (journal && !writeBlocked && !pending.length) {
+            data = journal.read().data;
+            persist();
+            journal.compact().catch(() => {});
+          }
+          return result;
+        } finally {
+          deferSnapshot = false;
+          depth--;
+        }
+      };
+    }
+  repositoryReady = true;
+  repository.synchronize = synchronize;
   return repository;
 }

@@ -52,7 +52,7 @@ export const styleGroups = {
 };
 export const styleDependencies = {
   home: ['core'],
-  study: ['study'],
+  study: ['game', 'study'],
   play: ['game'],
   setup: ['game'],
   quiz: ['game', 'class'],

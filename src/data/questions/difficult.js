@@ -6,10 +6,10 @@ export const difficultQuestions = [
     layer: 0,
     prompt: '¿Ethernet y Wi-Fi pertenecen exclusivamente a física?',
     choices: [
-      'No: incluyen funciones de física y enlace',
-      'Sí: no usan tramas',
-      'No: son solo servicios web',
-      'Sí: sustituyen el modelo OSI',
+      'No: abarcan física y enlace',
+      'Sí: su función se limita a transmitir señales',
+      'No: Ethernet es red y Wi-Fi es transporte',
+      'Sí: las tramas se gestionan fuera de estas tecnologías',
     ],
     correctIndex: 0,
     explanation: 'Las tecnologías del acceso a red pueden abarcar más de una capa.',
@@ -24,10 +24,10 @@ export const difficultQuestions = [
     layer: 6,
     prompt: '¿Es exacto colocar todo el protocolo TLS en una sola capa OSI?',
     choices: [
-      'No; el encaje entre modelos es aproximado',
-      'Sí; TLS siempre es física',
-      'Sí; TLS es solo un puerto',
-      'TLS es un tipo de cable',
+      'No: el encaje es aproximado',
+      'Sí: todo TLS corresponde a presentación',
+      'Sí: todo TLS corresponde a transporte',
+      'No: TLS sustituye las funciones de IP y Ethernet',
     ],
     correctIndex: 0,
     explanation:
@@ -43,10 +43,10 @@ export const difficultQuestions = [
     layer: 5,
     prompt: '¿La sesión OSI equivale siempre a iniciar sesión con contraseña?',
     choices: [
-      'No; describe la gestión del diálogo',
-      'Sí; siempre comprueba contraseñas',
-      'Sí; es la página de acceso',
-      'No; es una dirección IP',
+      'No: gestiona el diálogo',
+      'Sí: verifica la identidad al abrir el diálogo',
+      'Sí: el acceso web es su función definitoria',
+      'No: determina el proceso mediante un puerto TCP',
     ],
     correctIndex: 0,
     explanation:
@@ -62,10 +62,10 @@ export const difficultQuestions = [
     layer: 4,
     prompt: '¿Qué afirmación sobre TCP es incorrecta?',
     choices: [
-      'TCP cifra automáticamente todos los datos',
+      'TCP cifra el contenido',
       'TCP puede retransmitir datos perdidos',
-      'TCP utiliza puertos',
-      'TCP proporciona entrega ordenada',
+      'TCP usa puertos de origen y destino',
+      'TCP entrega datos ordenados a la aplicación',
     ],
     correctIndex: 0,
     explanation:
@@ -119,10 +119,10 @@ export const difficultQuestions = [
     layer: 7,
     prompt: 'Una página devuelve HTTP 404. ¿Qué interpretación es la más adecuada?',
     choices: [
-      'El recurso no se encuentra en el servicio web',
-      'La capa física ha dejado de transmitir',
-      'No llegó ninguna respuesta de red',
-      'TCP ha cifrado la dirección IP',
+      'El recurso no se encuentra',
+      'La respuesta indica un fallo del enlace físico',
+      'La conexión no recibió una respuesta de la red',
+      'El transporte no encontró el proceso destino',
     ],
     correctIndex: 0,
     explanation:
@@ -153,10 +153,10 @@ export const difficultQuestions = [
     prompt:
       'Un usuario escribe una contraseña en una web. ¿Es esa operación la capa de sesión OSI?',
     choices: [
-      'No; es una operación del servicio de aplicación',
-      'Sí; toda contraseña pertenece a capa 5',
-      'Sí; sesión y cuenta son lo mismo',
-      'No; las contraseñas pertenecen a física',
+      'No: es una operación de aplicación',
+      'Sí: al verificar la identidad se realiza la función OSI de sesión',
+      'Sí: gestionar cuentas define la capa de sesión del modelo',
+      'No: es una función de presentación porque oculta caracteres',
     ],
     correctIndex: 0,
     explanation:
@@ -191,10 +191,10 @@ export const difficultQuestions = [
     layer: 4,
     prompt: '¿Qué afirmación sobre UDP es más precisa?',
     choices: [
-      'La aplicación puede añadir fiabilidad, aunque UDP no la proporcione',
-      'Ninguna aplicación sobre UDP puede ser fiable',
-      'UDP cifra siempre las comunicaciones',
-      'UDP garantiza el orden sin confirmaciones',
+      'La aplicación puede añadir recuperación',
+      'La recuperación la aporta UDP al detectar pérdidas de mensajes',
+      'UDP ofrece entrega ordenada si la aplicación utiliza puertos',
+      'La aplicación debe usar TCP para recuperar un dato perdido',
     ],
     correctIndex: 0,
     explanation:
@@ -210,10 +210,10 @@ export const difficultQuestions = [
     layer: 4,
     prompt: 'Al comparar TCP y UDP, ¿qué afirmación debes evitar?',
     choices: [
-      'UDP siempre será más rápido en cualquier situación',
+      'UDP es más rápido en cualquier contexto',
       'UDP no garantiza entrega por sí mismo',
-      'TCP usa mecanismos de confirmación',
-      'Los dos se asocian a transporte',
+      'TCP emplea mecanismos de confirmación',
+      'TCP y UDP se asocian a transporte',
     ],
     correctIndex: 0,
     explanation:
@@ -231,7 +231,7 @@ export const difficultQuestions = [
     choices: [
       'Tecnologías con funciones de física y enlace',
       'Protocolos exclusivos de capa 7',
-      'Tecnologías que solo tienen señales y nunca tramas',
+      'Tecnologías de señales cuya función excluye las tramas',
       'Sinónimos de TCP',
     ],
     correctIndex: 0,
@@ -267,10 +267,10 @@ export const difficultQuestions = [
     layer: 3,
     prompt: '¿Un router solo realiza funciones de capa 3?',
     choices: [
-      'No; también necesita medios e interfaces para transmitir',
-      'Sí; no utiliza ninguna señal física',
-      'Sí; nunca procesa tramas',
-      'No; siempre es exclusivamente capa 7',
+      'No: también usa enlaces y señales',
+      'Sí: las interfaces del router procesan únicamente paquetes IP',
+      'Sí: la trama se conserva intacta durante su procesamiento',
+      'No: su función principal es resolver nombres de aplicación',
     ],
     correctIndex: 0,
     explanation:
@@ -289,7 +289,7 @@ export const difficultQuestions = [
       'No; puede cambiarse o suplantarse',
       'Sí; cualquier MAC demuestra la identidad del usuario',
       'Sí; es una contraseña secreta',
-      'Sí; siempre identifica una IP pública',
+      'Sí; identifica la dirección IP pública del dispositivo',
     ],
     correctIndex: 0,
     explanation:
@@ -306,10 +306,10 @@ export const difficultQuestions = [
     prompt:
       'Una trama Ethernet llega al router y el paquete continúa por otro enlace. ¿Qué suele cambiar?',
     choices: [
-      'La envoltura de enlace para el nuevo salto',
-      'Los datos originales se borran siempre',
-      'TCP se convierte obligatoriamente en UDP',
-      'HTTP deja de ser aplicación',
+      'La trama del siguiente salto',
+      'La identidad del proceso que recibe el contenido',
+      'El protocolo de transporte de la comunicación',
+      'La clasificación de HTTP dentro del modelo OSI',
     ],
     correctIndex: 0,
     explanation:
@@ -325,10 +325,10 @@ export const difficultQuestions = [
     layer: 3,
     prompt: '¿Qué afirmación sobre IP es incorrecta?',
     choices: [
-      'IP garantiza por sí mismo la entrega fiable y ordenada',
-      'IP usa direcciones lógicas',
-      'IP participa en el encaminamiento',
-      'Un paquete IP puede transportar datos de TCP',
+      'IP ofrece entrega fiable y ordenada',
+      'IP emplea direcciones lógicas de origen y destino',
+      'IP participa en el encaminamiento entre redes',
+      'Un paquete IP puede contener un segmento TCP',
     ],
     correctIndex: 0,
     explanation:
@@ -345,9 +345,9 @@ export const difficultQuestions = [
     prompt: 'En un paquete IP que transporta TCP, ¿qué contiene su carga útil?',
     choices: [
       'El segmento TCP, incluida su cabecera',
-      'Solo el texto escrito por el usuario, sin otra información',
+      'El texto del usuario, sin información del protocolo superior',
       'La cabecera IP como único contenido',
-      'Siempre una trama Ethernet completa',
+      'Una trama Ethernet completa con las MAC del siguiente salto',
     ],
     correctIndex: 0,
     explanation:
@@ -363,10 +363,10 @@ export const difficultQuestions = [
     layer: 2,
     prompt: 'Si se detecta una trama dañada mediante FCS, ¿qué se puede afirmar?',
     choices: [
-      'Se ha detectado un error, no necesariamente corregido',
-      'Todos los bits han sido reparados automáticamente',
-      'La dirección IP se ha cifrado',
-      'La página web existe',
+      'Se detectó un error en la trama',
+      'El cálculo del FCS reparó los bits que estaban dañados',
+      'El paquete IP se entregó al proceso correspondiente',
+      'La aplicación recibió los datos con el orden correcto',
     ],
     correctIndex: 0,
     explanation:
@@ -401,10 +401,10 @@ export const difficultQuestions = [
     layer: 6,
     prompt: '¿Qué afirmación sobre TLS evita una simplificación engañosa?',
     choices: [
-      'Su encaje en OSI es aproximado; el cifrado se asocia conceptualmente a presentación',
-      'TLS es exactamente toda la capa física',
-      'TLS sustituye siempre a IP',
-      'TLS es únicamente una dirección MAC',
+      'El encaje de TLS es aproximado',
+      'TLS implementa de forma completa la capa de presentación',
+      'TLS reemplaza las funciones de encaminamiento de la capa de red',
+      'TLS se clasifica por su puerto como una función de transporte',
     ],
     correctIndex: 0,
     explanation:
@@ -420,10 +420,10 @@ export const difficultQuestions = [
     layer: 6,
     prompt: 'Comprimir una foto y cifrarla son…',
     choices: [
-      'Operaciones distintas: reducir representación y proteger confidencialidad',
-      'La misma operación con dos nombres',
-      'Dos formas de elegir rutas IP',
-      'Garantías automáticas de UDP',
+      'Reducir tamaño y proteger contenido',
+      'Dos variantes de protección de la confidencialidad del contenido',
+      'Dos mecanismos para ordenar los datos de una comunicación',
+      'Dos maneras de verificar la integridad del enlace de red',
     ],
     correctIndex: 0,
     explanation:
@@ -442,8 +442,8 @@ export const difficultQuestions = [
     choices: [
       'Habitualmente integradas en aplicación',
       'Desaparecen: ninguna aplicación las necesita',
-      'Dentro de los cables exclusivamente',
-      'Siempre en dos capas independientes con esos nombres',
+      'En el cableado que conecta físicamente los dispositivos',
+      'En dos protocolos independientes denominados sesión y presentación',
     ],
     correctIndex: 0,
     explanation: 'Agrupar funciones en un modelo no significa eliminarlas en los sistemas reales.',
@@ -458,10 +458,10 @@ export const difficultQuestions = [
     layer: 0,
     prompt: 'Si alguien enseña TCP/IP con cinco capas, ¿es necesariamente un error?',
     choices: [
-      'No; es habitual separar física y enlace en un modelo didáctico',
-      'Sí; solo puede existir un número válido',
-      'Sí; TCP/IP debe tener siete siempre',
-      'No; porque DNS cambia el número cada día',
+      'No: separa física y enlace',
+      'Sí: la capa de acceso a red debe permanecer indivisible',
+      'Sí: TCP/IP debe reproducir las siete funciones de OSI',
+      'No: cada aplicación negocia el número de capas de la red',
     ],
     correctIndex: 0,
     explanation:
@@ -477,10 +477,10 @@ export const difficultQuestions = [
     layer: 4,
     prompt: 'Un puerto TCP 443 es…',
     choices: [
-      'Un número lógico para identificar un servicio o proceso',
-      'Una toma física numerada del cable',
-      'Una dirección MAC',
-      'La potencia de radio',
+      'Un identificador de proceso o servicio',
+      'Un identificador físico de la toma por donde sale el tráfico',
+      'Una dirección del dispositivo válida en el enlace local',
+      'Una dirección lógica del servidor que recibe los datos',
     ],
     correctIndex: 0,
     explanation:
@@ -496,10 +496,10 @@ export const difficultQuestions = [
     layer: 7,
     prompt: 'Un navegador usa HTTP. ¿Cuál es la afirmación más precisa?',
     choices: [
-      'HTTP pertenece a aplicación; el navegador completo usa múltiples funciones',
-      'Todo el navegador equivale solo a capa 7',
-      'HTTP es físico porque termina en un cable',
-      'El navegador reemplaza a IP',
+      'HTTP es aplicación; el navegador usa más funciones',
+      'El navegador completo equivale a la capa 7 del modelo',
+      'HTTP se clasifica en red porque necesita una IP de destino',
+      'HTTP se clasifica en transporte porque suele utilizar TCP',
     ],
     correctIndex: 0,
     explanation:
@@ -515,10 +515,10 @@ export const difficultQuestions = [
     layer: 0,
     prompt: 'Tras recibir datos, ¿cuál es una confusión sobre desencapsular?',
     choices: [
-      'Pensar que el receptor añade las mismas envolturas en lugar de procesarlas y retirarlas',
-      'Saber que física interpreta señales',
-      'Saber que red procesa información IP',
-      'Saber que aplicación recibe contenido',
+      'Añadir las envolturas recibidas',
+      'Interpretar señales y bits al comenzar la recepción',
+      'Procesar la información IP para recibir el paquete',
+      'Entregar el contenido al servicio de aplicación',
     ],
     correctIndex: 0,
     explanation:
@@ -534,10 +534,10 @@ export const difficultQuestions = [
     layer: 7,
     prompt: 'Resolver un nombre con DNS demuestra por sí solo que…',
     choices: [
-      'Hay una respuesta DNS, no que la web exista o funcione',
-      'La web acepta tu contraseña',
-      'TCP nunca fallará',
-      'No hace falta una ruta al servidor',
+      'Existe una respuesta DNS',
+      'El servidor web acepta conexiones al puerto de su servicio',
+      'La ruta entre el navegador y el servidor web está operativa',
+      'La petición HTTP devuelve el recurso solicitado por el usuario',
     ],
     correctIndex: 0,
     explanation:

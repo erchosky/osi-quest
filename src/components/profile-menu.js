@@ -1,3 +1,4 @@
+import { drawLayerIllustration } from '../features/home/illustration.js';
 import { setHTML } from './dom-renderer.js';
 import { html, progressBar } from './html.js';
 import { units } from '../data/units.js';
@@ -48,6 +49,10 @@ export function profileMenu() {
           <button type="button" id="install-app" class="button button-secondary">
             Instalar OSI Quest
           </button>
+          <button type="button" id="protect-storage" class="button button-ghost">
+            Proteger el guardado local
+          </button>
+          <p id="persistence-status" class="small-note" role="status"></p>
           <p id="offline-status" class="small-note" role="status"></p>
         </div>
         <small>Nombre local. No forma parte de las copias de progreso.</small>
@@ -56,6 +61,18 @@ export function profileMenu() {
   `;
 }
 export function bindProfileMenu() {
+  document.querySelector('#protect-storage').addEventListener('click', async () => {
+    const status = document.querySelector('#persistence-status');
+    try {
+      const protectedStorage = await navigator.storage?.persist?.();
+      status.textContent = protectedStorage
+        ? 'El navegador protege los datos frente a la limpieza automática. Conserva tus copias.'
+        : 'Este navegador no concedió almacenamiento persistente. Exporta copias para conservar tu progreso.';
+    } catch {
+      status.textContent =
+        'No se pudo proteger el almacenamiento. Puedes conservar copias desde Mi progreso.';
+    }
+  });
   const preferences = readInterface();
   applyInterface(preferences);
   const form = document.querySelector('#interface-form');
@@ -66,6 +83,7 @@ export function bindProfileMenu() {
     const values = Object.fromEntries(new FormData(form));
     const result = saveInterface({ ...values, name: values.learnerAlias });
     applyInterface(result.preferences);
+    drawLayerIllustration();
     document.querySelector('#profile-name').textContent = result.preferences.name || 'Mi perfil';
     document.querySelector('#interface-status').textContent = result.saved
       ? 'Guardado ✓'

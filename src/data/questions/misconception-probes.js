@@ -55,11 +55,11 @@ export const additionalMisconceptionProbes = {
           'TLS puede proteger un intercambio cuyo servicio devuelve un error.',
         ],
         [
-          'Si existe cualquier error, TCP ha perdido necesariamente todos los datos',
+          'El error HTTP demuestra que TCP perdió los datos de la petición',
           'Un error de aplicación puede recibirse en una comunicación con entrega correcta.',
         ],
         [
-          'HTTPS obliga a que todas las páginas funcionen siempre',
+          'HTTPS aporta disponibilidad al recurso solicitado por el usuario',
           'La protección no garantiza que exista o funcione un recurso.',
         ],
         [
@@ -83,7 +83,7 @@ export const additionalMisconceptionProbes = {
           'La responsabilidad de DNS es responder sobre información asociada a nombres.',
         ],
         [
-          'Porque DNS elige todos los saltos de cada paquete',
+          'Porque DNS selecciona los saltos de la ruta hacia el servidor',
           'Las decisiones de encaminamiento IP no las realiza DNS.',
         ],
         [
@@ -113,7 +113,7 @@ export const additionalMisconceptionProbes = {
           'El significado de la consulta y respuesta corresponde a DNS.',
         ],
         [
-          'Garantizar por sí solo que el nombre existe',
+          'Garantizar la existencia del nombre mediante el servicio UDP',
           'UDP no define los nombres ni el contenido de la respuesta DNS.',
         ],
         [
@@ -137,7 +137,7 @@ export const additionalMisconceptionProbes = {
           'La trama local debe alcanzar el nodo que continúa el recorrido.',
         ],
         [
-          'Necesariamente la MAC del servidor remoto en cualquier parte de Internet',
+          'La MAC del servidor remoto obtenida a partir de su dirección IP',
           'El servidor remoto no tiene que ser un nodo de ese enlace local.',
         ],
         [
@@ -188,11 +188,11 @@ export const additionalMisconceptionProbes = {
           'TCP mantiene su servicio de transporte fiable y ordenado.',
         ],
         [
-          'Sesión OSI siempre, porque se ha usado esa palabra',
+          'Sesión OSI, tomando la palabra sesión como criterio de clasificación',
           'Una palabra cotidiana no sustituye el análisis funcional.',
         ],
         [
-          'Aplicación exclusivamente, porque mantiene estado',
+          'Aplicación, porque mantener estado excluye la función OSI de sesión',
           'Mantener estado no basta para convertir TCP en un servicio de aplicación.',
         ],
         [
@@ -222,7 +222,7 @@ export const additionalMisconceptionProbes = {
           'Autenticar cuentas sigue siendo una operación concreta de la aplicación.',
         ],
         [
-          'Que una MAC sustituye todos los puntos de sincronización',
+          'Que una MAC permite sustituir los puntos de sincronización del diálogo',
           'La dirección local no realiza la coordinación del diálogo.',
         ],
       ],
@@ -242,7 +242,7 @@ export const additionalMisconceptionProbes = {
           'La compresión no exige confidencialidad ni una clave secreta.',
         ],
         [
-          'Que cualquier compresión cifra todos los datos',
+          'Que comprimir el archivo añade cifrado a su contenido',
           'El lector puede descomprimir sin una clave secreta; compresión y cifrado son distintos.',
         ],
         [
@@ -268,7 +268,7 @@ export const additionalMisconceptionProbes = {
           'Recibir bytes y entender su representación son responsabilidades diferentes.',
         ],
         [
-          'Si el texto se ve mal, TCP no entregó ningún byte necesariamente',
+          'Un texto mal interpretado demuestra que TCP no entregó bytes',
           'Puede haberse entregado el contenido completo y usarse una codificación incorrecta.',
         ],
         [
@@ -276,7 +276,7 @@ export const additionalMisconceptionProbes = {
           'La representación no elige los saltos de encaminamiento.',
         ],
         [
-          'Comprimir el texto garantiza que el lector lo interprete siempre',
+          'La compresión permite interpretar texto sin acordar su codificación',
           'La compresión no resuelve automáticamente el acuerdo de codificación.',
         ],
       ],
@@ -297,7 +297,7 @@ export const additionalMisconceptionProbes = {
         ],
         ['No llegó ninguna respuesta en ninguna capa', 'El propio 404 es información recibida.'],
         [
-          'Todos los equipos del recorrido funcionan sin ningún problema',
+          'Los servicios de los equipos del recorrido funcionan correctamente',
           'Una respuesta no verifica exhaustivamente todos los equipos ni funciones.',
         ],
         ['El cable está roto con seguridad', 'El 404 no es una prueba de rotura física.'],
@@ -316,12 +316,12 @@ export const additionalMisconceptionProbes = {
           'El filtrado, el estado del destino o la conectividad pueden influir.',
         ],
         [
-          'El cable de mi equipo está roto siempre',
+          'La falta de respuesta demuestra que el cable del equipo está roto',
           'La ausencia de ICMP no localiza necesariamente el fallo físico.',
         ],
         ['La web del destino no existe con certeza', 'Ping no verifica el recurso de aplicación.'],
         [
-          'DNS ha rechazado siempre el nombre, incluso si usé una IP',
+          'La falta de respuesta a una IP demuestra un rechazo del servicio DNS',
           'Usar una IP para esa prueba no requiere resolver un nombre en ese momento.',
         ],
       ],

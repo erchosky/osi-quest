@@ -1,3 +1,4 @@
+import { misconceptionByQuestion } from '../../data/progress-catalog.js';
 import { roundProgress } from '../../components/round-progress.js';
 import { roundExitButton } from '../../components/round-exit.js';
 import { answerChoices } from '../../components/answer-choices.js';
@@ -24,16 +25,18 @@ export function quizView(app) {
         ${raw(roundExitButton())}
         <span class="badge"
           >${session.isExam ? 'EXAMEN' : session.difficulty === 'hard' ? 'DIFÍCIL' : 'NORMAL'} ·
-          ${session.index + 1}/${session.questions.length}</span
+          ${session.kind === 'speedrun' ? `RETO ${session.attemptNumber}` : `${session.index + 1}/${session.questions.length}`}</span
         >
       </div>
       <section class="game-panel panel ${session.kind === 'speedrun' ? 'speedrun-panel' : ''}">
         ${raw(roundProgress(session))} ${raw(rewardHud(session))}
         <div class="question-eyebrow">
           <p class="eyebrow">
-            ${raw(escapeHtml(title))}${session.caseStudy
-              ? ` · PASO ${session.caseStudy.questionIds.indexOf(question.id) + 1}`
-              : ''}
+            ${raw(escapeHtml(title))}${
+              session.caseStudy
+                ? ` · PASO ${session.caseStudy.questionIds.indexOf(question.id) + 1}`
+                : ''
+            }
           </p>
           ${raw(
             session.questions.some((item) => item.tricky) && !session.isExam
@@ -102,11 +105,13 @@ export function quizView(app) {
                   >
                     ← Anterior</button
                   ><button class="button button-primary" id="next-question">
-                    ${session.index === session.questions.length - 1
-                      ? 'Revisar examen'
-                      : 'Siguiente →'}
+                    ${
+                      session.index === session.questions.length - 1
+                        ? 'Revisar examen'
+                        : 'Siguiente →'
+                    }
                   </button>`
-              : `${revealed ? '<button class="button button-secondary explanation-jump" id="show-explanation">Ver explicación ↓</button>' : ''}${!answer ? html`<button class="button button-secondary" id="hint-button" ${session.assisted ? 'disabled' : ''}>${session.assisted ? 'Pista utilizada' : 'Necesito una pista'}</button>` : ''}<button class="button button-primary" id="next-question" ${!answer ? 'disabled' : ''}>${session.index === session.questions.length - 1 ? 'Ver resultado →' : 'Siguiente →'}</button>`,
+              : `${revealed ? '<button class="button button-secondary explanation-jump" id="show-explanation">Ver explicación ↓</button>' : ''}${!answer ? html`<button class="button button-secondary" id="hint-button" ${session.assisted ? 'disabled' : ''}>${session.assisted ? 'Pista utilizada' : 'Necesito una pista'}</button>` : ''}<button class="button button-primary" id="next-question" ${!answer ? 'disabled' : ''}>${session.kind !== 'speedrun' && session.index === session.questions.length - 1 ? 'Ver resultado →' : 'Siguiente →'}</button>`,
           )}
         </div>
       </section>
@@ -118,13 +123,13 @@ export function quizView(app) {
                     .map(
                       (item, i) =>
                         html`<button
-                          class="exam-number ${session.answers[item.id]
-                            ? 'answered'
-                            : ''} ${session.flags.has(item.id) ? 'flagged' : ''}"
+                          class="exam-number ${
+                            session.answers[item.id] ? 'answered' : ''
+                          } ${session.flags.has(item.id) ? 'flagged' : ''}"
                           data-jump="${i}"
-                          aria-label="Pregunta ${i + 1}${session.flags.has(item.id)
-                            ? ', marcada con duda'
-                            : ''}"
+                          aria-label="Pregunta ${i + 1}${
+                            session.flags.has(item.id) ? ', marcada con duda' : ''
+                          }"
                           ${raw(i === session.index ? 'aria-current="step"' : '')}
                         >
                           ${i + 1}${session.flags.has(item.id) ? ' ⚑' : ''}
@@ -139,6 +144,14 @@ export function quizView(app) {
           : '',
       )}`,
     bind() {
+      const concept = misconceptionByQuestion.get(question.id);
+      const retryAfter = concept && app.repository.data.concepts[concept.id]?.retryAfter;
+      if (revealed && retryAfter > Date.now()) {
+        const note = document.createElement('p');
+        note.className = 'small-note concept-wait';
+        note.textContent = `Insignia en repaso: espera ${Math.ceil((retryAfter - Date.now()) / 60000)} min para una nueva comprobación. Tus aciertos siguen sumando XP.`;
+        document.querySelector('.question-feedback-slot').append(note);
+      }
       bindQuiz(app);
     },
   };

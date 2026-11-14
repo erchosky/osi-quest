@@ -7,7 +7,9 @@ export function drawLayerIllustration() {
   const context = canvas.getContext('2d');
   if (!context) return;
   context.clearRect(0, 0, canvas.width, canvas.height);
-  context.fillStyle = '#173d30';
+  const theme = getComputedStyle(document.documentElement);
+  const backdrop = theme.getPropertyValue('--hero-bg').trim() || '#173d30';
+  context.fillStyle = backdrop;
   context.fillRect(0, 0, canvas.width, canvas.height);
   context.strokeStyle = '#749085';
   context.setLineDash([3, 6]);
@@ -39,14 +41,14 @@ export function drawLayerIllustration() {
       9,
     );
     context.fill();
-    context.fillStyle = layer.color;
+    context.fillStyle = '#213d32';
     context.font = 'bold 14px system-ui';
     context.fillText(String(layer.number), x + 14, y + 22);
     context.fillStyle = '#213d32';
     context.font = '600 13px system-ui';
     context.fillText(layer.name, x + 44, y + 22);
     context.fillStyle = '#365243';
-    context.font = '11px system-ui';
+    context.font = '12px system-ui';
     context.fillText(layer.verb, x + 183, y + 22);
   });
   context.fillStyle = '#d1ed90';

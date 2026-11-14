@@ -47,13 +47,13 @@
 }
 .radar-filters button {
   border: 1px solid var(--line);
-  background: var(--surface-ffffff, white);
+  background: var(--white);
   padding: 9px 13px;
   border-radius: 8px;
   color: var(--ink);
 }
 .radar-filters button[aria-pressed='true'] {
-  color: var(--text-ffffff, white);
+  color: var(--on-accent);
   background: var(--green);
 }
 .mastery-evidence {
@@ -73,7 +73,7 @@
 }
 .mastery-evidence small {
   display: block;
-  font-size: 11px;
+  font-size: 0.75rem;
   color: var(--muted);
   margin-top: 4px;
 }
@@ -93,8 +93,8 @@
   border-radius: 14px;
 }
 .concept-badge.is-earned {
-  background: var(--surface-f1f7e9, #f1f7e9);
-  border-color: var(--edge-a3be7d, #a3be7d);
+  background: var(--soft);
+  border-color: var(--line);
 }
 .concept-emblem {
   display: grid;
@@ -103,12 +103,12 @@
   width: 44px;
   font-size: 24px;
   border-radius: 50%;
-  background: var(--surface-e9eddf, #e9eddf);
-  color: var(--text-54664c, #54664c);
+  background: var(--soft);
+  color: var(--ink);
 }
 .is-earned .concept-emblem {
-  background: var(--surface-d4edb0, #d4edb0);
-  color: var(--text-254b35, #254b35);
+  background: var(--soft);
+  color: var(--ink);
 }
 .concept-badge h3 {
   font-size: 16px;
@@ -119,16 +119,16 @@
   margin: 8px 0;
 }
 .concept-badge small {
-  font-size: 11px;
-  color: var(--text-38553e, #38553e);
+  font-size: 0.75rem;
+  color: var(--ink);
 }
 .concept-badge .button {
   margin-top: auto;
 }
 .earned-badge-note {
   padding: 10px 14px;
-  background: var(--surface-d8edb9, #d8edb9);
-  color: var(--text-244b34, #244b34);
+  background: var(--soft);
+  color: var(--ink);
   border-radius: 9px;
   font-weight: 700;
 }
@@ -149,7 +149,7 @@
   gap: 20px;
 }
 .insight-grid > div {
-  background: var(--surface-f4f7ef, #f4f7ef);
+  background: var(--soft);
   padding: 20px;
   border-radius: 12px;
 }
@@ -197,13 +197,13 @@
   gap: 15px;
   padding: 17px 22px;
   margin-bottom: 22px;
-  border: 1px solid var(--edge-d8dcbf, #d8dcbf);
+  border: 1px solid var(--line);
   border-radius: 14px;
-  background: var(--surface-f6f8e9, #f6f8e9);
+  background: var(--soft);
   font-size: 14px;
 }
 .life-counter {
-  color: var(--text-803d31, #803d31);
+  color: var(--ink);
   font-weight: 700;
 }
 .life-counter span {
@@ -215,7 +215,7 @@
   margin-left: 5px;
 }
 #survival-time.is-urgent {
-  color: var(--text-953622, #953622);
+  color: var(--ink);
 }
 .survival-finish {
   margin-top: 18px;
@@ -257,7 +257,7 @@
 }
 .handoff-symbol {
   font-size: 70px;
-  color: var(--text-46734e, #46734e);
+  color: var(--ink);
   margin-top: 12px;
 }
 .duel-response-grid,
@@ -270,12 +270,12 @@
 .duel-response {
   padding: 20px;
   border-radius: 12px;
-  background: var(--surface-f6efe7, #f6efe7);
-  border: 1px solid var(--edge-e3c7ae, #e3c7ae);
+  background: var(--soft);
+  border: 1px solid var(--line);
 }
 .duel-response.is-right {
-  background: var(--surface-edf6e1, #edf6e1);
-  border-color: var(--edge-b8ce94, #b8ce94);
+  background: var(--soft);
+  border-color: var(--line);
 }
 .duel-response p {
   margin: 12px 0;
@@ -287,7 +287,7 @@
   border: 1px solid var(--line);
   padding: 25px;
   border-radius: 14px;
-  background: var(--surface-f5f8ef, #f5f8ef);
+  background: var(--soft);
 }
 .duel-score h2 {
   font-size: 22px;

@@ -35,19 +35,19 @@ export const hardScenarioQuestions = [
     'Un enlace de fibra deja de recibir luz y la interfaz informa pérdida de señal. ¿Cuál es el primer ámbito de comprobación?',
     [
       [
-        'Fibra, conectores y emisor o receptor óptico',
+        'El cableado y los transceptores ópticos',
         'Esos elementos permiten que la señal llegue al receptor.',
       ],
       [
-        'La tabla de rutas IP del servidor web',
+        'La tabla de rutas IP del servidor que contiene la página',
         'Las rutas no restauran una señal óptica ausente en ese enlace.',
       ],
       [
-        'El puerto TCP que utiliza el navegador',
+        'El puerto TCP en el que está escuchando el servicio web',
         'El puerto lógico no produce la luz del medio físico.',
       ],
       [
-        'La codificación del texto de la página',
+        'La codificación del contenido que interpreta el navegador',
         'La codificación se interpreta después de recibir datos; no arregla la señal ausente.',
       ],
     ],
@@ -62,19 +62,19 @@ export const hardScenarioQuestions = [
     'Ping falla, pero todavía no has observado el enlace. ¿Qué dato daría evidencia física más directa?',
     [
       [
-        'El estado del enlace y una comprobación del cable o señal',
+        'Una medida del enlace, cable o señal',
         'Observa directamente elementos del medio físico en vez de inferirlos de ping.',
       ],
       [
-        'La ausencia de una respuesta ICMP por sí sola',
+        'El hecho de que esa prueba no haya recibido respuesta ICMP',
         'ICMP puede filtrarse o perderse por varias causas; no demuestra un cable roto.',
       ],
       [
-        'Un HTTP 404 de otra web',
+        'Un error HTTP devuelto por un servicio distinto en Internet',
         'Es una respuesta del servicio de aplicación, no una medición del cable investigado.',
       ],
       [
-        'El nombre de usuario usado para acceder a la web',
+        'El formato de los datos enviados por el programa de pruebas',
         'Las credenciales no indican si el enlace recibe una señal.',
       ],
     ],
@@ -112,19 +112,19 @@ export const hardScenarioQuestions = [
     'Un receptor Ethernet descarta una trama cuyo FCS no coincide. ¿Qué interpretación es correcta?',
     [
       [
-        'Ha detectado un daño en la trama, sin repararla necesariamente',
+        'Detectó daño; no implica reparación',
         'El FCS permite detectar errores; descartar no reconstruye los datos.',
       ],
       [
-        'Ha corregido automáticamente todos los bits dañados',
+        'El FCS permite reconstruir el contenido dañado de la trama',
         'Detección y corrección son distintas; el descarte no garantiza reparación.',
       ],
       [
-        'Ha demostrado que el servidor DNS no funciona',
+        'La recepción de la trama demuestra un fallo de resolución DNS',
         'Un daño de trama no localiza el fallo del servicio DNS.',
       ],
       [
-        'Ha confirmado que el mensaje llegó al proceso destino',
+        'El descarte confirma que los datos llegaron al proceso destino',
         'Una trama descartada no confirma una entrega de transporte.',
       ],
     ],
@@ -190,16 +190,19 @@ export const hardScenarioQuestions = [
     'Un router decrementa el Hop Limit de IPv6 y descarta un paquete cuando alcanza cero al reenviarlo. ¿Qué está evitando?',
     [
       [
-        'Que un paquete siga recorriendo saltos indefinidamente',
+        'Una circulación indefinida del paquete',
         'El límite de saltos acota su recorrido, incluso si existen bucles.',
       ],
-      ['Que una contraseña se envíe sin cifrar', 'Hop Limit no aporta confidencialidad.'],
       [
-        'Que dos textos tengan codificaciones diferentes',
+        'Que los datos de una aplicación salgan sin protección TLS',
+        'Hop Limit no aporta confidencialidad.',
+      ],
+      [
+        'Que emisor y receptor interpreten codificaciones distintas',
         'El límite de saltos no convierte formatos de texto.',
       ],
       [
-        'Que TCP tenga que confirmar una entrega',
+        'Que TCP retransmita datos que el destinatario ya recibió',
         'La confirmación TCP es una función distinta de limitar el recorrido IP.',
       ],
     ],
@@ -214,13 +217,19 @@ export const hardScenarioQuestions = [
     'Una tabla no contiene ninguna ruta utilizable hacia la IP de destino. ¿Qué afirmación está mejor respaldada?',
     [
       [
-        'Falta una decisión de encaminamiento utilizable hacia ese destino',
+        'Falta una ruta utilizable al destino',
         'La evidencia observada afecta a cómo enviar el paquete hacia su destino.',
       ],
-      ['El cable está roto con certeza', 'Una ruta ausente no demuestra un defecto físico.'],
-      ['El servidor rechazó la contraseña', 'No se ha observado una operación de autenticación.'],
       [
-        'TCP ha descifrado mal el mensaje',
+        'La capa física no ha podido transmitir una señal por el cable',
+        'Una ruta ausente no demuestra un defecto físico.',
+      ],
+      [
+        'La autenticación de la aplicación rechazó la cuenta del usuario',
+        'No se ha observado una operación de autenticación.',
+      ],
+      [
+        'El protocolo TCP no pudo descifrar el contenido del mensaje',
         'TCP no descifra el contenido por sí mismo y esa no es la evidencia observada.',
       ],
     ],
@@ -235,19 +244,19 @@ export const hardScenarioQuestions = [
     'DNS devuelve una IP, pero la conexión al puerto TCP del servicio es rechazada. ¿Qué comprobarías ahora?',
     [
       [
-        'Si el proceso escucha en ese puerto y qué reglas de acceso se aplican',
+        'El proceso y las reglas de acceso al puerto',
         'El rechazo orienta a comprobar el extremo de transporte y el servicio o filtro correspondiente.',
       ],
       [
-        'Si el nombre DNS necesariamente no existe',
+        'Si el nombre dejó de existir aunque DNS acaba de responder',
         'Ya has recibido una respuesta con IP; el rechazo del puerto es otra observación.',
       ],
       [
-        'Si TCP ha cifrado el contenido de la petición',
+        'Si TCP cifra de forma diferente la petición de aplicación',
         'TCP no aporta ese cifrado y el rechazo ocurre al intentar conectar.',
       ],
       [
-        'Si la dirección MAC es igual en todos los saltos',
+        'Si las direcciones MAC permanecen iguales en toda la ruta',
         'Las direcciones de enlace no tienen que permanecer iguales en todo el recorrido.',
       ],
     ],
@@ -262,19 +271,19 @@ export const hardScenarioQuestions = [
     'Un vídeo utiliza UDP y su aplicación detecta pérdidas y vuelve a pedir algunos datos. ¿Qué puedes afirmar?',
     [
       [
-        'La aplicación añade recuperación; UDP no la garantiza por sí mismo',
+        'La aplicación añade recuperación',
         'Una función superior puede gestionar pérdidas sobre el servicio de UDP.',
       ],
       [
-        'UDP garantiza ahora entrega y orden a cualquier aplicación',
+        'UDP adquiere garantías de entrega para las demás aplicaciones',
         'Las acciones de esta aplicación no cambian las garantías de UDP para todas las demás.',
       ],
       [
-        'UDP pasa a ser el protocolo de aplicación del vídeo',
+        'La recuperación cambia UDP por un protocolo de aplicación',
         'El transporte y el protocolo que pide recuperar datos siguen siendo funciones distintas.',
       ],
       [
-        'Toda recuperación exige que UDP se convierta en TCP',
+        'La aplicación convierte cada datagrama perdido en un segmento TCP',
         'Una aplicación puede implementar mecanismos propios sin sustituir UDP por TCP.',
       ],
     ],
@@ -430,7 +439,7 @@ export const hardScenarioQuestions = [
         'Comprimir no exige una clave secreta ni proporciona confidencialidad por sí mismo.',
       ],
       [
-        'La compresión obliga a TCP a retransmitir sin pérdidas para siempre',
+        'La compresión aporta a TCP la garantía de retransmisión sin pérdidas',
         'La representación de la foto no cambia las garantías ni los límites del transporte.',
       ],
       [
@@ -515,7 +524,7 @@ export const hardScenarioQuestions = [
         'El servicio web y la resolución de nombres son comprobaciones distintas.',
       ],
       [
-        'Si todo el cableado está roto necesariamente',
+        'Si la respuesta demuestra una interrupción del cableado',
         'Has obtenido una respuesta DNS; ese resultado no demuestra una rotura física.',
       ],
     ],

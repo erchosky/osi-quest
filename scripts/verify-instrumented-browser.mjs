@@ -43,7 +43,10 @@ try {
   check('Production server starts', ready);
   browser = await chromium.launch();
   // Fault-injection needs direct network loads. Offline/SW behavior has its own suites.
-  const page = await browser.newPage({ serviceWorkers: 'block', viewport: { width: 1280, height: 900 } });
+  const page = await browser.newPage({
+    serviceWorkers: 'block',
+    viewport: { width: 1280, height: 900 },
+  });
   page.on('pageerror', (error) => errors.push(error.message));
   page.on('console', (message) => {
     if (message.type() === 'error') errors.push(message.text());
@@ -170,10 +173,13 @@ try {
   // restoring the resource keeps saved progress. This page expects one abort.
   const failure = await browser.newPage({ serviceWorkers: 'block' });
   await failure.addInitScript(() =>
-    localStorage.setItem(
-      'osi-quest-v1',
-      JSON.stringify({ version: 3, xp: 88, read: [], stats: {}, cards: {} }),
-    ),
+    ((key, value) => {
+      // Fixture replacement is explicit; journal operations otherwise outrank stale snapshots.
+      if (key === 'osi-quest-v1')
+        for (const id of Object.keys(localStorage))
+          if (id.startsWith('osi-quest-v1:')) localStorage.removeItem(id);
+      localStorage.setItem(key, value);
+    })('osi-quest-v1', JSON.stringify({ version: 3, xp: 88, read: [], stats: {}, cards: {} })),
   );
   await failure.route('**/assets/study-*.js', (request) => request.abort());
   await failure.goto(url + '#/study/url');
@@ -202,7 +208,13 @@ try {
   const launchRace = await browser.newPage({ serviceWorkers: 'block' });
   await launchRace.addInitScript(() => {
     Object.defineProperty(navigator, 'connection', { value: { saveData: true } });
-    localStorage.setItem(
+    ((key, value) => {
+      // Fixture replacement is explicit; journal operations otherwise outrank stale snapshots.
+      if (key === 'osi-quest-v1')
+        for (const id of Object.keys(localStorage))
+          if (id.startsWith('osi-quest-v1:')) localStorage.removeItem(id);
+      localStorage.setItem(key, value);
+    })(
       'osi-quest-v1',
       JSON.stringify({
         version: 3,

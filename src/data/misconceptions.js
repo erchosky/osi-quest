@@ -28,7 +28,7 @@ export const misconceptions = [
         [
           'Entrega fiable y ordenada, sin cifrarlos por sí mismo',
           'Confidencialidad y autenticación del servidor por sí mismo',
-          'Entrega fiable y confidencialidad en todos los enlaces',
+          'Entrega fiable y protección confidencial del contenido',
           'Cifrado del contenido, pero sin control del orden',
         ],
         'TCP ofrece mecanismos de entrega fiable y ordenada. El uso de TCP no cifra el contenido: para proteger una web se utiliza TLS, entre otras funciones.',
@@ -129,7 +129,7 @@ export const misconceptions = [
         'Una web verifica una contraseña. ¿Cómo clasificas esa operación concreta?',
         [
           'Como una operación del servicio de aplicación',
-          'Como sesión OSI solo por llamarse iniciar sesión',
+          'Como sesión OSI, tomando el nombre de la operación como su función',
           'Como transporte porque contiene una contraseña',
           'Como enlace porque se identifica a una persona',
         ],
@@ -165,7 +165,7 @@ export const misconceptions = [
           'Has cambiado su representación para reducir tamaño',
           'Has protegido su contenido frente a cualquier lector',
           'Has autenticado automáticamente a quien la recibe',
-          'Has garantizado que nunca se perderá en la red',
+          'Has añadido una garantía de entrega en la red',
         ],
         'Comprimir puede reducir tamaño. No proporciona por sí mismo confidencialidad, autenticación ni garantías de entrega.',
         'Reducir el tamaño y proteger el contenido tienen objetivos diferentes.',
@@ -177,7 +177,7 @@ export const misconceptions = [
         [
           'Comprimirla y proteger la comunicación mediante cifrado',
           'Comprimirla dos veces para obtener confidencialidad',
-          'Cambiar su dirección IP para cifrar todos sus datos',
+          'Cambiar la dirección IP para cifrar el contenido del archivo',
           'Usar un puerto distinto para autenticar al receptor',
         ],
         'La compresión y el cifrado pueden coexistir. Cada función resuelve un problema diferente.',
@@ -210,9 +210,9 @@ export const misconceptions = [
         'DNS responde con una IP. ¿Qué necesitas comprobar para saber si la web sirve la página?',
         [
           'La respuesta HTTP del recurso solicitado',
-          'Solo otra respuesta DNS con esa misma IP',
-          'Solo la velocidad anunciada por la tarjeta de red',
-          'Solo el nombre de la capa física del portátil',
+          'Otra respuesta DNS con la misma dirección IP',
+          'La velocidad anunciada por la tarjeta de red',
+          'El nombre de la tecnología física del portátil',
         ],
         'Resolver un nombre no demuestra que el recurso web exista o responda bien. Hay que comprobar el servicio.',
         'Resolver el nombre y solicitar la página son pasos distintos.',

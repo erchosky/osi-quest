@@ -4,8 +4,8 @@
   justify-content: space-between;
   gap: 24px;
   margin: 24px 0;
-  border-color: var(--edge-b4c89d, #b4c89d);
-  background: var(--surface-f4f8ed, #f4f8ed);
+  border-color: var(--line);
+  background: var(--soft);
 }
 .choice-recommendation h2 {
   margin: 7px 0;
@@ -37,21 +37,21 @@
   padding: 13px 0;
   margin-top: 16px;
   border-top: 1px solid var(--line);
-  font-size: 11px;
+  font-size: 0.75rem;
   color: var(--muted);
 }
 .activity-history strong {
   display: block;
   color: var(--ink);
   margin-bottom: 3px;
-  font-size: 11px;
+  font-size: 0.75rem;
 }
 .activity-configuration {
   margin: 10px 0 14px;
 }
 .activity-configuration > span {
   display: block;
-  font-size: 10px;
+  font-size: 0.75rem;
   color: var(--muted);
 }
 .activity-configuration > strong {
@@ -81,7 +81,7 @@
 .activity-length {
   padding-top: 10px;
   border-top: 1px solid var(--line);
-  font-size: 10px;
+  font-size: 0.75rem;
   color: var(--muted);
 }
 .choice-empty {

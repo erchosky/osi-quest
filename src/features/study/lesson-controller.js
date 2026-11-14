@@ -13,6 +13,15 @@ export function bindLesson(app, unit, content, requestedSection) {
   const dock = document.querySelector('#lesson-next-dock');
   const end = document.querySelector('#lesson-end');
   let reachedEnd = false;
+  let noteTimer;
+  const saveNote = () => {
+    if (noteTimer === undefined) return;
+    clearTimeout(noteTimer);
+    noteTimer = undefined;
+    app.repository.saveLessonNote(id, app.lessonDrafts?.[id] ?? app.lessonNotes[id] ?? '');
+    if (app.lessonDrafts) delete app.lessonDrafts[id];
+  };
+  window.addEventListener('pagehide', saveNote);
   function updateDock() {
     const bounds = end.getBoundingClientRect();
     dock.hidden = !reachedEnd || (bounds.top < innerHeight && bounds.bottom > 0);
@@ -71,6 +80,9 @@ export function bindLesson(app, unit, content, requestedSection) {
   });
   document.querySelector('#lesson-notes').addEventListener('input', (e) => {
     app.lessonNotes[id] = e.target.value.slice(0, 5000);
+    (app.lessonDrafts ??= {})[id] = app.lessonNotes[id];
+    clearTimeout(noteTimer);
+    noteTimer = setTimeout(saveNote, 400);
   });
   document.querySelectorAll('[data-check]').forEach((button) =>
     button.addEventListener('click', () => {
@@ -106,6 +118,8 @@ export function bindLesson(app, unit, content, requestedSection) {
   });
   return () => {
     flushBookmark();
+    saveNote();
+    window.removeEventListener('pagehide', saveNote);
     window.removeEventListener('pagehide', flushBookmark);
     endObserver.disconnect();
     window.removeEventListener('scroll', onScroll);

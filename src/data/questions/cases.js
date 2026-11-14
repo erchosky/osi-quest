@@ -8,7 +8,7 @@ export const caseQuestions = [
     choices: [
       'Revisar conexión y estado del cable',
       'Borrar el historial del navegador',
-      'Cambiar todas las contraseñas',
+      'Cambiar las credenciales de acceso al servicio web',
       'Reinstalar el servidor web',
     ],
     correctIndex: 0,
@@ -28,7 +28,7 @@ export const caseQuestions = [
     choices: [
       'Que hay conectividad IP hasta ese router',
       'Que cualquier web funcionará',
-      'Que todos los nombres DNS se resuelven',
+      'Que funciona la resolución de nombres del navegador',
       'Que no hay ningún problema en toda la red',
     ],
     correctIndex: 0,
@@ -86,9 +86,9 @@ export const caseQuestions = [
       'La puerta de enlace configurada pertenece a una red equivocada. ¿Qué configuración debes verificar?',
     choices: [
       'Dirección IP, máscara y puerta de enlace',
-      'Solo el tamaño de letra del navegador',
-      'Solo el puerto de una aplicación',
-      'Solo el formato del archivo',
+      'El tamaño de letra con el que se muestra la página',
+      'El puerto de destino que utiliza la aplicación',
+      'El formato del contenido que envía la aplicación',
     ],
     correctIndex: 0,
     explanation:
@@ -125,7 +125,7 @@ export const caseQuestions = [
     prompt: 'El servidor devuelve HTTP 404. ¿Qué significa esa respuesta?',
     choices: [
       'El recurso solicitado no se encuentra',
-      'El cable está necesariamente cortado',
+      'La respuesta demuestra que el cable está cortado',
       'No se transmite ninguna señal',
       'UDP garantiza la entrega',
     ],
@@ -143,7 +143,7 @@ export const caseQuestions = [
     prompt: 'La portada carga, pero /curso devuelve 404. ¿Qué investigas primero?',
     choices: [
       'La ruta /curso en el servicio web',
-      'La MAC de todos los equipos',
+      'Las direcciones MAC de los equipos de la red',
       'La potencia de radio sin más evidencia',
       'La codificación de los bits del cable',
     ],
