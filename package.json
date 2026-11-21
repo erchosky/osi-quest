@@ -28,7 +28,7 @@
     "test:coverage": "node --experimental-test-coverage --test --test-coverage-include=\"src/domain/*.js\" --test-coverage-lines=80 --test-coverage-branches=70 --test-coverage-functions=80 tests/*.test.js"
   },
   "devDependencies": {
-    "@axe-core/playwright": "4.13.0",
+    "@axe-core/playwright": "4.14.0",
     "acorn": "8.18.0",
     "esbuild": "0.28.2",
     "playwright": "1.62.1",
